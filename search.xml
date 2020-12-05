@@ -24,14 +24,7 @@
 <h3 id="Use-pdf-in-the-following-way"><a href="#Use-pdf-in-the-following-way" class="headerlink" title="Use pdf in the following way:"></a>Use pdf in the following way:</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;% pdf &#x2F;path&#x2F;to&#x2F;your&#x2F;file.pdf %&#125;</span><br></pre></td></tr></table></figure>
 
 <p>rendered as:</p>
-
-
-	<div class="row">
-    <embed src="/resources/test.pdf" width="100%" height="550" type="application/pdf">
-	</div>
-
-
-
+<div class="pdfobject-container" data-target="/resources/test.pdf" data-height="500px"></div>
 
 <h3 id="others"><a href="#others" class="headerlink" title="others"></a>others</h3><p>google doc and slideshare is also supported.</p>
 <h2 id="Add-globe-statistics"><a href="#Add-globe-statistics" class="headerlink" title="Add globe statistics"></a>Add globe statistics</h2><h3 id="Get-a-globe-code-from-REVxLVERMAPS"><a href="#Get-a-globe-code-from-REVxLVERMAPS" class="headerlink" title="Get a globe code from REVxLVERMAPS"></a>Get a globe code from REVxLVERMAPS</h3><p><a href="https://www.revolvermaps.com/?target=gallery">https://www.revolvermaps.com/?target=gallery</a></p>
@@ -48,7 +41,7 @@
   </entry>
   <entry>
     <title>随机算法</title>
-    <url>/2020/12/03/random/</url>
+    <url>/2020/12/03/random_algorithm/</url>
     <content><![CDATA[<h2 id="问题1-拒绝采样"><a href="#问题1-拒绝采样" class="headerlink" title="问题1: 拒绝采样"></a>问题1: 拒绝采样</h2><h3 id="leetcode-470-Implement-Rand10-Using-Rand7"><a href="#leetcode-470-Implement-Rand10-Using-Rand7" class="headerlink" title="leetcode 470: Implement Rand10() Using Rand7()"></a><a href="https://leetcode.com/problems/implement-rand10-using-rand7/">leetcode 470: Implement Rand10() Using Rand7()</a></h3><blockquote>
 <p>Given the <strong>API</strong> rand7() that generates a uniform random integer in the range [1, 7], write a function rand10() that generates a uniform random integer in the range [1, 10]. You can only call the API rand7(), and you shouldn’t call any other API. Please do not use a language’s built-in random API.</p>
 <p>Each test case will have one internal argument n, the number of times that your implemented function rand10() will be called while testing. Note that this is not an argument passed to rand10().</p>
@@ -58,8 +51,7 @@
 <p>Example 3:<br>Input: n = 3<br>Output: [3,8,10]</p>
 <p>Constraints:<br>1 &lt;= n &lt;= 105</p>
 </blockquote>
-<div style="text-align:center"> <img src="table.png"> </div>
-
+<p><img src="/2020/12/03/random_algorithm/table.png" alt="Fig 1. 二维随机表格分布"><span class="image-caption">Fig 1. 二维随机表格分布</span></p>
 <p>我们可以使用“拒绝采样”来求解这个题目。 注意rand10要求返回的数字在[1, 10]之间均匀分布。执行一次rand7()只能得到[1, 7]之间的均匀分布，我们可以执行两次rand7(), 将两次的执行结果看做表格的横纵坐标(row, col)，这时候表格中的每一个单元被选中的机会是相等的, 这样我们就得到了一个二维表格中的均匀分布。接下来， 我们将这个二维坐标转换为一维坐标，我们就得到了[1, 49]之间的均匀分布。我们的最终目标是得到[1, 10]之间的均匀分布，由于可以把[1, n * 10]之间的均匀分布通过取余预算转换为[1, 10]之间的均匀分布，所以这里我们取[1, 40]为有效值，当获取的值不在这个范围时候，我们重新采样。这个过程即拒绝采样。代码如下：</p>
 <figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">rand10</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">const</span> <span class="keyword">int</span> row = rand7();</span><br><span class="line">      <span class="keyword">const</span> <span class="keyword">int</span> col = rand7();</span><br><span class="line">      <span class="keyword">const</span> <span class="keyword">int</span> idx = (row - <span class="number">1</span>) * <span class="number">7</span> + col;</span><br><span class="line">      <span class="keyword">if</span> (idx &lt;= <span class="number">40</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> idx % <span class="number">10</span> + <span class="number">1</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> rand10();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
