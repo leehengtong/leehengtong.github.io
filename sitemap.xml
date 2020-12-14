@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://leehengtong.com/2020/12/13/simulated_annealing/</loc>
+    
+    <lastmod>2020-12-14</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://leehengtong.com/2020/12/07/optimization_problem/</loc>
     
     <lastmod>2020-12-13</lastmod>
@@ -74,7 +81,7 @@
 
   <url>
     <loc>https://leehengtong.com/</loc>
-    <lastmod>2020-12-13</lastmod>
+    <lastmod>2020-12-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -82,35 +89,42 @@
   
   <url>
     <loc>https://leehengtong.com/tags/convex-optimization/</loc>
-    <lastmod>2020-12-13</lastmod>
+    <lastmod>2020-12-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://leehengtong.com/tags/demo/</loc>
-    <lastmod>2020-12-13</lastmod>
+    <lastmod>2020-12-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://leehengtong.com/tags/hill-climbing/</loc>
-    <lastmod>2020-12-13</lastmod>
+    <lastmod>2020-12-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://leehengtong.com/tags/optimization/</loc>
-    <lastmod>2020-12-13</lastmod>
+    <lastmod>2020-12-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://leehengtong.com/tags/random/</loc>
-    <lastmod>2020-12-13</lastmod>
+    <lastmod>2020-12-14</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://leehengtong.com/tags/simulated-annealing/</loc>
+    <lastmod>2020-12-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
@@ -119,14 +133,14 @@
   
   <url>
     <loc>https://leehengtong.com/categories/algorithm/</loc>
-    <lastmod>2020-12-13</lastmod>
+    <lastmod>2020-12-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://leehengtong.com/categories/demo/</loc>
-    <lastmod>2020-12-13</lastmod>
+    <lastmod>2020-12-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
