@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>算法概述</title>
+    <url>/2020/12/01/all_algo/</url>
+    <content><![CDATA[<p>最近对“算法”有了新的理解，对于普通程序员来说，算法功底的好坏对于简洁而高质量的代码至关重要，因此决定从一些经典的ACM算法开始，扎实的学习一下这些算法和编程技巧，以期能有更好的将来。从网上搜索了一些资料，发现“@制糕神的算法工坊”整理的比较全面，这里借用他的一张图片，后续将从他的这个图片开始学习。</p>
+<p><img src="/2020/12/01/all_algo/algo.jpeg" alt="图1 算法分类"><span class="image-caption">图1 算法分类</span></p>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ol>
+<li><a href="https://www.zhihu.com/question/332733219/answer/878129865">https://www.zhihu.com/question/332733219/answer/878129865</a></li>
+</ol>
+]]></content>
+      <categories>
+        <category>algorithm</category>
+      </categories>
+      <tags>
+        <tag>all algorithms</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>凸优化</title>
     <url>/2020/12/06/convex_optimization/</url>
     <content><![CDATA[<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>$$ min \ f_{0}(x) $$<br>$$ subject \ to \ f_{i}(x) \leqslant b_{i} \ i=1,…,m $$</p>

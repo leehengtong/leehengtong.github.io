@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://leehengtong.com/2020/12/01/all_algo/</loc>
+    
+    <lastmod>2021-01-31</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://leehengtong.com/2021/01/30/pack_issue/</loc>
     
     <lastmod>2021-01-31</lastmod>
@@ -51,6 +58,13 @@
   </url>
   
   <url>
+    <loc>https://leehengtong.com/about/index.html</loc>
+    
+    <lastmod>2020-11-28</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://leehengtong.com/categories/index.html</loc>
     
     <lastmod>2020-11-28</lastmod>
@@ -59,13 +73,6 @@
   
   <url>
     <loc>https://leehengtong.com/more/index.html</loc>
-    
-    <lastmod>2020-11-28</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://leehengtong.com/about/index.html</loc>
     
     <lastmod>2020-11-28</lastmod>
     
@@ -86,6 +93,13 @@
     <priority>1.0</priority>
   </url>
 
+  
+  <url>
+    <loc>https://leehengtong.com/tags/all-algorithms/</loc>
+    <lastmod>2021-01-31</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
   
   <url>
     <loc>https://leehengtong.com/tags/convex-optimization/</loc>
