@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://leehengtong.com/2021/02/01/modern_neovim/</loc>
+    
+    <lastmod>2021-02-03</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://leehengtong.com/2020/12/01/all_algo/</loc>
     
     <lastmod>2021-01-31</lastmod>
@@ -88,7 +95,7 @@
 
   <url>
     <loc>https://leehengtong.com/</loc>
-    <lastmod>2021-01-31</lastmod>
+    <lastmod>2021-02-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -96,49 +103,56 @@
   
   <url>
     <loc>https://leehengtong.com/tags/all-algorithms/</loc>
-    <lastmod>2021-01-31</lastmod>
+    <lastmod>2021-02-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://leehengtong.com/tags/convex-optimization/</loc>
-    <lastmod>2021-01-31</lastmod>
+    <lastmod>2021-02-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://leehengtong.com/tags/hill-climbing/</loc>
-    <lastmod>2021-01-31</lastmod>
+    <lastmod>2021-02-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://leehengtong.com/tags/optimization/</loc>
-    <lastmod>2021-01-31</lastmod>
+    <lastmod>2021-02-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://leehengtong.com/tags/pack-issue/</loc>
-    <lastmod>2021-01-31</lastmod>
+    <lastmod>2021-02-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://leehengtong.com/tags/random/</loc>
-    <lastmod>2021-01-31</lastmod>
+    <lastmod>2021-02-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://leehengtong.com/tags/simulated-annealing/</loc>
-    <lastmod>2021-01-31</lastmod>
+    <lastmod>2021-02-03</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://leehengtong.com/tags/vim-configure/</loc>
+    <lastmod>2021-02-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
@@ -147,7 +161,14 @@
   
   <url>
     <loc>https://leehengtong.com/categories/algorithm/</loc>
-    <lastmod>2021-01-31</lastmod>
+    <lastmod>2021-02-03</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://leehengtong.com/categories/vim/</loc>
+    <lastmod>2021-02-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
