@@ -1,25 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>算法概述</title>
-    <url>/2020/12/01/all_algo/</url>
-    <content><![CDATA[<p>最近对“算法”有了新的理解，对于普通程序员来说，算法功底的好坏对于简洁而高质量的代码至关重要，因此决定从一些经典的ACM算法开始，扎实的学习一下这些算法和编程技巧，以期能有更好的将来。从网上搜索了一些资料，发现“@制糕神的算法工坊”整理的比较全面，这里借用他的一张图片，后续将从他的这个图片开始学习。</p>
-<p><img src="/2020/12/01/all_algo/algo.jpeg" alt="图1 算法分类"><span class="image-caption">图1 算法分类</span></p>
-<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ol>
-<li><a href="https://www.zhihu.com/question/332733219/answer/878129865">https://www.zhihu.com/question/332733219/answer/878129865</a></li>
-</ol>
-]]></content>
-      <categories>
-        <category>algorithm</category>
-      </categories>
-      <tags>
-        <tag>all algorithms</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>凸优化</title>
     <url>/2020/12/06/convex_optimization/</url>
-    <content><![CDATA[<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>$$ min \ f_{0}(x) $$<br>$$ subject \ to \ f_{i}(x) \leqslant b_{i} \ i=1,…,m $$</p>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>$$ min \ f_{0}(x) $$<br>$$ subject \ to \ f_{i}(x) \leqslant b_{i} \ i=1,…,m $$</p>
 <ul>
 <li>目标函数和限制函数都是凸的，即<br>$$ f_{i}(\alpha x + \beta y) \leqslant \alpha f_{i}(x) + \beta f_{i}(y) \ \alpha + \beta = 1, \alpha \geq 0, \beta \geq 0 $$</li>
 <li>最小二乘问题和线性规划问题都是凸优化问题的特例</li>
@@ -54,7 +38,7 @@
   <entry>
     <title>爬山算法</title>
     <url>/2020/12/12/hill_climbing/</url>
-    <content><![CDATA[<p>爬山算法是一种局部择优的方法，采用启发式方法，是对深度优先搜索的一种改进，它利用反馈信息帮助生成解的决策。</p>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>爬山算法是一种局部择优的方法，采用启发式方法，是对深度优先搜索的一种改进，它利用反馈信息帮助生成解的决策。</p>
 <p>爬山算法一般存在以下问题：</p>
 <ol>
 <li>局部最大</li>
@@ -95,9 +79,25 @@
       </tags>
   </entry>
   <entry>
+    <title>算法概述</title>
+    <url>/2020/12/01/all_algo/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>最近对“算法”有了新的理解，对于普通程序员来说，算法功底的好坏对于简洁而高质量的代码至关重要，因此决定从一些经典的ACM算法开始，扎实的学习一下这些算法和编程技巧，以期能有更好的将来。从网上搜索了一些资料，发现“@制糕神的算法工坊”整理的比较全面，这里借用他的一张图片，后续将从他的这个图片开始学习。</p>
+<p><img src="/2020/12/01/all_algo/algo.jpeg" alt="图1 算法分类"><span class="image-caption">图1 算法分类</span></p>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ol>
+<li><a href="https://www.zhihu.com/question/332733219/answer/878129865">https://www.zhihu.com/question/332733219/answer/878129865</a></li>
+</ol>
+]]></content>
+      <categories>
+        <category>algorithm</category>
+      </categories>
+      <tags>
+        <tag>all algorithms</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>优化问题</title>
     <url>/2020/12/07/optimization_problem/</url>
-    <content><![CDATA[<p>我们工作生活中的很多问题都是优化问题。在本文中，我们给出几个典型的例子，并尝试使用现有的求解器进行求解，作为参照。在后续文章中，我们将介绍一些启发式算法，并对本文中的问题进行求解。</p>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>我们工作生活中的很多问题都是优化问题。在本文中，我们给出几个典型的例子，并尝试使用现有的求解器进行求解，作为参照。在后续文章中，我们将介绍一些启发式算法，并对本文中的问题进行求解。</p>
 <h2 id="问题1-离散空间优化问题"><a href="#问题1-离散空间优化问题" class="headerlink" title="问题1: 离散空间优化问题"></a>问题1: 离散空间优化问题</h2><h3 id="luogu-P1048-采药"><a href="#luogu-P1048-采药" class="headerlink" title="luogu P1048 采药"></a><a href="https://www.luogu.com.cn/problem/P1048">luogu P1048 采药</a></h3><blockquote>
 <h4 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h4><p>辰辰是个天资聪颖的孩子，他的梦想是成为世界上最伟大的医师。为此，他想拜附近最有威望的医师为师。医师为了判断他的资质，给他出了一个难题。医师把他带到一个到处都是草药的山洞里对他说：“孩子，这个山洞里有一些不同的草药，采每一株都需要一些时间，每一株也有它自身的价值。我会给你一段时间，在这段时间里，你可以采到一些草药。如果你是一个聪明的孩子，你应该可以让采到的草药的总价值最大。”</p>
 <p>如果你是辰辰，你能完成这个任务吗？</p>
@@ -152,7 +152,7 @@
   <entry>
     <title>背包问题</title>
     <url>/2021/01/30/pack_issue/</url>
-    <content><![CDATA[<p>背包问题是动态规划的一种，其主要的分类和解法请参考</p>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>背包问题是动态规划的一种，其主要的分类和解法请参考</p>
 <div class="pdfobject-container" data-target="/resources/pack_issue.pdf" data-height="500px"></div>
 
 <h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ol>
@@ -169,7 +169,7 @@
   <entry>
     <title>随机算法</title>
     <url>/2020/12/03/random_algorithm/</url>
-    <content><![CDATA[<h2 id="问题1-拒绝采样"><a href="#问题1-拒绝采样" class="headerlink" title="问题1: 拒绝采样"></a>问题1: 拒绝采样</h2><h3 id="leetcode-470-Implement-Rand10-Using-Rand7"><a href="#leetcode-470-Implement-Rand10-Using-Rand7" class="headerlink" title="leetcode 470: Implement Rand10() Using Rand7()"></a><a href="https://leetcode.com/problems/implement-rand10-using-rand7/">leetcode 470: Implement Rand10() Using Rand7()</a></h3><blockquote>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="问题1-拒绝采样"><a href="#问题1-拒绝采样" class="headerlink" title="问题1: 拒绝采样"></a>问题1: 拒绝采样</h2><h3 id="leetcode-470-Implement-Rand10-Using-Rand7"><a href="#leetcode-470-Implement-Rand10-Using-Rand7" class="headerlink" title="leetcode 470: Implement Rand10() Using Rand7()"></a><a href="https://leetcode.com/problems/implement-rand10-using-rand7/">leetcode 470: Implement Rand10() Using Rand7()</a></h3><blockquote>
 <p>Given the <strong>API</strong> rand7() that generates a uniform random integer in the range [1, 7], write a function rand10() that generates a uniform random integer in the range [1, 10]. You can only call the API rand7(), and you shouldn’t call any other API. Please do not use a language’s built-in random API.</p>
 <p>Each test case will have one internal argument n, the number of times that your implemented function rand10() will be called while testing. Note that this is not an argument passed to rand10().</p>
 <p>Follow up:<br>What is the expected value for the number of calls to rand7() function?<br>Could you minimize the number of calls to rand7()?</p>
@@ -217,7 +217,7 @@
   <entry>
     <title>模拟退火</title>
     <url>/2020/12/13/simulated_annealing/</url>
-    <content><![CDATA[<p>模拟退火是一种通用概率算法，常用来在一定时间内寻找在一个很大搜寻空间中的近似最优解。和爬山算法相比，模拟退火算法以一定的概率接受不好的迭代，从而跳出局部最优。</p>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>模拟退火是一种通用概率算法，常用来在一定时间内寻找在一个很大搜寻空间中的近似最优解。和爬山算法相比，模拟退火算法以一定的概率接受不好的迭代，从而跳出局部最优。</p>
 <p>下面我们尝试使用模拟退火算法来解决<a href="https://leehengtong.com/2020/12/07/optimization_problem/">上篇文章</a>中的几个问题：</p>
 <h2 id="问题1-离散空间优化问题"><a href="#问题1-离散空间优化问题" class="headerlink" title="问题1: 离散空间优化问题"></a>问题1: 离散空间优化问题</h2><p>我们使用以下程序进行求解：</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python3</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">import</span> math</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">neighbor</span>(<span class="params">last, T, t</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    returns a neighbor</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="comment"># compute used time</span></span><br><span class="line">    time = <span class="keyword">lambda</span> cur: <span class="built_in">sum</span>([cur[i] * t[i] <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(M)])</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        res = [i <span class="keyword">for</span> i <span class="keyword">in</span> last]</span><br><span class="line">        idx = random.randint(<span class="number">0</span>, <span class="built_in">len</span>(last) - <span class="number">1</span>)</span><br><span class="line">        res[idx] = <span class="number">1</span> - res[idx]</span><br><span class="line">        <span class="keyword">if</span> time(res) &lt;= T:</span><br><span class="line">            <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">solve</span>(<span class="params">T, M, t, m</span>):</span></span><br><span class="line">    <span class="comment"># compute the value got</span></span><br><span class="line">    value = <span class="keyword">lambda</span> cur: <span class="built_in">sum</span>([cur[i] * m[i] <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(M)])</span><br><span class="line"></span><br><span class="line">    <span class="comment"># temperature setting</span></span><br><span class="line">    cur_tmp = <span class="number">100</span></span><br><span class="line">    tmp_fin = <span class="number">0.01</span></span><br><span class="line">    <span class="comment"># valid init solution</span></span><br><span class="line">    ans = [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>]</span><br><span class="line">    val = value(ans)</span><br><span class="line">    <span class="keyword">while</span> cur_tmp &gt; tmp_fin:</span><br><span class="line">        <span class="comment"># get a neighbor</span></span><br><span class="line">        <span class="built_in">next</span> = neighbor(ans, T, t)</span><br><span class="line">        next_value = value(<span class="built_in">next</span>)</span><br><span class="line"></span><br><span class="line">        diff = next_value - val</span><br><span class="line">        r = random.random()</span><br><span class="line">        <span class="keyword">if</span> next_value &gt; val <span class="keyword">or</span> r &lt; math.exp(-<span class="built_in">abs</span>(diff) / cur_tmp):</span><br><span class="line">            ans = <span class="built_in">next</span></span><br><span class="line">            val = next_value</span><br><span class="line"></span><br><span class="line">        <span class="comment"># update the temperature</span></span><br><span class="line">        cur_tmp = cur_tmp * <span class="number">0.999</span></span><br><span class="line"></span><br><span class="line">    print(ans)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    T = <span class="number">70</span></span><br><span class="line">    M = <span class="number">3</span></span><br><span class="line">    t = [<span class="number">71</span>, <span class="number">69</span>, <span class="number">1</span>]</span><br><span class="line">    m = [<span class="number">100</span>, <span class="number">1</span>, <span class="number">2</span>]</span><br><span class="line"></span><br><span class="line">    solve(T, M, t, m)</span><br></pre></td></tr></table></figure>
@@ -253,7 +253,7 @@
   <entry>
     <title>Modern (Neo)vim congiure in 2021</title>
     <url>/2021/02/01/modern_neovim/</url>
-    <content><![CDATA[<p>I have used (neo)vim for many years. I think it greatly improved my work efficiency. And I want to share my configure with others to make more people can benefit from the (neo)vim.</p>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>I have used (neo)vim for many years. I think it greatly improved my work efficiency. And I want to share my configure with others to make more people can benefit from the (neo)vim.</p>
 <p>As you may have noticed, I use (neo)vim to denote the vim. That is because I have switched to the neovim several months ago. I don’t want to compare which one is better, both of them are very good editors, and many programmers contributed a lot for them. For me, I switch to the neovim for the following reasons:</p>
 <ul>
 <li>I think the neovim will introduce new features more positively, I am willing to try the new functions.</li>
