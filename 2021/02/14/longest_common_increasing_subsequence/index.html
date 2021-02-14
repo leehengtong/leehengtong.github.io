@@ -20,16 +20,20 @@
     var CONFIG = {"hostname":"leehengtong.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="咖啡时间">
-<meta property="og:url" content="https://leehengtong.com/categories/algorithm/index.html">
+  <meta name="description" content="最长公共递增子序列(Longest Common Increasing Subsequence, LCIS)是LCS和LIS的结合体，比这两个基本形式都复杂一些。下面我们将以一道GeeksForGeeks上面的题目对这个问题进行解析和求解。 GeeksForGeeks: Longest Common Increasing Subsequence (LCS + LIS) Given two arra">
+<meta property="og:type" content="article">
+<meta property="og:title" content="最长公共递增子序列">
+<meta property="og:url" content="https://leehengtong.com/2021/02/14/longest_common_increasing_subsequence/index.html">
 <meta property="og:site_name" content="咖啡时间">
+<meta property="og:description" content="最长公共递增子序列(Longest Common Increasing Subsequence, LCIS)是LCS和LIS的结合体，比这两个基本形式都复杂一些。下面我们将以一道GeeksForGeeks上面的题目对这个问题进行解析和求解。 GeeksForGeeks: Longest Common Increasing Subsequence (LCS + LIS) Given two arra">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-02-14T14:18:34.000Z">
+<meta property="article:modified_time" content="2021-02-14T14:47:37.373Z">
 <meta property="article:author" content="李亨通@leehengtong">
-<meta property="article:tag" content="无人驾驶; self-driving; 机器学习; machine learning; 金融; finance; 技术; techonlogy;">
+<meta property="article:tag" content="Longest Common Increasing Subsequence">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://leehengtong.com/categories/algorithm/">
+<link rel="canonical" href="https://leehengtong.com/2021/02/14/longest_common_increasing_subsequence/">
 
 
 <script id="page-configurations">
@@ -37,12 +41,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>分类: algorithm | 咖啡时间</title>
+  <title>最长公共递增子序列 | 咖啡时间</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-G5NJ0PJQP1"></script>
     <script>
@@ -207,234 +211,108 @@
         <div class="content-wrap">
           
 
-          <div class="content category">
+          <div class="content post posts-expand">
             
 
+    
   
   
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <h2 class="collection-header">algorithm
-          <small>分类</small>
-        </h2>
-      </div>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://leehengtong.com/2021/02/14/longest_common_increasing_subsequence/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="李亨通@leehengtong">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="咖啡时间">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          最长公共递增子序列
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-02-14 22:18:34 / 修改时间：22:47:37" itemprop="dateCreated datePublished" datetime="2021-02-14T22:18:34+08:00">2021-02-14</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <span class="collection-header">2021</span>
-    </div>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-02-14T22:18:34+08:00"
-              content="2021-02-14">
-          02-14
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/02/14/longest_common_increasing_subsequence/" itemprop="url">
-            <span itemprop="name">最长公共递增子序列</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-02-14T10:18:34+08:00"
-              content="2021-02-14">
-          02-14
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/02/14/longest_increasing_subsequence/" itemprop="url">
-            <span itemprop="name">最长递增子序列</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-02-06T10:18:34+08:00"
-              content="2021-02-06">
-          02-06
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/02/06/longest_common_subsequence/" itemprop="url">
-            <span itemprop="name">最长公共子序列</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-01-30T23:01:34+08:00"
-              content="2021-01-30">
-          01-30
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/01/30/pack_issue/" itemprop="url">
-            <span itemprop="name">背包问题</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-    <div class="collection-year">
-      <span class="collection-header">2020</span>
-    </div>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-12-13T10:18:34+08:00"
-              content="2020-12-13">
-          12-13
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/12/13/simulated_annealing/" itemprop="url">
-            <span itemprop="name">模拟退火</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-12-12T10:18:34+08:00"
-              content="2020-12-12">
-          12-12
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/12/12/hill_climbing/" itemprop="url">
-            <span itemprop="name">爬山算法</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-12-07T22:18:34+08:00"
-              content="2020-12-07">
-          12-07
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/12/07/optimization_problem/" itemprop="url">
-            <span itemprop="name">优化问题</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-12-06T17:24:34+08:00"
-              content="2020-12-06">
-          12-06
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/12/06/convex_optimization/" itemprop="url">
-            <span itemprop="name">凸优化</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-12-03T09:08:34+08:00"
-              content="2020-12-03">
-          12-03
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/12/03/random_algorithm/" itemprop="url">
-            <span itemprop="name">随机算法</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-12-01T10:18:34+08:00"
-              content="2020-12-01">
-          12-01
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/12/01/all_algo/" itemprop="url">
-            <span itemprop="name">算法概述</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
+        <p>最长公共递增子序列(Longest Common Increasing Subsequence, LCIS)是<a href="https://leehengtong.com/2021/02/06/longest_common_subsequence/">LCS</a>和<a href="https://leehengtong.com/2021/02/14/longest_increasing_subsequence/">LIS</a>的结合体，比这两个基本形式都复杂一些。下面我们将以一道GeeksForGeeks上面的题目对这个问题进行解析和求解。</p>
+<h3 id="GeeksForGeeks-Longest-Common-Increasing-Subsequence-LCS-LIS"><a href="#GeeksForGeeks-Longest-Common-Increasing-Subsequence-LCS-LIS" class="headerlink" title="GeeksForGeeks: Longest Common Increasing Subsequence (LCS + LIS)"></a><a target="_blank" rel="noopener" href="https://www.geeksforgeeks.org/longest-common-increasing-subsequence-lcs-lis/">GeeksForGeeks: Longest Common Increasing Subsequence (LCS + LIS)</a></h3><blockquote>
+<p>Given two arrays, find length of the longest common increasing subsequence [LCIS] and print one of such sequences (multiple sequences may exist)</p>
+<p>Suppose we consider two arrays:<br>arr1[] = {3, 4, 9, 1} and<br>arr2[] = {5, 3, 8, 9, 10, 2, 1}</p>
+<p>Our answer would be {3, 9} as this is the longest common subsequence which is increasing also.</p>
+</blockquote>
+<p>对于这个题目，我们仍然使用动态规划来求解，只不过我们使用一维数组来隐含的表示二维状态。我们先给出代码：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>&#123;</span>   </span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">LCIS</span><span class="params">(<span class="keyword">int</span> arr1[], <span class="keyword">int</span> m, <span class="keyword">int</span> arr2[], <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">data</span><span class="params">(n, <span class="number">0</span>)</span></span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; ++i) &#123;</span><br><span class="line">            <span class="keyword">int</span> cur = <span class="number">0</span>;  <span class="comment">// The current max LCIS length without using arr1[i] </span></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; n; ++j) &#123;            </span><br><span class="line">                <span class="keyword">if</span> (arr1[i] == arr2[j]) &#123;  <span class="comment">// We can construct a longer LCIS end with arr2[j] using arr1[i] </span></span><br><span class="line">                    <span class="keyword">if</span> (cur + <span class="number">1</span> &gt; data[j]) &#123;</span><br><span class="line">                        data[j] = cur + <span class="number">1</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (arr1[i] &gt; arr2[j]) &#123;  <span class="comment">// We found a longer LCIS to which the arr1[i] can append</span></span><br><span class="line">                    <span class="keyword">if</span> (data[j] &gt; cur) &#123;</span><br><span class="line">                        cur = data[j];</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> *<span class="built_in">std</span>::max_element(data.begin(), data.end());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>其中，在第二个for循环里面，(1) data[j]表示由arr1[0…i]和arr2[0…j]所形成的最长LCIS的长度; (2) cur表示由arr1[0…i-1]和arr2[0…j]所形成LCIS并且arr1[i]可以加在这个LCIS后面的最长的LCIS的长度。</p>
+<ul>
+<li>当当前的arr1[i]和arr2[j]相等时，如果新形成的LCIS的长度大于已有的以arr2[j]结尾的LCIS，更新data[j];</li>
+<li>如果以arr2[j]结尾的LCIS的长度大于cur，并且arr1[i]可以放在这个LCIS的尾端的时候，我们认为在后续循环中以这个LCIS为基础来构造更长的LCIS,所以更新cur的值；</li>
+</ul>
 
     </div>
-  </div>
-  
-  
-  
 
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Longest-Common-Increasing-Subsequence/" rel="tag"># Longest Common Increasing Subsequence</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/02/14/longest_increasing_subsequence/" rel="prev" title="最长递增子序列">
+      <i class="fa fa-chevron-left"></i> 最长递增子序列
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
   
 
 
@@ -487,6 +365,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#GeeksForGeeks-Longest-Common-Increasing-Subsequence-LCS-LIS"><span class="nav-number">1.</span> <span class="nav-text">GeeksForGeeks: Longest Common Increasing Subsequence (LCS + LIS)</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -662,6 +541,59 @@ document.querySelectorAll('.pdfobject-container').forEach(element => {
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 
