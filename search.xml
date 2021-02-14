@@ -105,7 +105,7 @@
 </blockquote>
 <p>对于这个题目，我们仍然使用动态规划来求解，只不过我们使用一维数组来隐含的表示二维状态。我们先给出代码：</p>
 <figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>&#123;</span>   </span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">LCIS</span><span class="params">(<span class="keyword">int</span> arr1[], <span class="keyword">int</span> m, <span class="keyword">int</span> arr2[], <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">data</span><span class="params">(n, <span class="number">0</span>)</span></span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; ++i) &#123;</span><br><span class="line">            <span class="keyword">int</span> cur = <span class="number">0</span>;  <span class="comment">// The current max LCIS length without using arr1[i] </span></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; n; ++j) &#123;            </span><br><span class="line">                <span class="keyword">if</span> (arr1[i] == arr2[j]) &#123;  <span class="comment">// We can construct a longer LCIS end with arr2[j] using arr1[i] </span></span><br><span class="line">                    <span class="keyword">if</span> (cur + <span class="number">1</span> &gt; data[j]) &#123;</span><br><span class="line">                        data[j] = cur + <span class="number">1</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (arr1[i] &gt; arr2[j]) &#123;  <span class="comment">// We found a longer LCIS to which the arr1[i] can append</span></span><br><span class="line">                    <span class="keyword">if</span> (data[j] &gt; cur) &#123;</span><br><span class="line">                        cur = data[j];</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> *<span class="built_in">std</span>::max_element(data.begin(), data.end());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>其中，在第二个for循环里面，(1) data[j]表示由arr1[0…i]和arr2[0…j]所形成的最长LCIS的长度; (2) cur表示由arr1[0…i-1]和arr2[0…j]所形成LCIS并且arr1[i]可以加在这个LCIS后面的最长的LCIS的长度。</p>
+<p>其中，在第二个for循环里面，(1) data[j]表示由arr1[0…i]和arr2[0…j]所形成的最长LCIS的长度; (2) cur表示由arr1[0…i-1]和arr2[0…j]所形成的并且arr1[i]可以加在其后的最长的LCIS的长度。</p>
 <ul>
 <li>当当前的arr1[i]和arr2[j]相等时，如果新形成的LCIS的长度大于已有的以arr2[j]结尾的LCIS，更新data[j];</li>
 <li>如果以arr2[j]结尾的LCIS的长度大于cur，并且arr1[i]可以放在这个LCIS的尾端的时候，我们认为在后续循环中以这个LCIS为基础来构造更长的LCIS,所以更新cur的值；</li>
@@ -115,7 +115,7 @@
         <category>algorithm</category>
       </categories>
       <tags>
-        <tag>Longest Common Increasing Subsequence</tag>
+        <tag>longest common increasing subsequence</tag>
       </tags>
   </entry>
   <entry>
@@ -143,7 +143,7 @@
         <category>algorithm</category>
       </categories>
       <tags>
-        <tag>Longest Common Subsequence</tag>
+        <tag>longest common subsequence</tag>
       </tags>
   </entry>
   <entry>
@@ -185,7 +185,7 @@
         <category>algorithm</category>
       </categories>
       <tags>
-        <tag>Longest Increasing Subsequence</tag>
+        <tag>longest increasing subsequence</tag>
       </tags>
   </entry>
   <entry>
