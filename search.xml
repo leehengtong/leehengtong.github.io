@@ -100,23 +100,12 @@
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>最长公共子序列(Longest Common Subsequence, LCS)属于最基本也是最经典的动态规划问题，下面我们将以一道LeetCode上面的题目对这个问题进行解析和求解。</p>
 <h3 id="leetcode-1143-Longest-Common-Subsequence"><a href="#leetcode-1143-Longest-Common-Subsequence" class="headerlink" title="leetcode 1143: Longest Common Subsequence"></a><a href="https://leetcode.com/problems/longest-common-subsequence/">leetcode 1143: Longest Common Subsequence</a></h3><blockquote>
 <p>Given two strings text1 and text2, return the length of their longest common subsequence.</p>
-<p>A subsequence of a string is a new string generated from the original string with some characters(can be none) deleted without changing the relative order of the remaining characters. (eg, “ace” is a &gt;subsequence of “abcde” while “aec” is not). A common subsequence of two strings is a subsequence that is common to both strings.</p>
+<p>A subsequence of a string is a new string generated from the original string with some characters(can be none) deleted without changing the relative order of the remaining characters. (eg, “ace” is a &gt; subsequence of “abcde” while “aec” is not). A common subsequence of two strings is a subsequence that is common to both strings.</p>
 <p>If there is no common subsequence, return 0.</p>
-<p>Example 1:</p>
-<p>Input: text1 = “abcde”, text2 = “ace” </p>
-<p>Output: 3  </p>
-<p>Explanation: The longest common subsequence is “ace” and its length is 3.</p>
-<p>Example 2:</p>
-<p>Input: text1 = “abc”, text2 = “abc”</p>
-<p>Output: 3</p>
-<p>Explanation: The longest common subsequence is “abc” and its length is 3.</p>
-<p>Example 3:</p>
-<p>Input: text1 = “abc”, text2 = “def”</p>
-<p>Output: 0</p>
-<p>Explanation: There is no such common subsequence, so the result is 0.</p>
-<p>Constraints:</p>
-<p>1 &lt;= text1.length &lt;= 1000</p>
-<p>1 &lt;= text2.length &lt;= 1000</p>
+<p>Example 1:<br>Input: text1 = “abcde”, text2 = “ace”<br>Output: 3<br>Explanation: The longest common subsequence is “ace” and its length is 3.</p>
+<p>Example 2:<br>Input: text1 = “abc”, text2 = “abc”<br>Output: 3<br>Explanation: The longest common subsequence is “abc” and its length is 3.</p>
+<p>Example 3:<br>Input: text1 = “abc”, text2 = “def”<br>Output: 0<br>Explanation: There is no such common subsequence, so the result is 0.</p>
+<p>Constraints:<br>1 &lt;= text1.length &lt;= 1000<br>1 &lt;= text2.length &lt;= 1000</p>
 <p>The input strings consist of lowercase English characters only.</p>
 </blockquote>
 <p>这个题目比较好理解，我们首先建立一个二维的data数组，data数组中的每一个元素data[i][j]表示text1中的前i个字符和text2中的前j个字符的最长公共子序列的个数。那么对于data[i][j]我们有以下的递推关系：</p>
@@ -131,6 +120,48 @@
       </categories>
       <tags>
         <tag>Longest Common Subsequence</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>最长递增子序列</title>
+    <url>/2021/02/14/longest_increasing_subsequence/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>最长递增子序列(Longest Increasing Subsequence, LIS)属于最基本也是最经典的动态规划问题，下面我们将以一道LeetCode上面的题目对这个问题进行解析和求解。</p>
+<h3 id="leetcode-300-Longest-Increasing-Subsequence"><a href="#leetcode-300-Longest-Increasing-Subsequence" class="headerlink" title="leetcode 300: Longest Increasing Subsequence"></a><a href="https://leetcode.com/problems/longest-increasing-subsequence/">leetcode 300: Longest Increasing Subsequence</a></h3><blockquote>
+<p>Given an integer array nums, return the length of the longest strictly increasing subsequence.</p>
+<p>A subsequence is a sequence that can be derived from an array by deleting some or no elements without changing the order of the remaining elements. For example, [3,6,2,7] is a subsequence of the array [0,3,1,6,2,2,7].</p>
+<p>Example 1:<br>Input: nums = [10,9,2,5,3,7,101,18]<br>Output: 4<br>Explanation: The longest increasing subsequence is [2,3,7,101], therefore the length is 4.</p>
+<p>Example 2:<br>Input: nums = [0,1,0,3,2,3]<br>Output: 4</p>
+<p>Example 3:<br>Input: nums = [7,7,7,7,7,7,7]<br>Output: 1</p>
+<p>Constraints:<br>1 &lt;= nums.length &lt;= 2500<br>-104 &lt;= nums[i] &lt;= 104</p>
+<p>Follow up:</p>
+<ul>
+<li>Could you come up with the $O(n^2)$ solution?</li>
+<li>Could you improve it to $O(n log(n))$ time complexity?</li>
+</ul>
+</blockquote>
+<p>一种符合直觉的算法是$O(n^2)$的算法，这也是会被大多数ACMer所鄙视的一种算法。我们可以使用一个数组data来表示以每个数字结尾的最长LIS的大小，即data[i]表示以nums[i]结尾的最长的LIS的长度。在计算nums[i]对应的data[i]的时候，我们只需要遍历每一个在i前面的数字nums[j],如果nums[j] &lt; nums[i], 那么就把nums[i]可以放在nums[j]的任意LIS后面，并把这个LIS的长度加1，从而可以以此更新nums[i]对应的data[i]. 具体代码如下所示：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">lengthOfLIS</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">data</span><span class="params">(nums.size(), <span class="number">1</span>)</span></span>;</span><br><span class="line">        <span class="keyword">int</span> res = nums.empty() ? <span class="number">0</span> : <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; nums.size(); ++i) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; i; ++j) &#123;</span><br><span class="line">                <span class="keyword">if</span> (nums[j] &lt; nums[i]) &#123;</span><br><span class="line">                    data[i] = max(data[i], data[j] + <span class="number">1</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            res = max(res, data[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>为了获得一个$O(n log(n))$的算法，我们可以对上面的算法进行优化，即对7-11行的查找过程进行优化，实现$O(logn)$的查找。不过，下面我们给出另外一个不同思路的算法。在这个算法中，我们不是直接去构造LIS，而是维护一个数据结构data，data[i]表示对于长度为$i+1$的LIS，其结尾的数字最小可以是多少。让我们先看一下算法实现：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">lengthOfLIS</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; data;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i : nums) &#123;</span><br><span class="line">            <span class="keyword">auto</span> pos = lower_bound(data.begin(), data.end(), i);</span><br><span class="line">            <span class="keyword">if</span> (pos == data.end()) &#123;</span><br><span class="line">                data.push_back(i);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">if</span> (*pos &gt; i) &#123;</span><br><span class="line">                    *pos = i;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> data.size();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>请注意最终的data并不是一个LIS，但是data的长度却表示可以构造的最长的LIS。下面我们以[10,9,2,5,3,7,101,18]为例进行推演一下：</p>
+<ol>
+<li>i = 10, data = [], pos = 0 -&gt; data = [10]</li>
+<li>i = 9, data = [10], pos = 0 -&gt; data = [9]</li>
+<li>i = 2, data = [9], pos = 0 -&gt; data = [2]</li>
+<li>i = 5, data = [2], pos = 1 -&gt; data = [2, 5]</li>
+<li>i = 3, data = [2, 5], pos = 1 -&gt; data = [2, 3]</li>
+<li>i = 7, data = [2, 3], pos = 2 -&gt; data = [2, 3, 7]</li>
+<li>i = 101, data = [2, 3, 7], pos = 3 -&gt; data = [2, 3, 7, 101]</li>
+<li>i = 18, data = [2, 3, 7, 101], pos = 3 -&gt; data = [2, 3, 7, 18]</li>
+</ol>
+<p>两种典型的更新体现在第5步和第7步：第5步的更新使得LIS的结尾数字更小；第7步的更新加长LIS</p>
+]]></content>
+      <categories>
+        <category>algorithm</category>
+      </categories>
+      <tags>
+        <tag>Longest Increasing Subsequence</tag>
       </tags>
   </entry>
   <entry>
