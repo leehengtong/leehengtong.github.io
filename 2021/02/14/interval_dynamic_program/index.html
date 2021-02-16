@@ -17,13 +17,13 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"leehengtong.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"www.leehengtong.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="区间动态规划是很重要的一种动态规划类别，对于这种问题，要仔细分析理解题意，建立从小区间构造大区间的方法。下面我们以几个leetcode上面的题目为例给出分析思路和解析。在所有这些题目中，有一点往往是一样的：我们一般都是对最终的结果建立dp数组，也就是dp中的单个元素往往表示的是给定区间内的最优解，这一点在思考dp问题的时候尤为重要。 leetcode 312： Burst Balloons You">
 <meta property="og:type" content="article">
 <meta property="og:title" content="区间动态规划">
-<meta property="og:url" content="https://leehengtong.com/2021/02/14/interval_dynamic_program/index.html">
+<meta property="og:url" content="https://www.leehengtong.com/2021/02/14/interval_dynamic_program/index.html">
 <meta property="og:site_name" content="咖啡时间">
 <meta property="og:description" content="区间动态规划是很重要的一种动态规划类别，对于这种问题，要仔细分析理解题意，建立从小区间构造大区间的方法。下面我们以几个leetcode上面的题目为例给出分析思路和解析。在所有这些题目中，有一点往往是一样的：我们一般都是对最终的结果建立dp数组，也就是dp中的单个元素往往表示的是给定区间内的最优解，这一点在思考dp问题的时候尤为重要。 leetcode 312： Burst Balloons You">
 <meta property="og:locale" content="zh_CN">
@@ -33,7 +33,7 @@
 <meta property="article:tag" content="dynamic program for interval">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://leehengtong.com/2021/02/14/interval_dynamic_program/">
+<link rel="canonical" href="https://www.leehengtong.com/2021/02/14/interval_dynamic_program/">
 
 
 <script id="page-configurations">
@@ -218,7 +218,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://leehengtong.com/2021/02/14/interval_dynamic_program/">
+    <link itemprop="mainEntityOfPage" href="https://www.leehengtong.com/2021/02/14/interval_dynamic_program/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">

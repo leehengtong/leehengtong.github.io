@@ -2,119 +2,119 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://leehengtong.com/2021/02/14/interval_dynamic_program/</loc>
+    <loc>https://www.leehengtong.com/2021/02/14/interval_dynamic_program/</loc>
     
     <lastmod>2021-02-16</lastmod>
     
   </url>
   
   <url>
-    <loc>https://leehengtong.com/2021/02/14/longest_increasing_subsequence/</loc>
+    <loc>https://www.leehengtong.com/2021/02/14/longest_increasing_subsequence/</loc>
     
     <lastmod>2021-02-14</lastmod>
     
   </url>
   
   <url>
-    <loc>https://leehengtong.com/2021/02/06/longest_common_subsequence/</loc>
+    <loc>https://www.leehengtong.com/2021/02/06/longest_common_subsequence/</loc>
     
     <lastmod>2021-02-14</lastmod>
     
   </url>
   
   <url>
-    <loc>https://leehengtong.com/2021/02/14/longest_common_increasing_subsequence/</loc>
+    <loc>https://www.leehengtong.com/2021/02/14/longest_common_increasing_subsequence/</loc>
     
     <lastmod>2021-02-14</lastmod>
     
   </url>
   
   <url>
-    <loc>https://leehengtong.com/2021/02/01/modern_neovim/</loc>
+    <loc>https://www.leehengtong.com/2021/02/01/modern_neovim/</loc>
     
     <lastmod>2021-02-14</lastmod>
     
   </url>
   
   <url>
-    <loc>https://leehengtong.com/2020/12/01/all_algo/</loc>
+    <loc>https://www.leehengtong.com/2020/12/01/all_algo/</loc>
     
     <lastmod>2021-01-31</lastmod>
     
   </url>
   
   <url>
-    <loc>https://leehengtong.com/2021/01/30/pack_issue/</loc>
+    <loc>https://www.leehengtong.com/2021/01/30/pack_issue/</loc>
     
     <lastmod>2021-01-31</lastmod>
     
   </url>
   
   <url>
-    <loc>https://leehengtong.com/2020/12/07/optimization_problem/</loc>
+    <loc>https://www.leehengtong.com/2020/12/07/optimization_problem/</loc>
     
     <lastmod>2021-01-30</lastmod>
     
   </url>
   
   <url>
-    <loc>https://leehengtong.com/2020/12/13/simulated_annealing/</loc>
+    <loc>https://www.leehengtong.com/2020/12/13/simulated_annealing/</loc>
     
     <lastmod>2020-12-14</lastmod>
     
   </url>
   
   <url>
-    <loc>https://leehengtong.com/2020/12/12/hill_climbing/</loc>
+    <loc>https://www.leehengtong.com/2020/12/12/hill_climbing/</loc>
     
     <lastmod>2020-12-12</lastmod>
     
   </url>
   
   <url>
-    <loc>https://leehengtong.com/2020/12/06/convex_optimization/</loc>
+    <loc>https://www.leehengtong.com/2020/12/06/convex_optimization/</loc>
     
     <lastmod>2020-12-11</lastmod>
     
   </url>
   
   <url>
-    <loc>https://leehengtong.com/2020/12/03/random_algorithm/</loc>
+    <loc>https://www.leehengtong.com/2020/12/03/random_algorithm/</loc>
     
     <lastmod>2020-12-05</lastmod>
     
   </url>
   
   <url>
-    <loc>https://leehengtong.com/404/index.html</loc>
+    <loc>https://www.leehengtong.com/404/index.html</loc>
     
     <lastmod>2020-11-28</lastmod>
     
   </url>
   
   <url>
-    <loc>https://leehengtong.com/categories/index.html</loc>
+    <loc>https://www.leehengtong.com/about/index.html</loc>
     
     <lastmod>2020-11-28</lastmod>
     
   </url>
   
   <url>
-    <loc>https://leehengtong.com/about/index.html</loc>
+    <loc>https://www.leehengtong.com/categories/index.html</loc>
     
     <lastmod>2020-11-28</lastmod>
     
   </url>
   
   <url>
-    <loc>https://leehengtong.com/more/index.html</loc>
+    <loc>https://www.leehengtong.com/more/index.html</loc>
     
     <lastmod>2020-11-28</lastmod>
     
   </url>
   
   <url>
-    <loc>https://leehengtong.com/tags/index.html</loc>
+    <loc>https://www.leehengtong.com/tags/index.html</loc>
     
     <lastmod>2020-11-28</lastmod>
     
@@ -122,7 +122,7 @@
   
 
   <url>
-    <loc>https://leehengtong.com/</loc>
+    <loc>https://www.leehengtong.com/</loc>
     <lastmod>2021-02-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
@@ -130,84 +130,84 @@
 
   
   <url>
-    <loc>https://leehengtong.com/tags/all-algorithms/</loc>
+    <loc>https://www.leehengtong.com/tags/all-algorithms/</loc>
     <lastmod>2021-02-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://leehengtong.com/tags/convex-optimization/</loc>
+    <loc>https://www.leehengtong.com/tags/convex-optimization/</loc>
     <lastmod>2021-02-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://leehengtong.com/tags/hill-climbing/</loc>
+    <loc>https://www.leehengtong.com/tags/hill-climbing/</loc>
     <lastmod>2021-02-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://leehengtong.com/tags/longest-common-increasing-subsequence/</loc>
+    <loc>https://www.leehengtong.com/tags/longest-common-increasing-subsequence/</loc>
     <lastmod>2021-02-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://leehengtong.com/tags/longest-common-subsequence/</loc>
+    <loc>https://www.leehengtong.com/tags/longest-common-subsequence/</loc>
     <lastmod>2021-02-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://leehengtong.com/tags/longest-increasing-subsequence/</loc>
+    <loc>https://www.leehengtong.com/tags/longest-increasing-subsequence/</loc>
     <lastmod>2021-02-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://leehengtong.com/tags/optimization/</loc>
+    <loc>https://www.leehengtong.com/tags/optimization/</loc>
     <lastmod>2021-02-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://leehengtong.com/tags/pack-issue/</loc>
+    <loc>https://www.leehengtong.com/tags/pack-issue/</loc>
     <lastmod>2021-02-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://leehengtong.com/tags/random/</loc>
+    <loc>https://www.leehengtong.com/tags/random/</loc>
     <lastmod>2021-02-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://leehengtong.com/tags/simulated-annealing/</loc>
+    <loc>https://www.leehengtong.com/tags/simulated-annealing/</loc>
     <lastmod>2021-02-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://leehengtong.com/tags/dynamic-program-for-interval/</loc>
+    <loc>https://www.leehengtong.com/tags/dynamic-program-for-interval/</loc>
     <lastmod>2021-02-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://leehengtong.com/tags/vim-configure/</loc>
+    <loc>https://www.leehengtong.com/tags/vim-configure/</loc>
     <lastmod>2021-02-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -216,14 +216,14 @@
 
   
   <url>
-    <loc>https://leehengtong.com/categories/algorithm/</loc>
+    <loc>https://www.leehengtong.com/categories/algorithm/</loc>
     <lastmod>2021-02-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://leehengtong.com/categories/vim/</loc>
+    <loc>https://www.leehengtong.com/categories/vim/</loc>
     <lastmod>2021-02-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
