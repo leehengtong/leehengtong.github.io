@@ -17,41 +17,6 @@
       </tags>
   </entry>
   <entry>
-    <title>凸优化</title>
-    <url>/2020/12/06/convex_optimization/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>$$ min \ f_{0}(x) $$<br>$$ subject \ to \ f_{i}(x) \leqslant b_{i} \ i=1,…,m $$</p>
-<ul>
-<li>目标函数和限制函数都是凸的，即<br>$$ f_{i}(\alpha x + \beta y) \leqslant \alpha f_{i}(x) + \beta f_{i}(y) \ \alpha + \beta = 1, \alpha \geq 0, \beta \geq 0 $$</li>
-<li>最小二乘问题和线性规划问题都是凸优化问题的特例</li>
-</ul>
-<h2 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h2><ol>
-<li>没有解析解</li>
-<li>但是有可靠和高效的求解算法</li>
-<li>计算时间复杂度大体上和$max(n^{3}, n^{2}m, F)$成正比，其中$F$是计算$f_{i}$和它的一阶导，二阶导的开销</li>
-</ol>
-<h2 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h2><ol>
-<li>每一个局部最优解都是全局最优解</li>
-<li>最优解集合是凸的</li>
-<li>如果目标函数是严格凸的，那么这个优化问题就最多只有一个最优解</li>
-</ol>
-<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><ol>
-<li>一般不容易分析出问题的凸优化形式</li>
-<li>需要很多技巧才能将问题转换成凸优化问题</li>
-<li>会对很多问题能够凸优化求解感到惊奇</li>
-</ol>
-<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ol>
-<li>Standford Boyd, Convex Optimization course, <a href="https://web.stanford.edu/~boyd/cvxbook/">https://web.stanford.edu/~boyd/cvxbook/</a></li>
-<li>Standford Boyd, Convex Optimization <a href="/2020/12/06/convex_optimization/bv_cvxslides.pdf">slides</a></li>
-</ol>
-]]></content>
-      <categories>
-        <category>algorithm</category>
-      </categories>
-      <tags>
-        <tag>convex optimization</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>爬山算法</title>
     <url>/2020/12/12/hill_climbing/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>爬山算法是一种局部择优的方法，采用启发式方法，是对深度优先搜索的一种改进，它利用反馈信息帮助生成解的决策。</p>
@@ -92,6 +57,41 @@
       </categories>
       <tags>
         <tag>hill climbing</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>凸优化</title>
+    <url>/2020/12/06/convex_optimization/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>$$ min \ f_{0}(x) $$<br>$$ subject \ to \ f_{i}(x) \leqslant b_{i} \ i=1,…,m $$</p>
+<ul>
+<li>目标函数和限制函数都是凸的，即<br>$$ f_{i}(\alpha x + \beta y) \leqslant \alpha f_{i}(x) + \beta f_{i}(y) \ \alpha + \beta = 1, \alpha \geq 0, \beta \geq 0 $$</li>
+<li>最小二乘问题和线性规划问题都是凸优化问题的特例</li>
+</ul>
+<h2 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h2><ol>
+<li>没有解析解</li>
+<li>但是有可靠和高效的求解算法</li>
+<li>计算时间复杂度大体上和$max(n^{3}, n^{2}m, F)$成正比，其中$F$是计算$f_{i}$和它的一阶导，二阶导的开销</li>
+</ol>
+<h2 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h2><ol>
+<li>每一个局部最优解都是全局最优解</li>
+<li>最优解集合是凸的</li>
+<li>如果目标函数是严格凸的，那么这个优化问题就最多只有一个最优解</li>
+</ol>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><ol>
+<li>一般不容易分析出问题的凸优化形式</li>
+<li>需要很多技巧才能将问题转换成凸优化问题</li>
+<li>会对很多问题能够凸优化求解感到惊奇</li>
+</ol>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ol>
+<li>Standford Boyd, Convex Optimization course, <a href="https://web.stanford.edu/~boyd/cvxbook/">https://web.stanford.edu/~boyd/cvxbook/</a></li>
+<li>Standford Boyd, Convex Optimization <a href="/2020/12/06/convex_optimization/bv_cvxslides.pdf">slides</a></li>
+</ol>
+]]></content>
+      <categories>
+        <category>algorithm</category>
+      </categories>
+      <tags>
+        <tag>convex optimization</tag>
       </tags>
   </entry>
   <entry>
