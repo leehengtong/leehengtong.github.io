@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://leehengtong.com/2021/02/14/interval_dynamic_program/</loc>
+    
+    <lastmod>2021-02-16</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://leehengtong.com/2021/02/14/longest_increasing_subsequence/</loc>
     
     <lastmod>2021-02-14</lastmod>
@@ -86,14 +93,14 @@
   </url>
   
   <url>
-    <loc>https://leehengtong.com/about/index.html</loc>
+    <loc>https://leehengtong.com/categories/index.html</loc>
     
     <lastmod>2020-11-28</lastmod>
     
   </url>
   
   <url>
-    <loc>https://leehengtong.com/categories/index.html</loc>
+    <loc>https://leehengtong.com/about/index.html</loc>
     
     <lastmod>2020-11-28</lastmod>
     
@@ -130,14 +137,14 @@
   </url>
   
   <url>
-    <loc>https://leehengtong.com/tags/hill-climbing/</loc>
+    <loc>https://leehengtong.com/tags/convex-optimization/</loc>
     <lastmod>2021-02-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://leehengtong.com/tags/convex-optimization/</loc>
+    <loc>https://leehengtong.com/tags/hill-climbing/</loc>
     <lastmod>2021-02-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -187,6 +194,13 @@
   
   <url>
     <loc>https://leehengtong.com/tags/simulated-annealing/</loc>
+    <lastmod>2021-02-16</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://leehengtong.com/tags/dynamic-program-for-interval/</loc>
     <lastmod>2021-02-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
