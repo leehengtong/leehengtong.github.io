@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://www.leehengtong.com/2021/02/14/interval_dynamic_program/</loc>
+    <lastmod>2021-02-20</lastmod>
+  </url>
+  <url>
     <loc>https://www.leehengtong.com/2020/12/03/random_algorithm/</loc>
     <lastmod>2021-02-16</lastmod>
   </url>
@@ -42,10 +46,6 @@
   </url>
   <url>
     <loc>https://www.leehengtong.com/2020/12/13/simulated_annealing/</loc>
-    <lastmod>2021-02-16</lastmod>
-  </url>
-  <url>
-    <loc>https://www.leehengtong.com/2021/02/14/interval_dynamic_program/</loc>
     <lastmod>2021-02-16</lastmod>
   </url>
 </urlset> 
