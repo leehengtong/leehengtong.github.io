@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="zh-CN,en,zh-TW,default">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"www.leehengtong.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="回文字符串是一类常见的题目，首先我们要区分两个概念：  回文子串（palindromic substring），要求某个字符串s的连续的一个子串$s[i…j]$是回文串； 回文子序列（palindromic subsequence），不要求连续性，是通过对于字符串进行删减得到的序列，$s[i],s[j],s[k]，j - i &gt;&#x3D; 1$满足回文性质。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="回文字符串">
+<meta property="og:url" content="https://www.leehengtong.com/2021/02/28/palindromic_string/index.html">
+<meta property="og:site_name" content="咖啡时间">
+<meta property="og:description" content="回文字符串是一类常见的题目，首先我们要区分两个概念：  回文子串（palindromic substring），要求某个字符串s的连续的一个子串$s[i…j]$是回文串； 回文子序列（palindromic subsequence），不要求连续性，是通过对于字符串进行删减得到的序列，$s[i],s[j],s[k]，j - i &gt;&#x3D; 1$满足回文性质。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-02-28T12:00:34.000Z">
+<meta property="article:modified_time" content="2021-02-28T12:15:14.009Z">
+<meta property="article:author" content="李亨通@leehengtong">
+<meta property="article:tag" content="palindromic string">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://www.leehengtong.com/2021/02/28/palindromic_string/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>回文字符串 | 咖啡时间</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-G5NJ0PJQP1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-G5NJ0PJQP1');
+      }
+    </script>
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?b48103569e609595468166fd26864197";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">咖啡时间</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Learn, Discuss and Share</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-leetcode">
+
+    <a href="/categories/leetcode/" rel="section"><i class="fa fa-calendar fa-fw"></i>leetcode</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.leehengtong.com/2021/02/28/palindromic_string/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="李亨通@leehengtong">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="咖啡时间">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          回文字符串
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-02-28 20:00:34 / 修改时间：20:15:14" itemprop="dateCreated datePublished" datetime="2021-02-28T20:00:34+08:00">2021-02-28</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>回文字符串是一类常见的题目，首先我们要区分两个概念：</p>
+<ul>
+<li>回文子串（palindromic substring），要求某个字符串s的连续的一个子串$s[i…j]$是回文串；</li>
+<li>回文子序列（palindromic subsequence），不要求连续性，是通过对于字符串进行删减得到的序列，$s[i],s[j],s[k]，j - i &gt;= 1$满足回文性质。</li>
+</ul>
+<a id="more"></a>
+
+<p>对于字符串的问题，常使用动态规划求解，一般有两种区间定义方式：</p>
+<ol>
+<li>$dp[i][j], i &lt;= j$, 即把s[i]到s[j]的部分定义成一个状态；</li>
+<li>$dp[i], i &gt;= 0$, 即把s[0]到s[i]的部分定义成一个状态，一般来说这种定义方式复杂度更低，因为区间的一端是固定的；</li>
+</ol>
+<p>同时，对于第一种区间定义方法，一般有两种遍历方式：</p>
+<ol>
+<li>按照元素顺序遍历<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; size; ++i) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = i; j &lt; size; ++j) &#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>按照区间长度遍历<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> len = <span class="number">1</span>; len &lt;= size; ++len) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i + len - <span class="number">1</span> &lt; size; ++i) &#123;</span><br><span class="line">        <span class="keyword">int</span> j = i + len - <span class="number">1</span>;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>下面，我们在一些例题中来体会这些方法：</p>
+<h3 id="leetcode-5-Longest-Palindromic-Substring"><a href="#leetcode-5-Longest-Palindromic-Substring" class="headerlink" title="leetcode 5: Longest Palindromic Substring"></a><a target="_blank" rel="noopener" href="https://leetcode.com/problems/longest-palindromic-substring/">leetcode 5: Longest Palindromic Substring</a></h3><blockquote>
+<p>Given a string s, return the longest palindromic substring in s.</p>
+<p>Example 1:<br>Input: s = “babad”<br>Output: “bab”<br>Note: “aba” is also a valid answer.</p>
+<p>Example 2:<br>Input: s = “cbbd”<br>Output: “bb”</p>
+<p>Example 3:<br>Input: s = “a”<br>Output: “a”</p>
+<p>Example 4:<br>Input: s = “ac”<br>Output: “a”</p>
+<p>Constraints:<br>1 &lt;= s.length &lt;= 1000<br>s consist of only digits and English letters (lower-case and/or upper-case),</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">longestPalindrome</span><span class="params">(<span class="built_in">string</span> s)</span> </span>&#123;</span><br><span class="line">        <span class="function"><span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt;&gt; <span class="title">data</span><span class="params">(s.size(), <span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt;(s.size(), <span class="literal">false</span>))</span></span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> start = <span class="number">0</span>, end = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> len = <span class="number">1</span>; len &lt;= s.size(); ++len) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i + len - <span class="number">1</span> &lt; s.size(); ++i) &#123;</span><br><span class="line">                <span class="keyword">if</span> (len == <span class="number">1</span>) &#123;</span><br><span class="line">                    data[i][i] = <span class="literal">true</span>;</span><br><span class="line">                    <span class="keyword">continue</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                </span><br><span class="line">                <span class="keyword">int</span> j = i + len - <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">if</span> (s[i] == s[j] &amp;&amp; (j - <span class="number">1</span> &lt; i + <span class="number">1</span> || data[i+<span class="number">1</span>][j<span class="number">-1</span>])) &#123;</span><br><span class="line">                    data[i][j] = <span class="literal">true</span>;</span><br><span class="line">                    <span class="keyword">if</span> (len &gt; end - start + <span class="number">1</span>) &#123;</span><br><span class="line">                        start = i, end = j;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> s.substr(start, end - start + <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>上面是解法是基于DP的方案，即如果s[i…j]是回文子串，需要s[i] == s[j] 并且 s[i+1 .. j-1]也是回文子串；</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">longestPalindrome</span><span class="params">(<span class="built_in">string</span> s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (s.size() &lt;= <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> s;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> min_start = <span class="number">0</span>, max_len = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.size();) &#123;</span><br><span class="line">            <span class="keyword">if</span> (s.size() - i &lt;= max_len / <span class="number">2</span>) &#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">int</span> j = i, k = i;</span><br><span class="line">            <span class="keyword">while</span> (k &lt; s.size() - <span class="number">1</span> &amp;&amp; s[k+<span class="number">1</span>] == s[k]) &#123;</span><br><span class="line">                ++k; <span class="comment">// Skip duplicate characters.</span></span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            i = k+<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">while</span> (k &lt; s.size() - <span class="number">1</span> &amp;&amp; j &gt; <span class="number">0</span> &amp;&amp; s[k + <span class="number">1</span>] == s[j - <span class="number">1</span>]) &#123;</span><br><span class="line">                ++k;</span><br><span class="line">                --j; </span><br><span class="line">            &#125; <span class="comment">// Expand.</span></span><br><span class="line">            </span><br><span class="line">            <span class="keyword">int</span> new_len = k - j + <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">if</span> (new_len &gt; max_len) &#123; </span><br><span class="line">                min_start = j; </span><br><span class="line">                max_len = new_len; </span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> s.substr(min_start, max_len);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>上面的解决方案尝试把每一个字符作为回文子串的中心，然后不断向外扩展。这里面用到了一个很重要的优化，即对于连续的重复字符，把它们当做一个整体考虑一次，而不是多次。</p>
+<h3 id="leetcode-516-Longest-Palindromic-Subsequence"><a href="#leetcode-516-Longest-Palindromic-Subsequence" class="headerlink" title="leetcode 516: Longest Palindromic Subsequence"></a><a target="_blank" rel="noopener" href="https://leetcode.com/problems/longest-palindromic-subsequence/">leetcode 516: Longest Palindromic Subsequence</a></h3><blockquote>
+<p>Given a string s, find the longest palindromic subsequence’s length in s.</p>
+<p>A subsequence is a sequence that can be derived from another sequence by deleting some or no elements &gt; without changing the order of the remaining elements.</p>
+<p>Example 1:<br>Input: s = “bbbab”<br>Output: 4<br>Explanation: One possible longest palindromic subsequence is “bbbb”.</p>
+<p>Example 2:<br>Input: s = “cbbd”<br>Output: 2<br>Explanation: One possible longest palindromic subsequence is “bb”.</p>
+<p>Constraints:<br>1 &lt;= s.length &lt;= 1000<br>s consists only of lowercase English letters.</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">longestPalindromeSubseq</span><span class="params">(<span class="built_in">string</span> s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> size = s.size();</span><br><span class="line">        <span class="function"><span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; <span class="title">data</span><span class="params">(size, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(size, <span class="number">0</span>))</span></span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> len = <span class="number">1</span>; len &lt;= size; ++len) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i + len - <span class="number">1</span> &lt; size; ++i) &#123;</span><br><span class="line">                <span class="keyword">if</span> (len == <span class="number">1</span>) &#123;</span><br><span class="line">                    data[i][i] = <span class="number">1</span>;</span><br><span class="line">                    <span class="keyword">continue</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">int</span> j = i + len - <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">if</span> (s[i] == s[j]) &#123;</span><br><span class="line">                    data[i][j] = (i + <span class="number">1</span> &lt;= j - <span class="number">1</span>? data[i+<span class="number">1</span>][j<span class="number">-1</span>]: <span class="number">0</span>) + <span class="number">2</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                data[i][j] = max(&#123;data[i][j], data[i+<span class="number">1</span>][j], data[i][j<span class="number">-1</span>]&#125;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> data.front().back();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>注意，这个题目要求子序列，而上一个题目是子串，DP的过程如14 - 17行所示；</p>
+<h3 id="leetcode-647-Palindromic-Substrings"><a href="#leetcode-647-Palindromic-Substrings" class="headerlink" title="leetcode 647: Palindromic Substrings"></a><a target="_blank" rel="noopener" href="https://leetcode.com/problems/palindromic-substrings/">leetcode 647: Palindromic Substrings</a></h3><blockquote>
+<p>Given a string, your task is to count how many palindromic substrings in this string.</p>
+<p>The substrings with different start indexes or end indexes are counted as different substrings even &gt; they consist of same characters.</p>
+<p>Example 1:<br>Input: “abc”<br>Output: 3<br>Explanation: Three palindromic strings: “a”, “b”, “c”.</p>
+<p>Example 2:<br>Input: “aaa”<br>Output: 6<br>Explanation: Six palindromic strings: “a”, “a”, “a”, “aa”, “aa”, “aaa”.</p>
+<p>Note:<br>The input string length won’t exceed 1000.</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">countSubstrings</span><span class="params">(<span class="built_in">string</span> s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.size(); ++i) &#123;</span><br><span class="line">            <span class="keyword">int</span> len = min&lt;<span class="keyword">int</span>&gt;(i, s.size() - <span class="number">1</span> - i);</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;= len; ++j) &#123; <span class="comment">// odd length type:  ...a...</span></span><br><span class="line">                <span class="keyword">if</span> (s[i+j] == s[i - j]) &#123;</span><br><span class="line">                    ++res;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span> (i + <span class="number">1</span> &lt; s.size() &amp;&amp; s[i] == s[i+<span class="number">1</span>]) &#123; <span class="comment">// even length type: ...aa...</span></span><br><span class="line">                len = min&lt;<span class="keyword">int</span>&gt;(i, s.size() - <span class="number">2</span> - i);</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;= len; ++j) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (s[i+<span class="number">1</span>+j] == s[i - j]) &#123;</span><br><span class="line">                        ++res;</span><br><span class="line">                    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>这个题目要考虑到回文串的两种形式，即奇数长度形式：…a…和偶数长度形式：…aa…</p>
+<h3 id="leetcode-730-Count-Different-Palindromic-Subsequences"><a href="#leetcode-730-Count-Different-Palindromic-Subsequences" class="headerlink" title="leetcode 730: Count Different Palindromic Subsequences"></a><a target="_blank" rel="noopener" href="https://leetcode.com/problems/count-different-palindromic-subsequences/">leetcode 730: Count Different Palindromic Subsequences</a></h3><blockquote>
+<p>Given a string S, find the number of different non-empty palindromic subsequences in S, and return &gt; that number modulo 10^9 + 7.</p>
+<p>A subsequence of a string S is obtained by deleting 0 or more characters from S.</p>
+<p>A sequence is palindromic if it is equal to the sequence reversed.</p>
+<p>Two sequences A_1, A_2, … and B_1, B_2, … are different if there is some i for which A_i != B_i.</p>
+<p>Example 1:<br>Input:<br>S = ‘bccb’<br>Output: 6<br>Explanation:<br>The 6 different non-empty palindromic subsequences are ‘b’, ‘c’, ‘bb’, ‘cc’, ‘bcb’, ‘bccb’.<br>Note that ‘bcb’ is counted only once, even though it occurs twice.</p>
+<p>Example 2:<br>Input:<br>S = ‘abcdabcdabcdabcdabcdabcdabcdabcddcbadcbadcbadcbadcbadcbadcbadcba’<br>Output: 104860361<br>Explanation:<br>There are 3104860382 different non-empty palindromic subsequences, which is 104860361 modulo 10^9 + 7.</p>
+<p>Note:<br>The length of S will be in the range [1, 1000].<br>Each character S[i] will be in the set {‘a’, ‘b’, ‘c’, ‘d’}.</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">countPalindromicSubsequences</span><span class="params">(<span class="built_in">string</span> s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> mod = <span class="number">1e9</span> + <span class="number">7</span>;</span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> size = s.size();</span><br><span class="line">        <span class="function"><span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">long</span> <span class="keyword">long</span>&gt;&gt; <span class="title">data</span><span class="params">(size, <span class="built_in">vector</span>&lt;<span class="keyword">long</span> <span class="keyword">long</span>&gt;(size, <span class="number">0</span>))</span></span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> len = <span class="number">1</span>; len &lt;= size; ++len) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i + len - <span class="number">1</span> &lt; size; ++i) &#123;</span><br><span class="line">                <span class="keyword">int</span> j = i + len - <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">if</span> (len &lt;= <span class="number">2</span>) &#123;</span><br><span class="line">                    data[i][j] = len;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="keyword">for</span> (<span class="keyword">char</span> t : &#123;<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>, <span class="string">&#x27;d&#x27;</span>&#125;) &#123;</span><br><span class="line">                        <span class="keyword">int</span> m = i, n = j;</span><br><span class="line">                        <span class="keyword">for</span> (m = i; m &lt;= j; ++m) &#123;</span><br><span class="line">                            <span class="keyword">if</span> (s[m] == t) &#123;</span><br><span class="line">                                <span class="keyword">break</span>;</span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;</span><br><span class="line">                        <span class="keyword">for</span> (n = j; n &gt;= i; --n) &#123;</span><br><span class="line">                            <span class="keyword">if</span> (s[n] == t) &#123;</span><br><span class="line">                                <span class="keyword">break</span>;</span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;</span><br><span class="line">                        </span><br><span class="line">                        <span class="keyword">if</span> (m &gt; n) &#123;</span><br><span class="line">                            <span class="keyword">continue</span>;</span><br><span class="line">                        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (m == n) &#123;</span><br><span class="line">                            data[i][j] += <span class="number">1</span>;</span><br><span class="line">                        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (m + <span class="number">1</span> == n) &#123;</span><br><span class="line">                            data[i][j] += <span class="number">2</span>;</span><br><span class="line">                        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                            data[i][j] += <span class="number">2</span> + data[m+<span class="number">1</span>][n<span class="number">-1</span>];</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                </span><br><span class="line">                data[i][j] %= mod;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> data.front().back();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>因为字符只有a,b,c,d四种，所以回文串一定是a…a, b…b, c…c和d…d的形式；所以对于每个区间[i ,j]，我们先寻找最外面的匹配字符对，有如下几种情况：</p>
+<ol>
+<li>如果没有找到（28行），那么添加0到区间中；</li>
+<li>如果只有一个（30行），那么这个字符只能给整个区间添加一个回文串</li>
+<li>如果只有相邻的两个（32行），那么这两个字符只能给整个区间添加两个回文串，如a,aa</li>
+<li>否则，可以带来如下的回文串，如(1) a, aa，共两个; (2) a {dp[m+1][n-1]} a，共dp[m+1][n-1]个</li>
+</ol>
+<h3 id="leetcode-87-Scramble-String"><a href="#leetcode-87-Scramble-String" class="headerlink" title="leetcode 87 Scramble String"></a><a target="_blank" rel="noopener" href="https://leetcode.com/problems/scramble-string/">leetcode 87 Scramble String</a></h3><blockquote>
+<p>We can scramble a string s to get a string t using the following algorithm:</p>
+<p>If the length of the string is 1, stop.<br>If the length of the string is &gt; 1, do the following:<br>Split the string into two non-empty substrings at a random index, i.e., if the string is s, divide it &gt; to x and y where s = x + y.<br>Randomly decide to swap the two substrings or to keep them in the same order. i.e., after this step, s &gt; may become s = x + y or s = y + x.<br>Apply step 1 recursively on each of the two substrings x and y.<br>Given two strings s1 and s2 of the same length, return true if s2 is a scrambled string of s1, &gt; otherwise, return false.</p>
+<p>Example 1:<br>Input: s1 = “great”, s2 = “rgeat”<br>Output: true<br>Explanation: One possible scenario applied on s1 is:<br>“great” –&gt; “gr/eat” // divide at random index.<br>“gr/eat” –&gt; “gr/eat” // random decision is not to swap the two substrings and keep them in order.<br>“gr/eat” –&gt; “g/r / e/at” // apply the same algorithm recursively on both substrings. divide at ranom &gt; index each of them.<br>“g/r / e/at” –&gt; “r/g / e/at” // random decision was to swap the first substring and to keep the &gt; second substring in the same order.<br>“r/g / e/at” –&gt; “r/g / e/ a/t” // again apply the algorithm recursively, divide “at” to “a/t”.<br>“r/g / e/ a/t” –&gt; “r/g / e/ a/t” // random decision is to keep both substrings in the same order.<br>The algorithm stops now and the result string is “rgeat” which is s2.<br>As there is one possible scenario that led s1 to be scrambled to s2, we return true.</p>
+<p>Example 2:<br>Input: s1 = “abcde”, s2 = “caebd”<br>Output: false</p>
+<p>Example 3:<br>Input: s1 = “a”, s2 = “a”<br>Output: true</p>
+<p>Constraints:<br>s1.length == s2.length<br>1 &lt;= s1.length &lt;= 30<br>s1 and s2 consist of lower-case English letters.</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isScramble</span><span class="params">(<span class="built_in">string</span> s1, <span class="built_in">string</span> s2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> isScramble(s1, <span class="number">0</span>, s1.size() - <span class="number">1</span>, s2, <span class="number">0</span>, s2.size() - <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isScramble</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span>&amp; s1, <span class="keyword">int</span> a1, <span class="keyword">int</span> b1, <span class="keyword">const</span> <span class="built_in">string</span>&amp; s2, <span class="keyword">int</span> a2, <span class="keyword">int</span> b2)</span> </span>&#123;        </span><br><span class="line">        <span class="keyword">if</span> (a1 == b1) &#123;</span><br><span class="line">            <span class="keyword">return</span> s1[a1] == s2[a2];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (b1 - a1 != b2 - a2) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        vector&lt;int&gt; t1(26, 0), t2(26, 0);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = a1; i &lt;= b1; ++i) &#123;</span><br><span class="line">            ++t1[s1[i] - <span class="string">&#x27;a&#x27;</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = a2; i &lt;= b2; ++i) &#123;</span><br><span class="line">            ++t2[s2[i] - <span class="string">&#x27;a&#x27;</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (t1 != t2) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> n = b1 - a1 + <span class="number">1</span>;</span><br><span class="line">        vector&lt;int&gt; l1(26, 0), r1(26, 0), l2(26, 0), r2(26, 0);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i + <span class="number">1</span> &lt; n; ++i) &#123;</span><br><span class="line">            ++l1[s1[a1 + i] - <span class="string">&#x27;a&#x27;</span>];</span><br><span class="line">            ++r1[s1[b1 - i] - <span class="string">&#x27;a&#x27;</span>];</span><br><span class="line">            ++l2[s2[a2 + i] - <span class="string">&#x27;a&#x27;</span>];</span><br><span class="line">            ++r2[s2[b2 - i] - <span class="string">&#x27;a&#x27;</span>];</span><br><span class="line">            </span><br><span class="line">            <span class="comment">// 13, 24</span></span><br><span class="line">            <span class="keyword">if</span> (l1 == l2) &#123;</span><br><span class="line">                <span class="keyword">if</span> (isScramble(s1, a1, a1 + i, s2, a2, a2 + i) &amp;&amp; isScramble(s1, a1 + i + <span class="number">1</span>, b1, s2, a2 + i + <span class="number">1</span>, b2)) &#123;</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 14, 23</span></span><br><span class="line">            <span class="keyword">if</span> (l1 == r2) &#123;</span><br><span class="line">                <span class="keyword">if</span> (isScramble(s1, a1, a1 + i, s2, b2 - i, b2) &amp;&amp; isScramble(s1, a1 + i + <span class="number">1</span>, b1, s2, a2, b2 - i <span class="number">-1</span>)) &#123;</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            <span class="comment">// 23, 14</span></span><br><span class="line">            <span class="keyword">if</span> (l2 == r1) &#123;</span><br><span class="line">                <span class="keyword">if</span> (isScramble(s1, b1 - i, b1, s2, a2, a2 + i) &amp;&amp; isScramble(s1, a1, b1 - i - <span class="number">1</span>, s2, a2 + i +<span class="number">1</span>, b2)) &#123;</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>对于这个题目，可以将两个字符串分别分作两部分，然后注意交叉匹配的情况。</p>
+<h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><ul>
+<li>Leetcode算法题总结之区间dp， <a target="_blank" rel="noopener" href="https://www.cnblogs.com/54hys/p/13505616.html">https://www.cnblogs.com/54hys/p/13505616.html</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>李亨通@leehengtong
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://www.leehengtong.com/2021/02/28/palindromic_string/" title="回文字符串">https://www.leehengtong.com/2021/02/28/palindromic_string/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/palindromic-string/" rel="tag"># palindromic string</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/02/27/how_to_select_leetcode_questions/" rel="prev" title="How to select leetcode questions">
+      <i class="fa fa-chevron-left"></i> How to select leetcode questions
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#leetcode-5-Longest-Palindromic-Substring"><span class="nav-number">1.</span> <span class="nav-text">leetcode 5: Longest Palindromic Substring</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#leetcode-516-Longest-Palindromic-Subsequence"><span class="nav-number">2.</span> <span class="nav-text">leetcode 516: Longest Palindromic Subsequence</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#leetcode-647-Palindromic-Substrings"><span class="nav-number">3.</span> <span class="nav-text">leetcode 647: Palindromic Substrings</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#leetcode-730-Count-Different-Palindromic-Subsequences"><span class="nav-number">4.</span> <span class="nav-text">leetcode 730: Count Different Palindromic Subsequences</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#leetcode-87-Scramble-String"><span class="nav-number">5.</span> <span class="nav-text">leetcode 87 Scramble String</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="nav-number">6.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="李亨通@leehengtong"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">李亨通@leehengtong</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/leehengtong" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;leehengtong" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.v2ex.com/" title="https:&#x2F;&#x2F;www.v2ex.com" rel="noopener" target="_blank">V2EX</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://medium.com/" title="https:&#x2F;&#x2F;medium.com" rel="noopener" target="_blank">Medium</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="/more" title="&#x2F;more">More</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+      <script type="text/javascript" src="//rf.revolvermaps.com/0/0/1.js?i=5o12n4bg337&amp;s=220&amp;m=0&amp;v=false&amp;r=false&amp;b=000000&amp;n=false&amp;c=ff0000" async="async"></script>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">李亨通@leehengtong</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+<script>
+document.querySelectorAll('.pdfobject-container').forEach(element => {
+  let url = element.dataset.target;
+  let pdfOpenParams = {
+    navpanes : 0,
+    toolbar  : 0,
+    statusbar: 0,
+    pagemode : 'thumbs',
+    view     : 'FitH'
+  };
+  let pdfOpenFragment = '#' + Object.entries(pdfOpenParams).map(([key, value]) => `${key}=${encodeURIComponent(value)}`).join('&');
+  let fullURL = `/lib/pdf/web/viewer.html?file=${encodeURIComponent(url)}${pdfOpenFragment}`;
+
+  if (NexT.utils.supportsPDFs()) {
+    element.innerHTML = `<embed class="pdfobject" src="${url + pdfOpenFragment}" type="application/pdf" style="height: ${element.dataset.height};">`;
+  } else {
+    element.innerHTML = `<iframe src="${fullURL}" style="height: ${element.dataset.height};" frameborder="0"></iframe>`;
+  }
+});
+</script>
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>
