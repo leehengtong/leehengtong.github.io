@@ -3,8 +3,8 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="title" content="Tags - Li Hengtong" />
-    <meta name="description" content="Tags" />
+    <meta name="title" content="凸优化 - Li Hengtong" />
+    <meta name="description" content="凸优化算法介绍" />
     <meta name="referrer" content="always" />
     <meta
       name="keywords"
@@ -34,8 +34,8 @@
       async
       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
     ></script>
-    <link rel="canonical" href="https://www.leehengtong.com/tags/index.html" />
-    <title>Tags - Li Hengtong</title>
+    <link rel="canonical" href="https://www.leehengtong.com/convex_optimization/index.html" />
+    <title>凸优化 - Li Hengtong</title>
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
     <style>
       /* Background */ .chroma { background-color: #ffffff }
@@ -350,24 +350,39 @@
     </div>
     <div id="content">
       
-      <h1 id="pagetitle">Tags</h1>
-       <div>
-    <ul id="taglist">
-        
-            <li>
-                <p>- <a href="/tags/algorithm/">algorithm</a> (13)</p>
-            </li>
-        
-            <li>
-                <p>- <a href="/tags/leetcode/">leetcode</a> (1)</p>
-            </li>
-        
-            <li>
-                <p>- <a href="/tags/vim%20configure/">vim configure</a> (1)</p>
-            </li>
-        
-    </ul>
-</div>
+      <h1 id="pagetitle">凸优化</h1>
+       <h2>定义</h2>
+<p>$$ min \ f_{0}(x) $$
+$$ subject \ to \ f_{i}(x) \leqslant b_{i} \ i=1,...,m $$</p>
+<ul>
+<li>目标函数和限制函数都是凸的，即
+$$ f_{i}(\alpha x + \beta y) \leqslant \alpha f_{i}(x) + \beta f_{i}(y) \ \alpha + \beta = 1, \alpha \geq 0, \beta \geq 0 $$</li>
+<li>最小二乘问题和线性规划问题都是凸优化问题的特例</li>
+</ul>
+<!-- more -->
+<h2>特性</h2>
+<ol>
+<li>没有解析解</li>
+<li>但是有可靠和高效的求解算法</li>
+<li>计算时间复杂度大体上和$max(n^{3}, n^{2}m, F)$成正比，其中$F$是计算$f_{i}$和它的一阶导，二阶导的开销</li>
+</ol>
+<h2>性质</h2>
+<ol>
+<li>每一个局部最优解都是全局最优解</li>
+<li>最优解集合是凸的</li>
+<li>如果目标函数是严格凸的，那么这个优化问题就最多只有一个最优解</li>
+</ol>
+<h2>使用</h2>
+<ol>
+<li>一般不容易分析出问题的凸优化形式</li>
+<li>需要很多技巧才能将问题转换成凸优化问题</li>
+<li>会对很多问题能够凸优化求解感到惊奇</li>
+</ol>
+<h2>参考文献</h2>
+<ol>
+<li>Standford Boyd, Convex Optimization course, https://web.stanford.edu/~boyd/cvxbook/</li>
+<li>Standford Boyd, Convex Optimization <a href="https://web.stanford.edu/~boyd/cvxbook/bv_cvxslides.pdf">slides</a></li>
+</ol>
  
     </div>
     <div id="footer">

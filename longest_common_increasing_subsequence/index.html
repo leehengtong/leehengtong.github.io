@@ -3,8 +3,8 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="title" content="Tags - Li Hengtong" />
-    <meta name="description" content="Tags" />
+    <meta name="title" content="最长公共递增子序列 - Li Hengtong" />
+    <meta name="description" content="最长公共递增子序列介绍" />
     <meta name="referrer" content="always" />
     <meta
       name="keywords"
@@ -34,8 +34,8 @@
       async
       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
     ></script>
-    <link rel="canonical" href="https://www.leehengtong.com/tags/index.html" />
-    <title>Tags - Li Hengtong</title>
+    <link rel="canonical" href="https://www.leehengtong.com/longest_common_increasing_subsequence/index.html" />
+    <title>最长公共递增子序列 - Li Hengtong</title>
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
     <style>
       /* Background */ .chroma { background-color: #ffffff }
@@ -350,24 +350,48 @@
     </div>
     <div id="content">
       
-      <h1 id="pagetitle">Tags</h1>
-       <div>
-    <ul id="taglist">
+      <h1 id="pagetitle">最长公共递增子序列</h1>
+       <p>最长公共递增子序列(Longest Common Increasing Subsequence, LCIS)是<a href="https://leehengtong.com/2021/02/06/longest_common_subsequence/">LCS</a>和<a href="https://leehengtong.com/2021/02/14/longest_increasing_subsequence/">LIS</a>的结合体，比这两个基本形式都复杂一些。下面我们将以一道GeeksForGeeks上面的题目对这个问题进行解析和求解。</p>
+<!-- more -->
+<h3><a href="https://www.geeksforgeeks.org/longest-common-increasing-subsequence-lcs-lis/">GeeksForGeeks: Longest Common Increasing Subsequence (LCS + LIS)</a></h3>
+<blockquote>
+<p>Given two arrays, find length of the longest common increasing subsequence [LCIS] and print one of such sequences (multiple sequences may exist)</p>
+<p>Suppose we consider two arrays:
+arr1[] = {3, 4, 9, 1} and
+arr2[] = {5, 3, 8, 9, 10, 2, 1}</p>
+<p>Our answer would be {3, 9} as this is the longest common subsequence which is increasing also.</p>
+</blockquote>
+<p>对于这个题目，我们仍然使用动态规划来求解，只不过我们使用一维数组来隐含的表示二维状态。我们先给出代码：</p>
+<pre><code class="language-c++"><pre class="chroma"><span class="k">class</span> <span class="nc">Solution</span><span class="p">{</span>   
+<span class="k">public</span><span class="o">:</span>
+    <span class="kt">int</span> <span class="n">LCIS</span><span class="p">(</span><span class="kt">int</span> <span class="n">arr1</span><span class="p">[</span><span class="p">]</span><span class="p">,</span> <span class="kt">int</span> <span class="n">m</span><span class="p">,</span> <span class="kt">int</span> <span class="n">arr2</span><span class="p">[</span><span class="p">]</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">data</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="p">;</span>
         
-            <li>
-                <p>- <a href="/tags/algorithm/">algorithm</a> (13)</p>
-            </li>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">m</span><span class="p">;</span> <span class="o">+</span><span class="o">+</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kt">int</span> <span class="n">cur</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>  <span class="c1">// The current max LCIS length without using arr1[i] 
+</span><span class="c1"></span>            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="o">+</span><span class="o">+</span><span class="n">j</span><span class="p">)</span> <span class="p">{</span>            
+                <span class="k">if</span> <span class="p">(</span><span class="n">arr1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span><span class="o">=</span> <span class="n">arr2</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="p">)</span> <span class="p">{</span>  <span class="c1">// We can construct a longer LCIS end with arr2[j] using arr1[i] 
+</span><span class="c1"></span>                    <span class="k">if</span> <span class="p">(</span><span class="n">cur</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&gt;</span> <span class="n">data</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="n">data</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">cur</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">arr1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">arr2</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="p">)</span> <span class="p">{</span>  <span class="c1">// We found a longer LCIS to which the arr1[i] can append
+</span><span class="c1"></span>                    <span class="k">if</span> <span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">cur</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="n">cur</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="p">;</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
         
-            <li>
-                <p>- <a href="/tags/leetcode/">leetcode</a> (1)</p>
-            </li>
-        
-            <li>
-                <p>- <a href="/tags/vim%20configure/">vim configure</a> (1)</p>
-            </li>
-        
-    </ul>
-</div>
+        <span class="k">return</span> <span class="o">*</span><span class="n">std</span><span class="o">:</span><span class="o">:</span><span class="n">max_element</span><span class="p">(</span><span class="n">data</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="p">)</span><span class="p">,</span> <span class="n">data</span><span class="p">.</span><span class="n">end</span><span class="p">(</span><span class="p">)</span><span class="p">)</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span><span class="p">;</span>
+</pre></code></pre>
+<p>其中，在第二个for循环里面，(1) data[j]表示由arr1[0...i]和arr2[0...j]所形成的最长LCIS的长度; (2) cur表示由arr1[0...i-1]和arr2[0...j]所形成的并且arr1[i]可以加在其后的最长的LCIS的长度。</p>
+<ul>
+<li>当当前的arr1[i]和arr2[j]相等时，如果新形成的LCIS的长度大于已有的以arr2[j]结尾的LCIS，更新data[j];</li>
+<li>如果以arr2[j]结尾的LCIS的长度大于cur，并且arr1[i]可以放在这个LCIS的尾端的时候，我们认为在后续循环中以这个LCIS为基础来构造更长的LCIS,所以更新cur的值；</li>
+</ul>
  
     </div>
     <div id="footer">

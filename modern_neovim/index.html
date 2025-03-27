@@ -1,0 +1,1033 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="title" content="Modern (Neo)vim congiure in 2021 - Li Hengtong" />
+    <meta name="description" content="Modern (Neo)vim congiure in 2021" />
+    <meta name="referrer" content="always" />
+    <meta
+      name="keywords"
+      content="programming, golang, rust, go, javascript, development, software, opensource, oss"
+    />
+    <meta name="author" content="Li Hengtong" />
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [
+            ['$', '$'],
+            ['\\(', '\\)'],
+          ],
+          displayMath: [
+            ['$$', '$$'],
+            ['\\[', '\\]'],
+          ],
+          processEscapes: true,
+        },
+        svg: {
+          fontCache: 'global',
+        },
+      }
+    </script>
+    <script
+      id="MathJax-script"
+      async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+    ></script>
+    <link rel="canonical" href="https://www.leehengtong.com/modern_neovim/index.html" />
+    <title>Modern (Neo)vim congiure in 2021 - Li Hengtong</title>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <style>
+      /* Background */ .chroma { background-color: #ffffff }
+/* Error */ .chroma .err { background-color: #a848a8 }
+/* LineTableTD */ .chroma .lntd { vertical-align: top; padding: 0; margin: 0; border: 0; }
+/* LineTable */ .chroma .lntable { border-spacing: 0; padding: 0; margin: 0; border: 0; width: auto; overflow: auto; display: block; }
+/* LineHighlight */ .chroma .hl { display: block; width: 100%;background-color: #e5e5e5 }
+/* LineNumbersTable */ .chroma .lnt { margin-right: 0.4em; padding: 0 0.4em 0 0.4em;color: #7f7f7f }
+/* LineNumbers */ .chroma .ln { margin-right: 0.4em; padding: 0 0.4em 0 0.4em;color: #7f7f7f }
+/* Keyword */ .chroma .k { color: #2838b0 }
+/* KeywordConstant */ .chroma .kc { color: #444444; font-style: italic }
+/* KeywordDeclaration */ .chroma .kd { color: #2838b0; font-style: italic }
+/* KeywordNamespace */ .chroma .kn { color: #2838b0 }
+/* KeywordPseudo */ .chroma .kp { color: #2838b0 }
+/* KeywordReserved */ .chroma .kr { color: #2838b0 }
+/* KeywordType */ .chroma .kt { color: #2838b0; font-style: italic }
+/* NameAttribute */ .chroma .na { color: #388038 }
+/* NameBuiltin */ .chroma .nb { color: #388038 }
+/* NameBuiltinPseudo */ .chroma .bp { font-style: italic }
+/* NameClass */ .chroma .nc { color: #287088 }
+/* NameConstant */ .chroma .no { color: #b85820 }
+/* NameDecorator */ .chroma .nd { color: #287088 }
+/* NameEntity */ .chroma .ni { color: #709030 }
+/* NameException */ .chroma .ne { color: #908828 }
+/* NameFunction */ .chroma .nf { color: #785840 }
+/* NameFunctionMagic */ .chroma .fm { color: #b85820 }
+/* NameLabel */ .chroma .nl { color: #289870 }
+/* NameNamespace */ .chroma .nn { color: #289870 }
+/* NameTag */ .chroma .nt { color: #2838b0 }
+/* NameVariable */ .chroma .nv { color: #b04040 }
+/* NameVariableGlobal */ .chroma .vg { color: #908828 }
+/* NameVariableMagic */ .chroma .vm { color: #b85820 }
+/* LiteralString */ .chroma .s { color: #b83838 }
+/* LiteralStringAffix */ .chroma .sa { color: #444444 }
+/* LiteralStringBacktick */ .chroma .sb { color: #b83838 }
+/* LiteralStringChar */ .chroma .sc { color: #a848a8 }
+/* LiteralStringDelimiter */ .chroma .dl { color: #b85820 }
+/* LiteralStringDoc */ .chroma .sd { color: #b85820; font-style: italic }
+/* LiteralStringDouble */ .chroma .s2 { color: #b83838 }
+/* LiteralStringEscape */ .chroma .se { color: #709030 }
+/* LiteralStringHeredoc */ .chroma .sh { color: #b83838 }
+/* LiteralStringInterpol */ .chroma .si { color: #b83838; text-decoration: underline }
+/* LiteralStringOther */ .chroma .sx { color: #a848a8 }
+/* LiteralStringRegex */ .chroma .sr { color: #a848a8 }
+/* LiteralStringSingle */ .chroma .s1 { color: #b83838 }
+/* LiteralStringSymbol */ .chroma .ss { color: #b83838 }
+/* LiteralNumber */ .chroma .m { color: #444444 }
+/* LiteralNumberBin */ .chroma .mb { color: #444444 }
+/* LiteralNumberFloat */ .chroma .mf { color: #444444 }
+/* LiteralNumberHex */ .chroma .mh { color: #444444 }
+/* LiteralNumberInteger */ .chroma .mi { color: #444444 }
+/* LiteralNumberIntegerLong */ .chroma .il { color: #444444 }
+/* LiteralNumberOct */ .chroma .mo { color: #444444 }
+/* Operator */ .chroma .o { color: #666666 }
+/* OperatorWord */ .chroma .ow { color: #a848a8 }
+/* Punctuation */ .chroma .p { color: #888888 }
+/* Comment */ .chroma .c { color: #888888; font-style: italic }
+/* CommentHashbang */ .chroma .ch { color: #287088; font-style: italic }
+/* CommentMultiline */ .chroma .cm { color: #888888; font-style: italic }
+/* CommentSingle */ .chroma .c1 { color: #888888; font-style: italic }
+/* CommentSpecial */ .chroma .cs { color: #888888; font-style: italic }
+/* CommentPreproc */ .chroma .cp { color: #289870 }
+/* CommentPreprocFile */ .chroma .cpf { color: #289870 }
+/* GenericDeleted */ .chroma .gd { color: #c02828 }
+/* GenericEmph */ .chroma .ge { font-style: italic }
+/* GenericError */ .chroma .gr { color: #c02828 }
+/* GenericHeading */ .chroma .gh { color: #666666 }
+/* GenericInserted */ .chroma .gi { color: #388038 }
+/* GenericOutput */ .chroma .go { color: #666666 }
+/* GenericPrompt */ .chroma .gp { color: #444444 }
+/* GenericStrong */ .chroma .gs { font-weight: bold }
+/* GenericSubheading */ .chroma .gu { color: #444444 }
+/* GenericTraceback */ .chroma .gt { color: #2838b0 }
+/* GenericUnderline */ .chroma .gl { text-decoration: underline }
+/* TextWhitespace */ .chroma .w { color: #a89028 }
+
+
+      .chroma .err {
+        background-color: transparent;
+        color: #272822;
+      }
+
+      .chroma {
+        overflow: auto;
+        background-color: transparent;
+        min-height: 30px;
+      }
+    </style>
+    <link rel="stylesheet" href="/index.css" />
+  </head>
+
+  <body>
+    <div id="header">
+      <div id="header-inner">
+        <ul id="menu">
+          <li>
+            <div class="menuitem">
+              <a href="/">
+                <svg
+                  width="70px"
+                  height="35px"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M22 22L2 22"
+                    stroke="#FFFFFF"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    d="M2 11L10.1259 4.49931C11.2216 3.62279 12.7784 3.62279 13.8741 4.49931L22 11"
+                    stroke="#FFFFFF"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    d="M15.5 5.5V3.5C15.5 3.22386 15.7239 3 16 3H18.5C18.7761 3 19 3.22386 19 3.5V8.5"
+                    stroke="#FFFFFF"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    d="M4 22V9.5"
+                    stroke="#FFFFFF"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    d="M20 22V9.5"
+                    stroke="#FFFFFF"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    d="M15 22V17C15 15.5858 15 14.8787 14.5607 14.4393C14.1213 14 13.4142 14 12 14C10.5858 14 9.87868 14 9.43934 14.4393C9 14.8787 9 15.5858 9 17V22"
+                    stroke="#FFFFFF"
+                    stroke-width="1.5"
+                  />
+                  <path
+                    d="M14 9.5C14 10.6046 13.1046 11.5 12 11.5C10.8954 11.5 10 10.6046 10 9.5C10 8.39543 10.8954 7.5 12 7.5C13.1046 7.5 14 8.39543 14 9.5Z"
+                    stroke="#FFFFFF"
+                    stroke-width="1.5"
+                  />
+                </svg>
+                <div>Home</div>
+              </a>
+            </div>
+          </li>
+          <li>
+            <div class="menuitem">
+              <a href="/projects/">
+                <svg
+                  width="70px"
+                  height="35px"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M3.28441 11.2661C3.15113 9.26687 3.08449 8.26726 3.67729 7.63363C4.27009 7 5.27191 7 7.27555 7H12.7245C14.7281 7 15.7299 7 16.3227 7.63363C16.9155 8.26726 16.8489 9.26687 16.7156 11.2661L16.3734 16.3991C16.1964 19.054 16.1079 20.3815 15.2429 21.1907C14.3779 22 13.0475 22 10.3867 22H9.61333C6.95253 22 5.62212 22 4.75712 21.1907C3.89211 20.3815 3.80361 19.054 3.62662 16.3991L3.28441 11.2661Z"
+                    stroke="#FFFFFF"
+                    stroke-width="1.5"
+                  />
+                  <path
+                    d="M17 17H18C20.2091 17 22 15.2091 22 13C22 10.7909 20.2091 9 18 9H17"
+                    stroke="#FFFFFF"
+                    stroke-width="1.5"
+                  />
+                  <path d="M16 18H4" stroke="#FFFFFF" stroke-width="1.5" />
+                  <path
+                    d="M6.05081 5.0614L6.46143 4.48574C6.6882 4.16781 6.61431 3.72623 6.29638 3.49945C5.97845 3.27267 5.90455 2.8311 6.13133 2.51317L6.54195 1.9375M14.0508 5.0614L14.4614 4.48574C14.6882 4.16781 14.6143 3.72623 14.2964 3.49945C13.9784 3.27267 13.9046 2.8311 14.1313 2.51317L14.5419 1.9375M10.0508 5.0614L10.4614 4.48574C10.6882 4.16781 10.6143 3.72623 10.2964 3.49945C9.97845 3.27267 9.90455 2.8311 10.1313 2.51317L10.5419 1.9375"
+                    stroke="#FFFFFF"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                  />
+                </svg>
+                <div>Projects</div>
+              </a>
+            </div>
+          </li>
+          <li>
+            <div class="menuitem">
+              <a href="/about/">
+                <svg
+                  width="70px"
+                  height="35px"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M15.3929 4.05365L14.8912 4.61112L15.3929 4.05365ZM19.3517 7.61654L18.85 8.17402L19.3517 7.61654ZM21.654 10.1541L20.9689 10.4592V10.4592L21.654 10.1541ZM3.17157 20.8284L3.7019 20.2981H3.7019L3.17157 20.8284ZM20.8284 20.8284L20.2981 20.2981L20.2981 20.2981L20.8284 20.8284ZM14 21.25H10V22.75H14V21.25ZM2.75 14V10H1.25V14H2.75ZM21.25 13.5629V14H22.75V13.5629H21.25ZM14.8912 4.61112L18.85 8.17402L19.8534 7.05907L15.8947 3.49618L14.8912 4.61112ZM22.75 13.5629C22.75 11.8745 22.7651 10.8055 22.3391 9.84897L20.9689 10.4592C21.2349 11.0565 21.25 11.742 21.25 13.5629H22.75ZM18.85 8.17402C20.2034 9.3921 20.7029 9.86199 20.9689 10.4592L22.3391 9.84897C21.9131 8.89241 21.1084 8.18853 19.8534 7.05907L18.85 8.17402ZM10.0298 2.75C11.6116 2.75 12.2085 2.76158 12.7405 2.96573L13.2779 1.5653C12.4261 1.23842 11.498 1.25 10.0298 1.25V2.75ZM15.8947 3.49618C14.8087 2.51878 14.1297 1.89214 13.2779 1.5653L12.7405 2.96573C13.2727 3.16993 13.7215 3.55836 14.8912 4.61112L15.8947 3.49618ZM10 21.25C8.09318 21.25 6.73851 21.2484 5.71085 21.1102C4.70476 20.975 4.12511 20.7213 3.7019 20.2981L2.64124 21.3588C3.38961 22.1071 4.33855 22.4392 5.51098 22.5969C6.66182 22.7516 8.13558 22.75 10 22.75V21.25ZM1.25 14C1.25 15.8644 1.24841 17.3382 1.40313 18.489C1.56076 19.6614 1.89288 20.6104 2.64124 21.3588L3.7019 20.2981C3.27869 19.8749 3.02502 19.2952 2.88976 18.2892C2.75159 17.2615 2.75 15.9068 2.75 14H1.25ZM14 22.75C15.8644 22.75 17.3382 22.7516 18.489 22.5969C19.6614 22.4392 20.6104 22.1071 21.3588 21.3588L20.2981 20.2981C19.8749 20.7213 19.2952 20.975 18.2892 21.1102C17.2615 21.2484 15.9068 21.25 14 21.25V22.75ZM21.25 14C21.25 15.9068 21.2484 17.2615 21.1102 18.2892C20.975 19.2952 20.7213 19.8749 20.2981 20.2981L21.3588 21.3588C22.1071 20.6104 22.4392 19.6614 22.5969 18.489C22.7516 17.3382 22.75 15.8644 22.75 14H21.25ZM2.75 10C2.75 8.09318 2.75159 6.73851 2.88976 5.71085C3.02502 4.70476 3.27869 4.12511 3.7019 3.7019L2.64124 2.64124C1.89288 3.38961 1.56076 4.33855 1.40313 5.51098C1.24841 6.66182 1.25 8.13558 1.25 10H2.75ZM10.0298 1.25C8.15538 1.25 6.67442 1.24842 5.51887 1.40307C4.34232 1.56054 3.39019 1.8923 2.64124 2.64124L3.7019 3.7019C4.12453 3.27928 4.70596 3.02525 5.71785 2.88982C6.75075 2.75158 8.11311 2.75 10.0298 2.75V1.25Z"
+                    fill="#FFFFFF"
+                  />
+                  <path
+                    d="M13 2.5V5C13 7.35702 13 8.53553 13.7322 9.26777C14.4645 10 15.643 10 18 10H22"
+                    stroke="#FFFFFF"
+                    stroke-width="1.5"
+                  />
+                  <ellipse cx="17" cy="14.5" rx="1" ry="1.5" fill="#FFFFFF" />
+                  <path
+                    d="M9 17.5C10.8167 18.7111 13.1833 18.7111 15 17.5"
+                    stroke="#FFFFFF"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <ellipse cx="7" cy="14.5" rx="1" ry="1.5" fill="#FFFFFF" />
+                </svg>
+                <div>About</div>
+              </a>
+            </div>
+          </li>
+          <li>
+            <div class="menuitem">
+              <a href="/tags/">
+                <svg
+                  width="70px"
+                  height="35px"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M4.72848 16.1369C3.18295 14.5914 2.41018 13.8186 2.12264 12.816C1.83509 11.8134 2.08083 10.7485 2.57231 8.61875L2.85574 7.39057C3.26922 5.59881 3.47597 4.70292 4.08944 4.08944C4.70292 3.47597 5.59881 3.26922 7.39057 2.85574L8.61875 2.57231C10.7485 2.08083 11.8134 1.83509 12.816 2.12264C13.8186 2.41018 14.5914 3.18295 16.1369 4.72848L17.9665 6.55812C20.6555 9.24711 22 10.5916 22 12.2623C22 13.933 20.6555 15.2775 17.9665 17.9665C15.2775 20.6555 13.933 22 12.2623 22C10.5916 22 9.24711 20.6555 6.55812 17.9665L4.72848 16.1369Z"
+                    stroke="#FFFFFF"
+                    stroke-width="1.5"
+                  />
+                  <circle
+                    cx="8.60724"
+                    cy="8.87891"
+                    r="2"
+                    transform="rotate(-45 8.60724 8.87891)"
+                    stroke="#FFFFFF"
+                    stroke-width="1.5"
+                  />
+                  <path
+                    d="M11.5417 18.5L18.5208 11.5208"
+                    stroke="#FFFFFF"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                  />
+                </svg>
+                <div>Tags</div>
+              </a>
+            </div>
+          </li>
+          <li>
+            <div class="menuitem">
+              <a href="/archive/">
+                <svg
+                  width="70px"
+                  height="35px"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M16 4.00195C18.175 4.01406 19.3529 4.11051 20.1213 4.87889C21 5.75757 21 7.17179 21 10.0002V16.0002C21 18.8286 21 20.2429 20.1213 21.1215C19.2426 22.0002 17.8284 22.0002 15 22.0002H9C6.17157 22.0002 4.75736 22.0002 3.87868 21.1215C3 20.2429 3 18.8286 3 16.0002V10.0002C3 7.17179 3 5.75757 3.87868 4.87889C4.64706 4.11051 5.82497 4.01406 8 4.00195"
+                    stroke="#FFFFFF"
+                    stroke-width="1.5"
+                  />
+                  <path
+                    d="M8 14H16"
+                    stroke="#FFFFFF"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    d="M7 10.5H17"
+                    stroke="#FFFFFF"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    d="M9 17.5H15"
+                    stroke="#FFFFFF"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    d="M8 3.5C8 2.67157 8.67157 2 9.5 2H14.5C15.3284 2 16 2.67157 16 3.5V4.5C16 5.32843 15.3284 6 14.5 6H9.5C8.67157 6 8 5.32843 8 4.5V3.5Z"
+                    stroke="#FFFFFF"
+                    stroke-width="1.5"
+                  />
+                </svg>
+                <div>Archive</div>
+              </a>
+            </div>
+          </li>
+        </ul>
+        <div id="contact">
+          <a
+            href="https://github.com/leehengtong"
+            class="github"
+            target="_blank"
+            title="GitHub"
+          >
+            <svg viewBox="0 0 512 512">
+              <title>github</title>
+              <g fill="FA9B39">
+                <path
+                  d="M256 70.7c-102.6 0-185.9 83.2-185.9 185.9 0 82.1 53.3 151.8 127.1 176.4 9.3 1.7 12.3-4 12.3-8.9V389.4c-51.7 11.3-62.5-21.9-62.5-21.9 -8.4-21.5-20.6-27.2-20.6-27.2 -16.9-11.5 1.3-11.3 1.3-11.3 18.7 1.3 28.5 19.2 28.5 19.2 16.6 28.4 43.5 20.2 54.1 15.4 1.7-12 6.5-20.2 11.8-24.9 -41.3-4.7-84.7-20.6-84.7-91.9 0-20.3 7.3-36.9 19.2-49.9 -1.9-4.7-8.3-23.6 1.8-49.2 0 0 15.6-5 51.1 19.1 14.8-4.1 30.7-6.2 46.5-6.3 15.8 0.1 31.7 2.1 46.6 6.3 35.5-24 51.1-19.1 51.1-19.1 10.1 25.6 3.8 44.5 1.8 49.2 11.9 13 19.1 29.6 19.1 49.9 0 71.4-43.5 87.1-84.9 91.7 6.7 5.8 12.8 17.1 12.8 34.4 0 24.9 0 44.9 0 51 0 4.9 3 10.7 12.4 8.9 73.8-24.6 127-94.3 127-176.4C441.9 153.9 358.6 70.7 256 70.7z"
+                />
+              </g>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div id="content">
+      
+      <h1 id="pagetitle">Modern (Neo)vim congiure in 2021</h1>
+       <p>I have used (neo)vim for many years. I think it greatly improved my work efficiency. And I want to share my configure with others to make more people can benefit from the (neo)vim.</p>
+<p>As you may have noticed, I use (neo)vim to denote the vim. That is because I have switched to the neovim several months ago. I don’t want to compare which one is better, both of them are very good editors, and many programmers contributed a lot for them. For me, I switch to the neovim for the following reasons:</p>
+<ul>
+<li>I think the neovim will introduce new features more positively, I am willing to try the new functions.</li>
+<li>I think the neovim is more friendly to the developers, I hope I can also contribute to it.</li>
+<li>There are some new features in the neovim, e.g., terminal, asynchronous job, float windows, etc. Although, they are also introduced in the newer vim.</li>
+</ul>
+<!-- more -->
+<p>I am a C/C++ programmer, so my configure is mainly for the C/C++. But, I think it can also work for common usage. And you can add some specific language support configure to it. Just as the title, “Modern (Neo)vim configure in 2021”, I gradually upgraded the plugins in the past year. Many excellent plugins have been replaced by better ones. The modern plugins always boring a more friendly GUI and better performance. There is no destination for this, I will also update this post when necessary.</p>
+<p>In the next, I will directly give my init.vim with heavy comment to describe the configuration purposes. And in the last, I will also post a demo video.</p>
+<h3>Configuration</h3>
+<pre><code class="language-vim"><pre class="chroma"><span class="c">&#34; Copyright 2018. All rights reserved.</span><span class="err">
+</span><span class="err"></span><span class="c">&#34;</span><span class="err">
+</span><span class="err"></span><span class="c">&#34;   _,_ /_      ,____,         _,     .  ,____,   ,_   __</span><span class="err">
+</span><span class="err"></span><span class="c">&#34; _(_/_/ (_   _/ / / (__(_/_    (_/__/__/ / / (__/ (__(_,_</span><span class="err">
+</span><span class="err"></span><span class="c">&#34;                       _/_</span><span class="err">
+</span><span class="err"></span><span class="c">&#34;                      (/</span><span class="err">
+</span><span class="err"></span><span class="c">&#34;</span><span class="err">
+</span><span class="err"></span><span class="c">&#34; oh my .vimrc, the chart is generated from patorjk.com/software/taag/ with</span><span class="err">
+</span><span class="err"></span><span class="c">&#34; JS Cursive and small slant front.</span><span class="err">
+</span><span class="err"></span><span class="c">
+</span><span class="c">
+</span><span class="c">
+</span><span class="c">&#34;  _   __             ____      ___  __          _</span><span class="err">
+</span><span class="err"></span><span class="c">&#34; | | / /_ _____  ___/ / /__   / _ \/ /_ _____ _(_)__  ___</span><span class="err">
+</span><span class="err"></span><span class="c">&#34; | |/ / // / _ \/ _  / / -_) / ___/ / // / _ `/ / _ \(_-&lt;</span><span class="err">
+</span><span class="err"></span><span class="c">&#34; |___/\_,_/_//_/\_,_/_/\__/ /_/  /_/\_,_/\_, /_/_//_/___/</span><span class="err">
+</span><span class="err"></span><span class="c">&#34;                                         /___/</span><span class="err">
+</span><span class="err"></span><span class="c">&#34;</span><span class="err">
+</span><span class="err"></span><span class="c">&#34;</span><span class="err">
+</span><span class="err"></span><span class="c">
+</span><span class="c">&#34; The plugins for the coc.nvim</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">coc_global_extensions</span> <span class="p">=</span> [<span class="err">
+</span><span class="err"></span>\ <span class="s1">&#39;coc-snippets&#39;</span><span class="p">,</span><span class="err">
+</span><span class="err"></span>\ <span class="s1">&#39;coc-clangd&#39;</span><span class="p">,</span><span class="err">
+</span><span class="err"></span>\ <span class="s1">&#39;coc-tabnine&#39;</span><span class="p">,</span><span class="err">
+</span><span class="err"></span>\ <span class="s1">&#39;coc-pyright&#39;</span><span class="err">
+</span><span class="err"></span>\ ]<span class="err">
+</span><span class="err"></span><span class="err">
+</span><span class="err"></span><span class="nx">call</span> <span class="nx">plug</span>#<span class="nx">begin</span><span class="p">(</span><span class="nx">has</span><span class="p">(</span><span class="s1">&#39;nvim&#39;</span><span class="p">)</span> ? <span class="s1">&#39;~/.config/nvim/plugged&#39;</span> : <span class="s1">&#39;~/.vim/plugged&#39;</span><span class="p">)</span><span class="err">
+</span><span class="err"></span><span class="c">&#34; Snipets</span><span class="err">
+</span><span class="err"></span><span class="nx">Plug</span> <span class="s1">&#39;honza/vim-snippets&#39;</span><span class="err">
+</span><span class="err"></span><span class="c">
+</span><span class="c">&#34; Color mark</span><span class="err">
+</span><span class="err"></span><span class="nx">Plug</span> <span class="s1">&#39;vim-scripts/ingo-library&#39;</span><span class="err">
+</span><span class="err"></span><span class="nx">Plug</span> <span class="s1">&#39;WanGong/vim-mark&#39;</span>  <span class="c">&#34; require vim-scripts/ingo-library</span><span class="err">
+</span><span class="err"></span><span class="c">
+</span><span class="c">&#34; Nerdtree</span><span class="err">
+</span><span class="err"></span><span class="nx">Plug</span> <span class="s1">&#39;scrooloose/nerdtree&#39;</span><span class="err">
+</span><span class="err"></span><span class="nx">Plug</span> <span class="s1">&#39;Xuyuanp/nerdtree-git-plugin&#39;</span><span class="err">
+</span><span class="err"></span><span class="nx">Plug</span> <span class="s1">&#39;tiagofumo/vim-nerdtree-syntax-highlight&#39;</span><span class="err">
+</span><span class="err"></span><span class="c">
+</span><span class="c">&#34; Git</span><span class="err">
+</span><span class="err"></span><span class="nx">Plug</span> <span class="s1">&#39;tpope/vim-fugitive&#39;</span><span class="err">
+</span><span class="err"></span><span class="nx">Plug</span> <span class="s1">&#39;junegunn/gv.vim&#39;</span>  <span class="c">&#34; require fugitive</span><span class="err">
+</span><span class="err"></span><span class="nx">Plug</span> <span class="s1">&#39;airblade/vim-gitgutter&#39;</span><span class="err">
+</span><span class="err"></span><span class="c">
+</span><span class="c">&#34; Color scheme</span><span class="err">
+</span><span class="err"></span><span class="nx">Plug</span> <span class="s1">&#39;altercation/vim-colors-solarized&#39;</span><span class="err">
+</span><span class="err"></span><span class="nx">Plug</span> <span class="s1">&#39;morhetz/gruvbox&#39;</span><span class="err">
+</span><span class="err"></span><span class="c">
+</span><span class="c">&#34; Auto brackets</span><span class="err">
+</span><span class="err"></span><span class="nx">Plug</span> <span class="s1">&#39;jiangmiao/auto-pairs&#39;</span><span class="err">
+</span><span class="err"></span><span class="nx">Plug</span> <span class="s1">&#39;machakann/vim-sandwich&#39;</span><span class="err">
+</span><span class="err"></span><span class="c">
+</span><span class="c">&#34; Highlight display</span><span class="err">
+</span><span class="err"></span><span class="nx">Plug</span> <span class="s1">&#39;w0rp/ale&#39;</span><span class="err">
+</span><span class="err"></span><span class="nx">Plug</span> <span class="s1">&#39;vim-python/python-syntax&#39;</span><span class="err">
+</span><span class="err"></span><span class="nx">Plug</span> <span class="s1">&#39;octol/vim-cpp-enhanced-highlight&#39;</span><span class="err">
+</span><span class="err"></span><span class="nx">Plug</span> <span class="s1">&#39;luochen1990/rainbow&#39;</span><span class="err">
+</span><span class="err"></span><span class="nx">Plug</span> <span class="s1">&#39;ap/vim-css-color&#39;</span><span class="err">
+</span><span class="err"></span><span class="c">
+</span><span class="c">&#34; Move</span><span class="err">
+</span><span class="err"></span><span class="nx">Plug</span> <span class="s1">&#39;christoomey/vim-tmux-navigator&#39;</span><span class="err">
+</span><span class="err"></span><span class="nx">Plug</span> <span class="s1">&#39;derekwyatt/vim-fswitch&#39;</span><span class="err">
+</span><span class="err"></span><span class="nx">Plug</span> <span class="s1">&#39;easymotion/vim-easymotion&#39;</span><span class="err">
+</span><span class="err"></span><span class="nx">Plug</span> <span class="s1">&#39;Yggdroot/LeaderF&#39;</span><span class="p">,</span> { <span class="s1">&#39;do&#39;</span>: <span class="s1">&#39;:LeaderfInstallCExtension&#39;</span> }<span class="err">
+</span><span class="err"></span><span class="c">
+</span><span class="c">&#34; Status line</span><span class="err">
+</span><span class="err"></span><span class="nx">Plug</span> <span class="s1">&#39;vim-airline/vim-airline&#39;</span>  <span class="c">&#34; require vim-airline/vim-airline-themes</span><span class="err">
+</span><span class="err"></span><span class="nx">Plug</span> <span class="s1">&#39;vim-airline/vim-airline-themes&#39;</span><span class="err">
+</span><span class="err"></span><span class="nx">Plug</span> <span class="s1">&#39;enricobacis/vim-airline-clock&#39;</span><span class="err">
+</span><span class="err"></span><span class="c">
+</span><span class="c">&#34; Code format</span><span class="err">
+</span><span class="err"></span><span class="nx">Plug</span> <span class="s1">&#39;sbdchd/neoformat&#39;</span><span class="err">
+</span><span class="err"></span><span class="nx">Plug</span> <span class="s1">&#39;maksimr/vim-jsbeautify&#39;</span><span class="err">
+</span><span class="err"></span><span class="c">
+</span><span class="c">&#34; Index</span><span class="err">
+</span><span class="err"></span><span class="nx">Plug</span> <span class="s1">&#39;ludovicchabant/vim-gutentags&#39;</span><span class="err">
+</span><span class="err"></span><span class="nx">Plug</span> <span class="s1">&#39;majutsushi/tagbar&#39;</span><span class="err">
+</span><span class="err"></span><span class="c">
+</span><span class="c">&#34; Search</span><span class="err">
+</span><span class="err"></span><span class="nx">Plug</span> <span class="s1">&#39;junegunn/fzf&#39;</span><span class="p">,</span> { <span class="s1">&#39;do&#39;</span>: { <span class="p">-</span><span class="p">&gt;</span> <span class="nx">fzf</span>#<span class="nx">install</span><span class="p">(</span><span class="p">)</span> } }<span class="err">
+</span><span class="err"></span><span class="nx">Plug</span> <span class="s1">&#39;junegunn/fzf.vim&#39;</span><span class="err">
+</span><span class="err"></span><span class="nx">Plug</span> <span class="s1">&#39;dyng/ctrlsf.vim&#39;</span><span class="err">
+</span><span class="err"></span><span class="c">
+</span><span class="c">&#34; Display</span><span class="err">
+</span><span class="err"></span><span class="nx">Plug</span> <span class="s1">&#39;godlygeek/tabular&#39;</span><span class="err">
+</span><span class="err"></span><span class="nx">Plug</span> <span class="s1">&#39;Yggdroot/indentLine&#39;</span><span class="err">
+</span><span class="err"></span><span class="c">
+</span><span class="c">&#34; Comment</span><span class="err">
+</span><span class="err"></span><span class="nx">Plug</span> <span class="s1">&#39;preservim/nerdcommenter&#39;</span><span class="err">
+</span><span class="err"></span><span class="c">
+</span><span class="c">&#34; Markdown</span><span class="err">
+</span><span class="err"></span><span class="nx">Plug</span> <span class="s1">&#39;masukomi/vim-markdown-folding&#39;</span><span class="p">,</span> { <span class="s1">&#39;for&#39;</span>: <span class="s1">&#39;markdown&#39;</span> }<span class="err">
+</span><span class="err"></span><span class="nx">Plug</span> <span class="s1">&#39;iamcco/markdown-preview.nvim&#39;</span><span class="p">,</span> { <span class="s1">&#39;do&#39;</span>: { <span class="p">-</span><span class="p">&gt;</span> <span class="nx">mkdp</span>#<span class="nx">util</span>#<span class="nx">install</span><span class="p">(</span><span class="p">)</span> }<span class="p">,</span> <span class="s1">&#39;for&#39;</span>: [<span class="s1">&#39;markdown&#39;</span><span class="p">,</span> <span class="s1">&#39;vim-plug&#39;</span>]}<span class="err">
+</span><span class="err"></span><span class="c">
+</span><span class="c">&#34; Coc</span><span class="err">
+</span><span class="err"></span><span class="nx">Plug</span> <span class="s1">&#39;neoclide/coc.nvim&#39;</span><span class="p">,</span> {<span class="s1">&#39;branch&#39;</span>: <span class="s1">&#39;release&#39;</span><span class="p">,</span> <span class="s1">&#39;do&#39;</span>: { <span class="p">-</span><span class="p">&gt;</span> <span class="nx">coc</span>#<span class="nx">util</span>#<span class="nx">install</span><span class="p">(</span><span class="p">)</span> }} <span class="c">&#34; need nodejs and python support</span><span class="err">
+</span><span class="err"></span><span class="c">
+</span><span class="c">&#34; Terminal</span><span class="err">
+</span><span class="err"></span><span class="nx">Plug</span> <span class="s1">&#39;voldikss/vim-floaterm&#39;</span><span class="err">
+</span><span class="err"></span><span class="c">
+</span><span class="c">&#34; Scroll</span><span class="err">
+</span><span class="err"></span><span class="nx">Plug</span> <span class="s1">&#39;psliwka/vim-smoothie&#39;</span><span class="err">
+</span><span class="err"></span><span class="c">
+</span><span class="c">&#34; Icon</span><span class="err">
+</span><span class="err"></span><span class="c">&#34; The requirements for vim-devicons:</span><span class="err">
+</span><span class="err"></span><span class="c">&#34; (1) must be last one;</span><span class="err">
+</span><span class="err"></span><span class="c">&#34; (2) install nerd font(https://github.com/ryanoasis/nerd-fonts);</span><span class="err">
+</span><span class="err"></span><span class="c">&#34; (3) set terminal font</span><span class="err">
+</span><span class="err"></span><span class="nx">Plug</span> <span class="s1">&#39;ryanoasis/vim-devicons&#39;</span><span class="err">
+</span><span class="err"></span><span class="nx">call</span> <span class="nx">plug</span>#<span class="nx">end</span><span class="p">(</span><span class="p">)</span><span class="err">
+</span><span class="err"></span><span class="c">
+</span><span class="c">
+</span><span class="c">
+</span><span class="c">
+</span><span class="c">&#34;    ___           _       _____          ____</span><span class="err">
+</span><span class="err"></span><span class="c">&#34;   / _ )___ ____ (_)___  / ___/__  ___  / _(_)__ _</span><span class="err">
+</span><span class="err"></span><span class="c">&#34;  / _  / _ `(_-&lt;/ / __/ / /__/ _ \/ _ \/ _/ / _ `/</span><span class="err">
+</span><span class="err"></span><span class="c">&#34; /____/\_,_/___/_/\__/  \___/\___/_//_/_//_/\_, /</span><span class="err">
+</span><span class="err"></span><span class="c">&#34;                                           /___/</span><span class="err">
+</span><span class="err"></span><span class="c">
+</span><span class="c">&#34; Use rg to replace grep, please install the rg before to use this.</span><span class="err">
+</span><span class="err"></span><span class="k">if</span> <span class="nx">executable</span><span class="p">(</span><span class="s1">&#39;rg&#39;</span><span class="p">)</span><span class="err">
+</span><span class="err"></span>    <span class="nx">set</span> <span class="nx">grepprg</span><span class="p">=</span><span class="nx">rg</span>\ <span class="p">-</span><span class="p">-</span><span class="nx">vimgrep</span>\ <span class="p">-</span><span class="p">-</span><span class="nx">no</span><span class="p">-</span><span class="nx">heading</span>\ <span class="p">-</span><span class="p">-</span><span class="nx">smart</span><span class="p">-</span><span class="nx">case</span><span class="err">
+</span><span class="err"></span>    <span class="nx">set</span> <span class="nx">grepformat</span><span class="p">=</span>%<span class="nx">f</span>:%<span class="nx">l</span>:%<span class="nx">c</span>:%<span class="nx">m</span><span class="p">,</span>%<span class="nx">f</span>:%<span class="nx">l</span>:%<span class="nx">m</span><span class="err">
+</span><span class="err"></span><span class="k">endif</span><span class="err">
+</span><span class="err"></span><span class="c">&#34; Auto open the quickfix for the grep</span><span class="err">
+</span><span class="err"></span><span class="nx">augroup</span> <span class="nx">quickfix</span><span class="err">
+</span><span class="err"></span>    <span class="nx">autocmd</span><span class="p">!</span><span class="err">
+</span><span class="err"></span>    <span class="nx">autocmd</span> <span class="nx">QuickFixCmdPost</span> [^<span class="nx">l</span>]* <span class="nx">cwindow</span><span class="err">
+</span><span class="err"></span>    <span class="nx">autocmd</span> <span class="nx">QuickFixCmdPost</span> <span class="nx">l</span>* <span class="nx">lwindow</span><span class="err">
+</span><span class="err"></span><span class="nx">augroup</span> <span class="nx">END</span><span class="err">
+</span><span class="err"></span><span class="err">
+</span><span class="err"></span><span class="nx">filetype</span> <span class="nx">plugin</span> <span class="nx">indent</span> <span class="nx">on</span><span class="err">
+</span><span class="err"></span><span class="err">
+</span><span class="err"></span><span class="k">if</span> <span class="nx">has</span><span class="p">(</span><span class="s1">&#39;termguicolors&#39;</span><span class="p">)</span><span class="err">
+</span><span class="err"></span>  <span class="nx">set</span> <span class="nx">termguicolors</span><span class="err">
+</span><span class="err"></span><span class="k">endif</span><span class="err">
+</span><span class="err"></span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">mapleader</span><span class="p">=</span><span class="s1">&#39;;&#39;</span><span class="err">
+</span><span class="err"></span><span class="err">
+</span><span class="err"></span><span class="nx">syntax</span> <span class="nx">enable</span><span class="err">
+</span><span class="err"></span><span class="err">
+</span><span class="err"></span><span class="nx">set</span> <span class="nx">expandtab</span><span class="err">
+</span><span class="err"></span><span class="nx">set</span> <span class="nx">shiftwidth</span><span class="p">=</span><span class="m">2</span><span class="err">
+</span><span class="err"></span><span class="nx">set</span> <span class="nx">softtabstop</span><span class="p">=</span><span class="m">2</span><span class="err">
+</span><span class="err"></span><span class="err">
+</span><span class="err"></span><span class="nx">set</span> <span class="nx">number</span><span class="err">
+</span><span class="err"></span><span class="nx">set</span> <span class="nx">history</span><span class="p">=</span><span class="m">1000</span> <span class="c">&#34; History command number</span><span class="err">
+</span><span class="err"></span><span class="err">
+</span><span class="err"></span><span class="nx">set</span> <span class="nx">autoindent</span><span class="err">
+</span><span class="err"></span><span class="nx">set</span> <span class="nx">cindent</span><span class="err">
+</span><span class="err"></span><span class="err">
+</span><span class="err"></span><span class="nx">set</span> <span class="nx">encoding</span><span class="p">=</span><span class="nx">utf</span><span class="m">-8</span><span class="err">
+</span><span class="err"></span><span class="nx">set</span> <span class="nx">clipboard</span><span class="p">=</span><span class="nx">unnamed</span><span class="err">
+</span><span class="err"></span><span class="nx">set</span> <span class="nx">tags</span><span class="p">=</span><span class="nx">tags</span>;/ <span class="c">&#34; The &#39;;&#39; is used to find tags in parent dir</span><span class="err">
+</span><span class="err"></span><span class="err">
+</span><span class="err"></span><span class="nx">set</span> <span class="nx">incsearch</span><span class="err">
+</span><span class="err"></span><span class="nx">set</span> <span class="nx">hlsearch</span> <span class="c">&#34; Highlight search result</span><span class="err">
+</span><span class="err"></span><span class="nx">highlight</span> <span class="nx">Search</span> <span class="nx">ctermbg</span><span class="p">=</span><span class="nx">LightYellow</span> <span class="nx">ctermfg</span><span class="p">=</span><span class="nx">Red</span> <span class="nx">cterm</span><span class="p">=</span><span class="nb">bold</span><span class="p">,</span><span class="nb">italic</span> <span class="nx">guibg</span><span class="p">=</span><span class="nx">LightYellow</span> <span class="nx">guifg</span><span class="p">=</span><span class="nx">Red</span> <span class="nx">gui</span><span class="p">=</span><span class="nb">bold</span><span class="p">,</span><span class="nb">italic</span><span class="err">
+</span><span class="err"></span><span class="err">
+</span><span class="err"></span><span class="nx">set</span> <span class="nx">cursorline</span><span class="err">
+</span><span class="err"></span><span class="nx">set</span> <span class="nx">backspace</span><span class="p">=</span><span class="nx">indent</span><span class="p">,</span><span class="nx">eol</span><span class="p">,</span><span class="nx">start</span><span class="err">
+</span><span class="err"></span><span class="nx">set</span> <span class="nx">matchpairs</span><span class="p">+</span><span class="p">=</span><span class="p">&lt;</span>:<span class="p">&gt;</span><span class="err">
+</span><span class="err"></span><span class="nx">highlight</span> <span class="nx">MatchParen</span> <span class="nx">ctermbg</span><span class="p">=</span><span class="nx">green</span> <span class="nx">ctermfg</span><span class="p">=</span><span class="nx">blue</span> <span class="nx">guibg</span><span class="p">=</span><span class="nx">green</span> <span class="nx">guifg</span><span class="p">=</span><span class="nx">blue</span><span class="err">
+</span><span class="err"></span><span class="c">
+</span><span class="c">&#34; Code fold setting: za: on/off current fold, zM: off all folds, zR: on all folds</span><span class="err">
+</span><span class="err"></span><span class="nx">set</span> <span class="nx">foldmethod</span><span class="p">=</span><span class="nx">syntax</span><span class="err">
+</span><span class="err"></span><span class="nx">set</span> <span class="nx">nofoldenable</span> <span class="c">&#34; on/off</span><span class="err">
+</span><span class="err"></span><span class="err">
+</span><span class="err"></span><span class="nx">set</span> <span class="nx">colorcolumn</span><span class="p">=</span><span class="m">80</span> <span class="c">&#34; The code width line</span><span class="err">
+</span><span class="err"></span><span class="nx">highlight</span> <span class="nx">ColorColumn</span> <span class="nx">ctermbg</span><span class="p">=</span><span class="nx">DarkGray</span> <span class="nx">guibg</span><span class="p">=</span><span class="nx">LightGray</span><span class="err">
+</span><span class="err"></span><span class="nx">highlight</span> <span class="nx">clear</span> <span class="nx">SpellBad</span><span class="err">
+</span><span class="err"></span><span class="nx">highlight</span> <span class="nx">SpellBad</span> <span class="nx">cterm</span><span class="p">=</span><span class="nb">underline</span><span class="p">,</span><span class="nb">italic</span> <span class="nx">gui</span><span class="p">=</span><span class="nb">underline</span><span class="p">,</span><span class="nb">italic</span><span class="err">
+</span><span class="err"></span><span class="err">
+</span><span class="err"></span><span class="nx">set</span> <span class="nx">smartcase</span><span class="err">
+</span><span class="err"></span><span class="c">
+</span><span class="c">&#34; Backup config</span><span class="err">
+</span><span class="err"></span><span class="nx">set</span> <span class="nx">backup</span><span class="err">
+</span><span class="err"></span><span class="nx">set</span> <span class="nx">backupdir</span><span class="p">=</span><span class="p">~</span><span class="sr">/.vim/</span><span class="nx">backup</span>/<span class="err">
+</span><span class="err"></span><span class="nx">set</span> <span class="nx">writebackup</span> <span class="c">&#34; Make backup before overwriting the current buffer</span><span class="err">
+</span><span class="err"></span><span class="nx">set</span> <span class="nx">backupcopy</span><span class="p">=</span><span class="nx">yes</span> <span class="c">&#34; Overwrite the original backup file</span><span class="err">
+</span><span class="err"></span><span class="c">&#34; The backup file name, e.g. filename@2015-04-05.14:59</span><span class="err">
+</span><span class="err"></span><span class="nx">au</span> <span class="nx">BufWritePre</span> * <span class="k">let</span> &amp;<span class="nx">bex</span> <span class="p">=</span> <span class="s1">&#39;@&#39;</span> . <span class="nx">strftime</span><span class="p">(</span><span class="s2">&#34;%F.%H:%M&#34;</span><span class="p">)</span><span class="err">
+</span><span class="err"></span><span class="c">
+</span><span class="c">&#34; Vim terminal</span><span class="err">
+</span><span class="err"></span><span class="nx">set</span> <span class="nx">splitbelow</span><span class="err">
+</span><span class="err"></span><span class="c">
+</span><span class="c">&#34; Fix crazy wrong code, ref to:</span><span class="err">
+</span><span class="err"></span><span class="c">&#34; https://www.reddit.com/r/vim/comments/gv410k/strange_character_since_last_update_42m/fsmfxxv/</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> &amp;<span class="nx">t_TI</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> &amp;<span class="nx">t_TE</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span><span class="err">
+</span><span class="err"></span><span class="err">
+</span><span class="err"></span><span class="nx">set</span> <span class="nx">background</span><span class="p">=</span><span class="nb">dark</span><span class="err">
+</span><span class="err"></span><span class="nx">colorscheme</span> <span class="nx">gruvbox</span><span class="err">
+</span><span class="err"></span><span class="c">
+</span><span class="c">
+</span><span class="c">&#34;    ____    _____  ____        _      __</span><span class="err">
+</span><span class="err"></span><span class="c">&#34;   / __/__ / / _/ / __/_______(_)__  / /____</span><span class="err">
+</span><span class="err"></span><span class="c">&#34;  _\ \/ -_) / _/ _\ \/ __/ __/ / _ \/ __(_-&lt;</span><span class="err">
+</span><span class="err"></span><span class="c">&#34; /___/\__/_/_/  /___/\__/_/ /_/ .__/\__/___/</span><span class="err">
+</span><span class="err"></span><span class="c">&#34;                             /_/</span><span class="err">
+</span><span class="err"></span><span class="c">&#34;</span><span class="err">
+</span><span class="err"></span><span class="c">
+</span><span class="c">&#34; Highlight all instances of word under cursor</span><span class="err">
+</span><span class="err"></span><span class="c">&#34; Type z/ to toggle highlighting on/off.</span><span class="err">
+</span><span class="err"></span><span class="k">function</span><span class="p">!</span> <span class="nx">AutoHighlightToggle</span><span class="p">(</span><span class="p">)</span><span class="err">
+</span><span class="err"></span>  <span class="k">let</span> @/ <span class="p">=</span> <span class="s1">&#39;&#39;</span><span class="err">
+</span><span class="err"></span>  <span class="k">if</span> <span class="nx">exists</span><span class="p">(</span><span class="s1">&#39;#auto_highlight&#39;</span><span class="p">)</span><span class="err">
+</span><span class="err"></span>    <span class="nx">au</span><span class="p">!</span> <span class="nx">auto_highlight</span><span class="err">
+</span><span class="err"></span>    <span class="nx">augroup</span><span class="p">!</span> <span class="nx">auto_highlight</span><span class="err">
+</span><span class="err"></span>    <span class="nx">setl</span> <span class="nx">updatetime</span><span class="p">=</span><span class="m">4000</span><span class="err">
+</span><span class="err"></span>    <span class="nx">echo</span> <span class="s1">&#39;Highlight current word: off&#39;</span><span class="err">
+</span><span class="err"></span>    <span class="nx">return</span> <span class="m">0</span><span class="err">
+</span><span class="err"></span>  <span class="k">else</span><span class="err">
+</span><span class="err"></span>    <span class="nx">augroup</span> <span class="nx">auto_highlight</span><span class="err">
+</span><span class="err"></span>      <span class="nx">au</span><span class="p">!</span><span class="err">
+</span><span class="err"></span>      <span class="nx">au</span> <span class="nx">CursorHold</span> * <span class="k">let</span> @/ <span class="p">=</span> <span class="s1">&#39;\V\&lt;&#39;</span>.<span class="nx">escape</span><span class="p">(</span><span class="nx">expand</span><span class="p">(</span><span class="s1">&#39;&lt;cword&gt;&#39;</span><span class="p">)</span><span class="p">,</span> <span class="s1">&#39;\&#39;</span><span class="p">)</span>.<span class="s1">&#39;\&gt;&#39;</span><span class="err">
+</span><span class="err"></span>    <span class="nx">augroup</span> <span class="nx">end</span><span class="err">
+</span><span class="err"></span>    <span class="nx">setl</span> <span class="nx">updatetime</span><span class="p">=</span><span class="m">500</span><span class="err">
+</span><span class="err"></span>    <span class="nx">echo</span> <span class="s1">&#39;Highlight current word: ON&#39;</span><span class="err">
+</span><span class="err"></span>    <span class="nx">return</span> <span class="m">1</span><span class="err">
+</span><span class="err"></span>  <span class="k">endif</span><span class="err">
+</span><span class="err"></span><span class="k">endfunction</span><span class="err">
+</span><span class="err"></span><span class="err">
+</span><span class="err"></span><span class="nx">nnoremap</span> <span class="nx">z</span>/ :<span class="k">if</span> <span class="nx">AutoHighlightToggle</span><span class="p">(</span><span class="p">)</span><span class="p">&lt;</span><span class="nx">Bar</span><span class="p">&gt;</span><span class="nx">set</span> <span class="nx">hls</span><span class="p">&lt;</span><span class="nx">Bar</span><span class="p">&gt;</span><span class="k">endif</span><span class="p">&lt;</span><span class="nx">CR</span><span class="p">&gt;</span><span class="err">
+</span><span class="err"></span><span class="c">
+</span><span class="c">
+</span><span class="c">
+</span><span class="c">&#34;    ___  __          _        _____          ____</span><span class="err">
+</span><span class="err"></span><span class="c">&#34;   / _ \/ /_ _____ _(_)__    / ___/__  ___  / _(_)__ _</span><span class="err">
+</span><span class="err"></span><span class="c">&#34;  / ___/ / // / _ `/ / _ \  / /__/ _ \/ _ \/ _/ / _ `/</span><span class="err">
+</span><span class="err"></span><span class="c">&#34; /_/  /_/\_,_/\_, /_/_//_/  \___/\___/_//_/_//_/\_, /</span><span class="err">
+</span><span class="err"></span><span class="c">&#34;             /___/                             /___/</span><span class="err">
+</span><span class="err"></span><span class="c">&#34;</span><span class="err">
+</span><span class="err"></span><span class="c">&#34;</span><span class="err">
+</span><span class="err"></span><span class="c">
+</span><span class="c">&#34; For &#39;sbdchd/neoformat&#39;</span><span class="err">
+</span><span class="err"></span><span class="c">&#34; The neoformat is used to format code, you should also install some</span><span class="err">
+</span><span class="err"></span><span class="c">&#34; independent code formator(e.g., clang-format, pyling, etc.) in the system</span><span class="err">
+</span><span class="err"></span><span class="nx">nnoremap</span> <span class="nx">ff</span> :<span class="nx">Neoformat</span><span class="p">&lt;</span><span class="nx">CR</span><span class="p">&gt;</span><span class="err">
+</span><span class="err"></span><span class="c">
+</span><span class="c">
+</span><span class="c">&#34; For &#39;voldikss/vim-floaterm&#39;</span><span class="err">
+</span><span class="err"></span><span class="c">&#34; Usage: (1) toggle floaterm: tt;</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">floaterm_keymap_new</span>    <span class="p">=</span> <span class="s1">&#39;&lt;leader&gt;tt&#39;</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">floaterm_keymap_kill</span>   <span class="p">=</span> <span class="s1">&#39;&lt;leader&gt;tk&#39;</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">floaterm_keymap_prev</span>   <span class="p">=</span> <span class="s1">&#39;&lt;leader&gt;tn&#39;</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">floaterm_keymap_next</span>   <span class="p">=</span> <span class="s1">&#39;&lt;leader&gt;tp&#39;</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">floaterm_keymap_toggle</span> <span class="p">=</span> <span class="s1">&#39;tt&#39;</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">floaterm_title</span>         <span class="p">=</span> <span class="s1">&#39;$1/$2&#39;</span><span class="err">
+</span><span class="err"></span><span class="err">
+</span><span class="err"></span><span class="nx">tnoremap</span> <span class="p">&lt;</span><span class="nx">leader</span><span class="p">&gt;</span><span class="nx">e</span> <span class="p">&lt;</span><span class="nx">c</span><span class="p">-</span>\<span class="p">&gt;</span><span class="p">&lt;</span><span class="nx">c</span><span class="p">-</span><span class="nx">n</span><span class="p">&gt;</span>:<span class="nx">FloatermNew</span><span class="p">&lt;</span><span class="nx">cr</span><span class="p">&gt;</span><span class="err">
+</span><span class="err"></span><span class="nx">tnoremap</span> <span class="p">&lt;</span><span class="nx">leader</span><span class="p">&gt;</span><span class="nx">q</span> <span class="p">&lt;</span><span class="nx">c</span><span class="p">-</span>\<span class="p">&gt;</span><span class="p">&lt;</span><span class="nx">c</span><span class="p">-</span><span class="nx">n</span><span class="p">&gt;</span>:<span class="nx">FloatermKill</span><span class="p">&lt;</span><span class="nx">cr</span><span class="p">&gt;</span><span class="err">
+</span><span class="err"></span><span class="nx">tnoremap</span> <span class="nx">gt</span> <span class="p">&lt;</span><span class="nx">c</span><span class="p">-</span>\<span class="p">&gt;</span><span class="p">&lt;</span><span class="nx">c</span><span class="p">-</span><span class="nx">n</span><span class="p">&gt;</span>:<span class="nx">FloatermNext</span><span class="p">&lt;</span><span class="nx">cr</span><span class="p">&gt;</span><span class="err">
+</span><span class="err"></span><span class="c">
+</span><span class="c">
+</span><span class="c">&#34; For &#39;airblade/vim-gitgutter&#39;</span><span class="err">
+</span><span class="err"></span><span class="nx">nmap</span> ]<span class="nx">h</span> <span class="p">&lt;</span><span class="nx">Plug</span><span class="p">&gt;</span><span class="p">(</span><span class="nx">GitGutterNextHunk</span><span class="p">)</span><span class="err">
+</span><span class="err"></span><span class="nx">nmap</span> [<span class="nx">h</span> <span class="p">&lt;</span><span class="nx">Plug</span><span class="p">&gt;</span><span class="p">(</span><span class="nx">GitGutterPrevHunk</span><span class="p">)</span><span class="err">
+</span><span class="err"></span><span class="nx">nmap</span> <span class="nx">hp</span> <span class="p">&lt;</span><span class="nx">Plug</span><span class="p">&gt;</span><span class="p">(</span><span class="nx">GitGutterPreviewHunk</span><span class="p">)</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">gitgutter_preview_win_floating</span> <span class="p">=</span> <span class="m">0</span><span class="err">
+</span><span class="err"></span><span class="c">
+</span><span class="c">
+</span><span class="c">&#34; For WanGong/vim-mark</span><span class="err">
+</span><span class="err"></span><span class="c">&#34; Usage:</span><span class="err">
+</span><span class="err"></span><span class="c">&#34; (1) mark current world: &lt;leader&gt;m;</span><span class="err">
+</span><span class="err"></span><span class="c">&#34; (2) undo mark current world: &lt;leader&gt;m;</span><span class="err">
+</span><span class="err"></span><span class="c">&#34; (3) cancel all: mm</span><span class="err">
+</span><span class="err"></span><span class="nx">nnoremap</span> <span class="nx">mm</span> :<span class="nx">MarkClear</span><span class="p">&lt;</span><span class="nx">CR</span><span class="p">&gt;</span><span class="err">
+</span><span class="err"></span><span class="c">
+</span><span class="c">
+</span><span class="c">&#34; For leaderF</span><span class="err">
+</span><span class="err"></span><span class="c">&#34; The Leaderf is quite powerful, which is a fully replace for the original CtrlP</span><span class="err">
+</span><span class="err"></span><span class="c">&#34; Usage:</span><span class="err">
+</span><span class="err"></span><span class="c">&#34; (1) search file: Ctrl-p;</span><span class="err">
+</span><span class="err"></span><span class="c">&#34; (2) search recent opened file: Ctrl-u;</span><span class="err">
+</span><span class="err"></span><span class="c">&#34; (3) search tag in current buffer: &lt;leader&gt;ft</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">Lf_ShortcutF</span> <span class="p">=</span> <span class="s1">&#39;&lt;C-p&gt;&#39;</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">Lf_UseCache</span> <span class="p">=</span> <span class="m">0</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">Lf_ShowDevIcons</span> <span class="p">=</span> <span class="m">1</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">Lf_PreviewInPopup</span> <span class="p">=</span> <span class="m">1</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">Lf_WildIgnore</span> <span class="p">=</span> {<span class="err">
+</span><span class="err"></span>      \ <span class="s1">&#39;dir&#39;</span>: [<span class="s1">&#39;.svn&#39;</span><span class="p">,</span><span class="s1">&#39;.git&#39;</span><span class="p">,</span><span class="s1">&#39;.hg&#39;</span><span class="p">,</span><span class="s1">&#39;.clangd&#39;</span>]<span class="p">,</span><span class="err">
+</span><span class="err"></span>      \ <span class="s1">&#39;file&#39;</span>: [<span class="s1">&#39;*.sw?&#39;</span><span class="p">,</span><span class="s1">&#39;~$*&#39;</span><span class="p">,</span><span class="s1">&#39;*.bak&#39;</span><span class="p">,</span><span class="s1">&#39;*.exe&#39;</span><span class="p">,</span><span class="s1">&#39;*.o&#39;</span><span class="p">,</span><span class="s1">&#39;*.so&#39;</span><span class="p">,</span><span class="s1">&#39;*.py[co]&#39;</span>]<span class="err">
+</span><span class="err"></span>      \}<span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">Lf_CommandMap</span> <span class="p">=</span> {<span class="s1">&#39;&lt;C-up&gt;&#39;</span>: [<span class="s1">&#39;&lt;C-b&gt;&#39;</span>]<span class="p">,</span> <span class="s1">&#39;&lt;C-down&gt;&#39;</span>: [<span class="s1">&#39;&lt;C-f&gt;&#39;</span>]}<span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">Lf_PreviewResult</span> <span class="p">=</span> { <span class="s1">&#39;Tag&#39;</span>: <span class="m">1</span><span class="p">,</span> <span class="s1">&#39;BufTag&#39;</span>: <span class="m">1</span><span class="p">,</span> <span class="s1">&#39;Function&#39;</span>: <span class="m">1</span> }<span class="err">
+</span><span class="err"></span><span class="nx">noremap</span> <span class="p">&lt;</span><span class="nx">leader</span><span class="p">&gt;</span><span class="nx">fb</span> :<span class="p">&lt;</span><span class="nx">C</span><span class="p">-</span><span class="nx">U</span><span class="p">&gt;</span><span class="p">&lt;</span><span class="nx">C</span><span class="p">-</span><span class="nx">R</span><span class="p">&gt;</span><span class="p">=</span><span class="nx">printf</span><span class="p">(</span><span class="s2">&#34;Leaderf buffer %s&#34;</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">)</span><span class="p">&lt;</span><span class="nx">CR</span><span class="p">&gt;</span><span class="p">&lt;</span><span class="nx">CR</span><span class="p">&gt;</span><span class="err">
+</span><span class="err"></span><span class="nx">noremap</span> <span class="p">&lt;</span><span class="nx">leader</span><span class="p">&gt;</span><span class="nx">ff</span> :<span class="p">&lt;</span><span class="nx">C</span><span class="p">-</span><span class="nx">U</span><span class="p">&gt;</span><span class="p">&lt;</span><span class="nx">C</span><span class="p">-</span><span class="nx">R</span><span class="p">&gt;</span><span class="p">=</span><span class="nx">printf</span><span class="p">(</span><span class="s2">&#34;Leaderf function %s&#34;</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">)</span><span class="p">&lt;</span><span class="nx">CR</span><span class="p">&gt;</span><span class="p">&lt;</span><span class="nx">CR</span><span class="p">&gt;</span><span class="err">
+</span><span class="err"></span><span class="nx">noremap</span> <span class="p">&lt;</span><span class="nx">leader</span><span class="p">&gt;</span><span class="nx">ft</span> :<span class="p">&lt;</span><span class="nx">C</span><span class="p">-</span><span class="nx">U</span><span class="p">&gt;</span><span class="p">&lt;</span><span class="nx">C</span><span class="p">-</span><span class="nx">R</span><span class="p">&gt;</span><span class="p">=</span><span class="nx">printf</span><span class="p">(</span><span class="s2">&#34;Leaderf bufTag %s&#34;</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">)</span><span class="p">&lt;</span><span class="nx">CR</span><span class="p">&gt;</span><span class="p">&lt;</span><span class="nx">CR</span><span class="p">&gt;</span><span class="err">
+</span><span class="err"></span><span class="nx">noremap</span> <span class="p">&lt;</span><span class="nx">leader</span><span class="p">&gt;</span><span class="nx">fl</span> :<span class="p">&lt;</span><span class="nx">C</span><span class="p">-</span><span class="nx">U</span><span class="p">&gt;</span><span class="p">&lt;</span><span class="nx">C</span><span class="p">-</span><span class="nx">R</span><span class="p">&gt;</span><span class="p">=</span><span class="nx">printf</span><span class="p">(</span><span class="s2">&#34;Leaderf line %s&#34;</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">)</span><span class="p">&lt;</span><span class="nx">CR</span><span class="p">&gt;</span><span class="p">&lt;</span><span class="nx">CR</span><span class="p">&gt;</span><span class="err">
+</span><span class="err"></span><span class="nx">noremap</span> <span class="p">&lt;</span><span class="nx">leader</span><span class="p">&gt;</span><span class="nx">fg</span> :<span class="p">&lt;</span><span class="nx">C</span><span class="p">-</span><span class="nx">U</span><span class="p">&gt;</span><span class="p">&lt;</span><span class="nx">C</span><span class="p">-</span><span class="nx">R</span><span class="p">&gt;</span><span class="p">=</span><span class="nx">printf</span><span class="p">(</span><span class="s2">&#34;Leaderf tag %s&#34;</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">)</span><span class="p">&lt;</span><span class="nx">CR</span><span class="p">&gt;</span><span class="p">&lt;</span><span class="nx">CR</span><span class="p">&gt;</span><span class="err">
+</span><span class="err"></span><span class="nx">noremap</span> <span class="p">&lt;</span><span class="nx">leader</span><span class="p">&gt;</span><span class="nx">fc</span> :<span class="p">&lt;</span><span class="nx">C</span><span class="p">-</span><span class="nx">U</span><span class="p">&gt;</span><span class="p">&lt;</span><span class="nx">C</span><span class="p">-</span><span class="nx">R</span><span class="p">&gt;</span><span class="p">=</span><span class="nx">printf</span><span class="p">(</span><span class="s2">&#34;Leaderf colorscheme %s&#34;</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">)</span><span class="p">&lt;</span><span class="nx">CR</span><span class="p">&gt;</span><span class="p">&lt;</span><span class="nx">CR</span><span class="p">&gt;</span><span class="err">
+</span><span class="err"></span><span class="nx">noremap</span> <span class="p">&lt;</span><span class="nx">leader</span><span class="p">&gt;</span><span class="nx">u</span>  :<span class="p">&lt;</span><span class="nx">C</span><span class="p">-</span><span class="nx">U</span><span class="p">&gt;</span><span class="p">&lt;</span><span class="nx">C</span><span class="p">-</span><span class="nx">R</span><span class="p">&gt;</span><span class="p">=</span><span class="nx">printf</span><span class="p">(</span><span class="s2">&#34;Leaderf mru %s&#34;</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">)</span><span class="p">&lt;</span><span class="nx">CR</span><span class="p">&gt;</span><span class="p">&lt;</span><span class="nx">CR</span><span class="p">&gt;</span><span class="err">
+</span><span class="err"></span><span class="c">
+</span><span class="c">
+</span><span class="c">&#34; For &#39;dyng/ctrlsf.vim&#39;</span><span class="err">
+</span><span class="err"></span><span class="c">&#34; ctrlsf is the ultimate global search tool.</span><span class="err">
+</span><span class="err"></span><span class="c">&#34; Usage:</span><span class="err">
+</span><span class="err"></span><span class="c">&#34; (1) search current word: K;</span><span class="err">
+</span><span class="err"></span><span class="c">&#34; (2) switch display style: M(in result window);</span><span class="err">
+</span><span class="err"></span><span class="c">&#34; (3) preview current result: Ctrl-p(in result window)</span><span class="err">
+</span><span class="err"></span><span class="c">&#34; (4) custom search: &lt;leader&gt;s;</span><span class="err">
+</span><span class="err"></span><span class="c">&#34; (5) toggle search reslt: cc</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">ctrlsf_search_mode</span> <span class="p">=</span> <span class="s1">&#39;async&#39;</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">ctrlsf_preview_position</span> <span class="p">=</span> <span class="s1">&#39;outside&#39;</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">ctrlsf_populate_qflist</span> <span class="p">=</span> <span class="m">1</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">ctrlsf_default_view_mode</span> <span class="p">=</span> <span class="s1">&#39;compact&#39;</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">ctrlsf_winsize</span> <span class="p">=</span> <span class="s1">&#39;50%&#39;</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">ctrlsf_compact_winsize</span> <span class="p">=</span> <span class="s1">&#39;30%&#39;</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">ctrlsf_auto_close</span> <span class="p">=</span> {<span class="err">
+</span><span class="err"></span>    \ <span class="s2">&#34;normal&#34;</span> : <span class="m">0</span><span class="p">,</span><span class="err">
+</span><span class="err"></span>    \ <span class="s2">&#34;compact&#34;</span>: <span class="m">0</span><span class="err">
+</span><span class="err"></span>    \}<span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">ctrlsf_auto_focus</span> <span class="p">=</span> { <span class="s2">&#34;at&#34;</span>: <span class="s2">&#34;start&#34;</span> }<span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">ctrlsf_default_root</span> <span class="p">=</span> <span class="s1">&#39;project&#39;</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">ctrlsf_backend</span> <span class="p">=</span> <span class="s1">&#39;rg&#39;</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">ctrlsf_mapping</span> <span class="p">=</span> { <span class="s2">&#34;popen&#34;</span>: <span class="s2">&#34;&lt;C-P&gt;&#34;</span> }<span class="err">
+</span><span class="err"></span><span class="err">
+</span><span class="err"></span><span class="nx">nnoremap</span> <span class="nx">cc</span> :<span class="nx">CtrlSFToggle</span><span class="p">&lt;</span><span class="nx">CR</span><span class="p">&gt;</span><span class="err">
+</span><span class="err"></span><span class="nx">nmap</span> <span class="p">&lt;</span><span class="nx">leader</span><span class="p">&gt;</span><span class="nx">s</span> <span class="p">&lt;</span><span class="nx">Plug</span><span class="p">&gt;</span><span class="nx">CtrlSFPrompt</span><span class="err">
+</span><span class="err"></span><span class="nx">nmap</span> <span class="nx">K</span> <span class="p">&lt;</span><span class="nx">Plug</span><span class="p">&gt;</span><span class="nx">CtrlSFCwordPath</span><span class="p">&lt;</span><span class="nx">CR</span><span class="p">&gt;</span><span class="err">
+</span><span class="err"></span><span class="c">
+</span><span class="c">
+</span><span class="c">&#34; For derekwyatt/vim-fswitch</span><span class="err">
+</span><span class="err"></span><span class="c">&#34; Usage: (1) switch head/source: Ctrl-f</span><span class="err">
+</span><span class="err"></span><span class="nx">autocmd</span> <span class="nx">FileType</span> <span class="nx">c</span><span class="p">,</span><span class="nx">cpp</span> <span class="nx">nnoremap</span> <span class="p">&lt;</span><span class="nx">buffer</span><span class="p">&gt;</span> <span class="p">&lt;</span><span class="nx">C</span><span class="p">-</span><span class="nx">f</span><span class="p">&gt;</span> :<span class="nx">FSHere</span><span class="p">&lt;</span><span class="nx">CR</span><span class="p">&gt;</span><span class="err">
+</span><span class="err"></span><span class="nx">autocmd</span> <span class="nx">FileType</span> <span class="nx">c</span><span class="p">,</span><span class="nx">cpp</span> <span class="nx">nnoremap</span> <span class="p">&lt;</span><span class="nx">buffer</span><span class="p">&gt;</span> <span class="p">&lt;</span><span class="nx">M</span><span class="p">-</span><span class="nx">l</span><span class="p">&gt;</span> :<span class="nx">FSSplitRight</span><span class="p">&lt;</span><span class="nx">CR</span><span class="p">&gt;</span><span class="err">
+</span><span class="err"></span><span class="nx">autocmd</span> <span class="nx">FileType</span> <span class="nx">c</span><span class="p">,</span><span class="nx">cpp</span> <span class="nx">nnoremap</span> <span class="p">&lt;</span><span class="nx">buffer</span><span class="p">&gt;</span> <span class="p">&lt;</span><span class="nx">M</span><span class="p">-</span><span class="nx">h</span><span class="p">&gt;</span> :<span class="nx">FSSplitLeft</span><span class="p">&lt;</span><span class="nx">CR</span><span class="p">&gt;</span><span class="err">
+</span><span class="err"></span><span class="nx">au</span><span class="p">!</span> <span class="nx">BufEnter</span> *.<span class="nx">cc</span> <span class="k">let</span> <span class="nx">b</span>:<span class="nx">fswitchdst</span> <span class="p">=</span> <span class="s1">&#39;hh,h&#39;</span><span class="err">
+</span><span class="err"></span><span class="nx">au</span><span class="p">!</span> <span class="nx">BufEnter</span> *.<span class="nx">h</span> <span class="k">let</span> <span class="nx">b</span>:<span class="nx">fswitchdst</span> <span class="p">=</span> <span class="s1">&#39;c,cpp,m,cc&#39;</span><span class="err">
+</span><span class="err"></span><span class="c">
+</span><span class="c">
+</span><span class="c">&#34; For airline</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">airline_theme</span><span class="p">=</span><span class="s2">&#34;deus&#34;</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">airline</span>#<span class="nx">extensions</span>#<span class="nx">tabline</span>#<span class="nx">enabled</span> <span class="p">=</span> <span class="m">1</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">airline</span>#<span class="nx">extensions</span>#<span class="nx">tabline</span>#<span class="nx">tab_nr_type</span> <span class="p">=</span> <span class="m">1</span> <span class="c">&#34; tab number</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">airline</span>#<span class="nx">extensions</span>#<span class="nx">tabline</span>#<span class="nx">show_tab_nr</span> <span class="p">=</span> <span class="m">1</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">airline</span>#<span class="nx">extensions</span>#<span class="nx">tabline</span>#<span class="nx">formatter</span> <span class="p">=</span> <span class="s1">&#39;jsformatter&#39;</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">airline</span>#<span class="nx">extensions</span>#<span class="nx">tabline</span>#<span class="nx">buffer_nr_show</span> <span class="p">=</span> <span class="m">0</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">airline</span>#<span class="nx">extensions</span>#<span class="nx">tabline</span>#<span class="nx">fnametruncate</span> <span class="p">=</span> <span class="m">16</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">airline</span>#<span class="nx">extensions</span>#<span class="nx">tabline</span>#<span class="nx">fnamecollapse</span> <span class="p">=</span> <span class="m">2</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">airline</span>#<span class="nx">extensions</span>#<span class="nx">tabline</span>#<span class="nx">fnamemod</span> <span class="p">=</span> <span class="s1">&#39;:t&#39;</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">airline</span>#<span class="nx">extensions</span>#<span class="nx">tabline</span>#<span class="nx">buffer_idx_mode</span> <span class="p">=</span> <span class="m">1</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">airline</span>#<span class="nx">extensions</span>#<span class="nx">tabline</span>#<span class="nx">left_sep</span> <span class="p">=</span> <span class="s1">&#39; &#39;</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">airline</span>#<span class="nx">extensions</span>#<span class="nx">tabline</span>#<span class="nx">left_alt_sep</span> <span class="p">=</span> <span class="s1">&#39;|&#39;</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">airline</span>#<span class="nx">extensions</span>#<span class="nx">tabline</span>#<span class="nx">show_tab_type</span> <span class="p">=</span> <span class="m">1</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">airline</span>#<span class="nx">extensions</span>#<span class="nx">ale</span>#<span class="nx">enabled</span> <span class="p">=</span> <span class="m">0</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">airline</span>#<span class="nx">extensions</span>#<span class="nx">ale</span>#<span class="nx">error_symbol</span> <span class="p">=</span> <span class="s1">&#39;✗: &#39;</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">airline</span>#<span class="nx">extensions</span>#<span class="nx">ale</span>#<span class="nx">warning_symbol</span> <span class="p">=</span> <span class="s1">&#39;⚠ : &#39;</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">airline</span>#<span class="nx">extensions</span>#<span class="nx">ale</span>#<span class="nx">show_line_numbers</span> <span class="p">=</span> <span class="m">0</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">airline</span>#<span class="nx">extensions</span>#<span class="nx">hunks</span>#<span class="nx">enabled</span><span class="p">=</span><span class="m">1</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">airline</span>#<span class="nx">extensions</span>#<span class="nx">branch</span>#<span class="nx">enabled</span><span class="p">=</span><span class="m">1</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">airline_section_z</span><span class="p">=</span><span class="nx">airline</span>#<span class="nx">section</span>#<span class="nx">create</span><span class="p">(</span>[<span class="s1">&#39;%4l%#__restore__#%#__accent_bold#/%L%&#39;</span>]<span class="p">)</span> <span class="c">&#34; show curline/total_line</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">airline_skip_empty_sections</span> <span class="p">=</span> <span class="m">1</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">airline_stl_path_style</span> <span class="p">=</span> <span class="s1">&#39;short&#39;</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">airline_section_c</span> <span class="p">=</span> <span class="s1">&#39;%t&#39;</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">airline_section_error</span> <span class="p">=</span> <span class="s1">&#39;&#39;</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">airline_section_warning</span> <span class="p">=</span> <span class="s1">&#39;&#39;</span><span class="err">
+</span><span class="err"></span><span class="c">
+</span><span class="c">&#34; For airline-clock</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">airline</span>#<span class="nx">extensions</span>#<span class="nx">clock</span>#<span class="nx">format</span> <span class="p">=</span> <span class="s1">&#39;%H:%M&#39;</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">airline</span>#<span class="nx">extensions</span>#<span class="nx">clock</span>#<span class="nx">auto</span> <span class="p">=</span> <span class="m">0</span><span class="err">
+</span><span class="err"></span><span class="k">function</span><span class="p">!</span> <span class="nx">AirlineInit</span><span class="p">(</span><span class="p">)</span><span class="err">
+</span><span class="err"></span>  <span class="k">let</span> <span class="nx">g</span>:<span class="nx">airline_section_a</span> <span class="p">=</span> <span class="nx">airline</span>#<span class="nx">section</span>#<span class="nx">create</span><span class="p">(</span>[<span class="s1">&#39;clock&#39;</span><span class="p">,</span> <span class="nx">g</span>:<span class="nx">airline_symbols</span>.<span class="nx">space</span><span class="p">,</span> <span class="nx">g</span>:<span class="nx">airline_section_a</span>]<span class="p">)</span><span class="err">
+</span><span class="err"></span><span class="k">endfunction</span><span class="err">
+</span><span class="err"></span><span class="nx">autocmd</span> <span class="nx">User</span> <span class="nx">AirlineAfterInit</span> <span class="nx">call</span> <span class="nx">AirlineInit</span><span class="p">(</span><span class="p">)</span><span class="err">
+</span><span class="err"></span><span class="c">
+</span><span class="c">
+</span><span class="c">&#34; For vim-gutentags</span><span class="err">
+</span><span class="err"></span><span class="c">&#34; The gutentags is used to auto generate tag, it is still usefull for most,</span><span class="err">
+</span><span class="err"></span><span class="c">&#34; as it is quite fast, although the match result maybe wrong at sometimes.</span><span class="err">
+</span><span class="err"></span><span class="c">&#34; Usage:</span><span class="err">
+</span><span class="err"></span><span class="c">&#34; (1) go to definition of current word: Ctrl-];</span><span class="err">
+</span><span class="err"></span><span class="c">&#34; (2) go back: Ctrl-t</span><span class="err">
+</span><span class="err"></span><span class="c">
+</span><span class="c">&#34; Project root flag, stop to find in the parent dir</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">gutentags_enabled</span> <span class="p">=</span> <span class="m">1</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">gutentags_trace</span> <span class="p">=</span> <span class="m">0</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">gutentags_project_root</span> <span class="p">=</span> [<span class="s1">&#39;.root&#39;</span><span class="p">,</span> <span class="s1">&#39;.svn&#39;</span><span class="p">,</span> <span class="s1">&#39;.git&#39;</span><span class="p">,</span> <span class="s1">&#39;.hg&#39;</span><span class="p">,</span> <span class="s1">&#39;.project&#39;</span><span class="p">,</span> <span class="s1">&#39;package.json&#39;</span>]<span class="err">
+</span><span class="err"></span><span class="c">&#34; Tag file name</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">gutentags_ctags_tagfile</span> <span class="p">=</span> <span class="s1">&#39;tags&#39;</span><span class="err">
+</span><span class="err"></span><span class="c">&#34; Put the tags into ~/.cache/tags</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">s</span>:<span class="nx">vim_tags</span> <span class="p">=</span> <span class="nx">expand</span><span class="p">(</span><span class="s1">&#39;~/.cache/tags&#39;</span><span class="p">)</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">gutentags_cache_dir</span> <span class="p">=</span> <span class="nx">s</span>:<span class="nx">vim_tags</span><span class="err">
+</span><span class="err"></span><span class="c">&#34; Tags parameter</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">gutentags_ctags_extra_args</span> <span class="p">=</span> [<span class="s1">&#39;-R&#39;</span><span class="p">,</span> <span class="s1">&#39;--fields=+niazS&#39;</span><span class="p">,</span> <span class="s1">&#39;--extras=+q&#39;</span>]<span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">gutentags_ctags_extra_args</span> <span class="p">+</span><span class="p">=</span> [<span class="s1">&#39;--c++-kinds=+px&#39;</span>]<span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">gutentags_ctags_extra_args</span> <span class="p">+</span><span class="p">=</span> [<span class="s1">&#39;--c-kinds=+px&#39;</span>]<span class="err">
+</span><span class="err"></span><span class="c">&#34; let g:gutentags_ctags_extra_args += [&#39;--language-force=C++&#39;]</span><span class="err">
+</span><span class="err"></span><span class="c">&#34; Create the dir if needed</span><span class="err">
+</span><span class="err"></span><span class="k">if</span> <span class="p">!</span><span class="nx">isdirectory</span><span class="p">(</span><span class="nx">s</span>:<span class="nx">vim_tags</span><span class="p">)</span><span class="err">
+</span><span class="err"></span>   <span class="nx">silent</span><span class="p">!</span> <span class="nx">call</span> <span class="nx">mkdir</span><span class="p">(</span><span class="nx">s</span>:<span class="nx">vim_tags</span><span class="p">,</span> <span class="s1">&#39;p&#39;</span><span class="p">)</span><span class="err">
+</span><span class="err"></span><span class="k">endif</span><span class="err">
+</span><span class="err"></span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">gutentags_add_default_project_roots</span> <span class="p">=</span> <span class="m">0</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">gutentags_exclude_filetypes</span> <span class="p">=</span> [<span class="s1">&#39;gitcommit&#39;</span><span class="p">,</span> <span class="s1">&#39;gitconfig&#39;</span><span class="p">,</span> <span class="s1">&#39;gitrebase&#39;</span><span class="p">,</span> <span class="s1">&#39;gitsendemail&#39;</span><span class="p">,</span> <span class="s1">&#39;git&#39;</span><span class="p">,</span> <span class="s1">&#39;cmake&#39;</span>]<span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">gutentags_generate_on_new</span> <span class="p">=</span> <span class="m">1</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">gutentags_generate_on_missing</span> <span class="p">=</span> <span class="m">1</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">gutentags_generate_on_write</span> <span class="p">=</span> <span class="m">1</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">gutentags_generate_on_empty_buffer</span> <span class="p">=</span> <span class="m">0</span><span class="err">
+</span><span class="err"></span><span class="c">
+</span><span class="c">&#34; Maybe also exclude &#39;build&#39;</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">gutentags_ctags_exclude</span> <span class="p">=</span> [<span class="err">
+</span><span class="err"></span>\  <span class="s1">&#39;*.git&#39;</span><span class="p">,</span> <span class="s1">&#39;*.svn&#39;</span><span class="p">,</span> <span class="s1">&#39;*.hg&#39;</span><span class="p">,</span><span class="err">
+</span><span class="err"></span>\  <span class="s1">&#39;cache&#39;</span><span class="p">,</span> <span class="s1">&#39;dist&#39;</span><span class="p">,</span> <span class="s1">&#39;bin&#39;</span><span class="p">,</span> <span class="s1">&#39;node_modules&#39;</span><span class="p">,</span> <span class="s1">&#39;bower_components&#39;</span><span class="p">,</span><span class="err">
+</span><span class="err"></span>\  <span class="s1">&#39;*-lock.json&#39;</span><span class="p">,</span>  <span class="s1">&#39;*.lock&#39;</span><span class="p">,</span><span class="err">
+</span><span class="err"></span>\  <span class="s1">&#39;*.min.*&#39;</span><span class="p">,</span><span class="err">
+</span><span class="err"></span>\  <span class="s1">&#39;CMakeLists.txt&#39;</span><span class="p">,</span><span class="err">
+</span><span class="err"></span>\  <span class="s1">&#39;*.bak&#39;</span><span class="p">,</span><span class="err">
+</span><span class="err"></span>\  <span class="s1">&#39;*.zip&#39;</span><span class="p">,</span><span class="err">
+</span><span class="err"></span>\  <span class="s1">&#39;*.pyc&#39;</span><span class="p">,</span><span class="err">
+</span><span class="err"></span>\  <span class="s1">&#39;*.class&#39;</span><span class="p">,</span><span class="err">
+</span><span class="err"></span>\  <span class="s1">&#39;*.sln&#39;</span><span class="p">,</span><span class="err">
+</span><span class="err"></span>\  <span class="s1">&#39;*.csproj&#39;</span><span class="p">,</span> <span class="s1">&#39;*.csproj.user&#39;</span><span class="p">,</span><span class="err">
+</span><span class="err"></span>\  <span class="s1">&#39;*.tmp&#39;</span><span class="p">,</span><span class="err">
+</span><span class="err"></span>\  <span class="s1">&#39;*.cache&#39;</span><span class="p">,</span><span class="err">
+</span><span class="err"></span>\  <span class="s1">&#39;*.vscode&#39;</span><span class="p">,</span><span class="err">
+</span><span class="err"></span>\  <span class="s1">&#39;*.pdb&#39;</span><span class="p">,</span><span class="err">
+</span><span class="err"></span>\  <span class="s1">&#39;*.pb&#39;</span><span class="p">,</span><span class="err">
+</span><span class="err"></span>\  <span class="s1">&#39;*.exe&#39;</span><span class="p">,</span> <span class="s1">&#39;*.dll&#39;</span><span class="p">,</span> <span class="s1">&#39;*.bin&#39;</span><span class="p">,</span><span class="err">
+</span><span class="err"></span>\  <span class="s1">&#39;*.mp3&#39;</span><span class="p">,</span> <span class="s1">&#39;*.ogg&#39;</span><span class="p">,</span> <span class="s1">&#39;*.flac&#39;</span><span class="p">,</span><span class="err">
+</span><span class="err"></span>\  <span class="s1">&#39;*.swp&#39;</span><span class="p">,</span> <span class="s1">&#39;*.swo&#39;</span><span class="p">,</span><span class="err">
+</span><span class="err"></span>\  <span class="s1">&#39;.DS_Store&#39;</span><span class="p">,</span> <span class="s1">&#39;*.plist&#39;</span><span class="p">,</span><span class="err">
+</span><span class="err"></span>\  <span class="s1">&#39;*.bmp&#39;</span><span class="p">,</span> <span class="s1">&#39;*.gif&#39;</span><span class="p">,</span> <span class="s1">&#39;*.ico&#39;</span><span class="p">,</span> <span class="s1">&#39;*.jpg&#39;</span><span class="p">,</span> <span class="s1">&#39;*.png&#39;</span><span class="p">,</span> <span class="s1">&#39;*.svg&#39;</span><span class="p">,</span><span class="err">
+</span><span class="err"></span>\  <span class="s1">&#39;*.rar&#39;</span><span class="p">,</span> <span class="s1">&#39;*.zip&#39;</span><span class="p">,</span> <span class="s1">&#39;*.tar&#39;</span><span class="p">,</span> <span class="s1">&#39;*.tar.gz&#39;</span><span class="p">,</span> <span class="s1">&#39;*.tar.xz&#39;</span><span class="p">,</span> <span class="s1">&#39;*.tar.bz2&#39;</span><span class="p">,</span><span class="err">
+</span><span class="err"></span>\  <span class="s1">&#39;*.pdf&#39;</span><span class="p">,</span> <span class="s1">&#39;*.doc&#39;</span><span class="p">,</span> <span class="s1">&#39;*.docx&#39;</span><span class="p">,</span> <span class="s1">&#39;*.ppt&#39;</span><span class="p">,</span> <span class="s1">&#39;*.pptx&#39;</span><span class="p">,</span> <span class="s1">&#39;*.xls&#39;</span><span class="p">,</span><span class="err">
+</span><span class="err"></span>\]<span class="err">
+</span><span class="err"></span><span class="c">
+</span><span class="c">&#34; Add &#34;&#39;detach&#39;: 1,&#34; to the build_default_job_options in autoload/gutentags.vim</span><span class="err">
+</span><span class="err"></span><span class="c">&#34; ref to:</span><span class="err">
+</span><span class="err"></span><span class="c">&#34; https://github.com/ludovicchabant/vim-gutentags/issues/178</span><span class="err">
+</span><span class="err"></span><span class="c">&#34; https://github.com/ludovicchabant/vim-gutentags/issues/167</span><span class="err">
+</span><span class="err"></span><span class="c">&#34; https://github.com/ludovicchabant/vim-gutentags/issues/168</span><span class="err">
+</span><span class="err"></span><span class="c">
+</span><span class="c">
+</span><span class="c">&#34; For ale</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">ale_set_highlights</span> <span class="p">=</span> <span class="m">0</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">ale_lint_on_text_changed</span> <span class="p">=</span> <span class="s1">&#39;never&#39;</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">ale_lint_on_enter</span> <span class="p">=</span> <span class="m">0</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">ale_sign_column_always</span> <span class="p">=</span> <span class="m">1</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">ale_sign_error</span> <span class="p">=</span> <span class="s1">&#39;✗&#39;</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">ale_sign_warning</span> <span class="p">=</span> <span class="s1">&#39;⚠&#39;</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">ale_linters</span> <span class="p">=</span> {<span class="err">
+</span><span class="err"></span>    \   <span class="s1">&#39;c++&#39;</span>: [<span class="s1">&#39;clang&#39;</span>]<span class="p">,</span><span class="err">
+</span><span class="err"></span>    \   <span class="s1">&#39;c&#39;</span>: [<span class="s1">&#39;clang&#39;</span>]<span class="p">,</span><span class="err">
+</span><span class="err"></span>    \   <span class="s1">&#39;python&#39;</span>: [<span class="s1">&#39;pylint&#39;</span>]<span class="p">,</span><span class="err">
+</span><span class="err"></span>    \}<span class="err">
+</span><span class="err"></span><span class="c">
+</span><span class="c">
+</span><span class="c">&#34; For cpp highlight</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">cpp_class_scope_highlight</span> <span class="p">=</span> <span class="m">1</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">cpp_member_variable_highlight</span> <span class="p">=</span> <span class="m">1</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">cpp_class_decl_highlight</span> <span class="p">=</span> <span class="m">1</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">cpp_experimental_template_highlight</span> <span class="p">=</span> <span class="m">1</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">cpp_concepts_highlight</span> <span class="p">=</span> <span class="m">1</span><span class="err">
+</span><span class="err"></span><span class="c">
+</span><span class="c">
+</span><span class="c">&#34; For NERDTree</span><span class="err">
+</span><span class="err"></span><span class="c">&#34; Usage:</span><span class="err">
+</span><span class="err"></span><span class="c">&#34; (1) find current file in the nerdtree: &lt;leader&gt;n;</span><span class="err">
+</span><span class="err"></span><span class="c">&#34; (2) toggle nerdtree: Ctrl-n</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">NERDTreeMinimalUI</span><span class="p">=</span><span class="m">1</span> <span class="c">&#34; remove the first line help info</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">NERDTreeWinSize</span><span class="p">=</span><span class="m">40</span>  <span class="c">&#34; set width</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">NERDTreeHighlightCursorline</span><span class="p">=</span><span class="m">1</span> <span class="c">&#34; does not highlight the cursor of current file</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">NERDTreeChDirMode</span> <span class="p">=</span> <span class="m">2</span> <span class="c">&#34; setting for current directory</span><span class="err">
+</span><span class="err"></span><span class="c">
+</span><span class="c">&#34; Auto quit NERDTree when vim is quited</span><span class="err">
+</span><span class="err"></span><span class="nx">autocmd</span> <span class="nx">bufenter</span> * <span class="k">if</span> <span class="p">(</span><span class="nx">winnr</span><span class="p">(</span><span class="s2">&#34;$&#34;</span><span class="p">)</span> <span class="p">=</span><span class="p">=</span> <span class="m">1</span> &amp;&amp; <span class="nx">exists</span><span class="p">(</span><span class="s2">&#34;b:NERDTreeType&#34;</span><span class="p">)</span> &amp;&amp;<span class="nx">b</span>:<span class="nx">NERDTreeType</span> <span class="p">=</span><span class="p">=</span> <span class="s2">&#34;primary&#34;</span><span class="p">)</span> <span class="p">|</span> <span class="nx">q</span> <span class="p">|</span> <span class="k">endif</span><span class="err">
+</span><span class="err"></span><span class="err">
+</span><span class="err"></span><span class="nx">nnoremap</span> <span class="p">&lt;</span><span class="nx">C</span><span class="p">-</span><span class="nx">n</span><span class="p">&gt;</span> :<span class="nx">NERDTreeToggle</span><span class="p">&lt;</span><span class="nx">CR</span><span class="p">&gt;</span><span class="err">
+</span><span class="err"></span><span class="nx">nnoremap</span> <span class="p">&lt;</span><span class="nx">leader</span><span class="p">&gt;</span><span class="nx">n</span> :<span class="nx">NERDTreeFind</span><span class="p">&lt;</span><span class="nx">CR</span><span class="p">&gt;</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">NERDTreeDirArrowExpandable</span> <span class="p">=</span> <span class="s1">&#39;&#39;</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">NERDTreeDirArrowCollapsible</span> <span class="p">=</span> <span class="s1">&#39;&#39;</span><span class="err">
+</span><span class="err"></span><span class="c">
+</span><span class="c">
+</span><span class="c">&#34; For tagbar</span><span class="err">
+</span><span class="err"></span><span class="c">&#34; Usage:</span><span class="err">
+</span><span class="err"></span><span class="c">&#34; (1) toggle tagbar: tb;</span><span class="err">
+</span><span class="err"></span><span class="c">&#34; (2) preview current tag: p(in tagbar window);</span><span class="err">
+</span><span class="err"></span><span class="c">&#34; (3) toggle maximize tagbar window: x(in tagbar window)</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">tagbar_compact</span> <span class="p">=</span> <span class="m">1</span> <span class="c">&#34; remove the first line help info</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">tagbar_width</span> <span class="p">=</span> <span class="m">30</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">tagbar_autoshowtag</span> <span class="p">=</span> <span class="m">1</span> <span class="c">&#34; auto highlight tags when edit file</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">tagbar_iconchars</span> <span class="p">=</span> [<span class="s1">&#39;▸&#39;</span><span class="p">,</span> <span class="s1">&#39;▾&#39;</span>]<span class="err">
+</span><span class="err"></span><span class="err">
+</span><span class="err"></span><span class="nx">nnoremap</span> <span class="nx">tb</span> :<span class="nx">TagbarToggle</span><span class="p">&lt;</span><span class="nx">CR</span><span class="p">&gt;</span><span class="err">
+</span><span class="err"></span><span class="c">
+</span><span class="c">
+</span><span class="c">&#34; For luochen1990/rainbow</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">rainbow_active</span> <span class="p">=</span> <span class="m">1</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">rainbow_conf</span> <span class="p">=</span> {<span class="err">
+</span><span class="err"></span>\	<span class="s1">&#39;separately&#39;</span>: {<span class="err">
+</span><span class="err"></span>\		<span class="s1">&#39;nerdtree&#39;</span>: <span class="m">0</span><span class="p">,</span><span class="err">
+</span><span class="err"></span>\	}<span class="err">
+</span><span class="err"></span>\}<span class="err">
+</span><span class="err"></span><span class="c">
+</span><span class="c">
+</span><span class="c">&#34; For preservim/nerdcommenter</span><span class="err">
+</span><span class="err"></span><span class="c">&#34; Usage:</span><span class="err">
+</span><span class="err"></span><span class="c">&#34; (1) toggle comment current line: &lt;leader&gt;c&lt;space&gt;</span><span class="err">
+</span><span class="err"></span><span class="c">&#34; Create default mappings</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">NERDCreateDefaultMappings</span> <span class="p">=</span> <span class="m">1</span><span class="err">
+</span><span class="err"></span><span class="c">&#34; Add spaces after comment delimiters by default</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">NERDSpaceDelims</span> <span class="p">=</span> <span class="m">1</span><span class="err">
+</span><span class="err"></span><span class="c">&#34; Use compact syntax for prettified multi-line comments</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">NERDCompactSexyComs</span> <span class="p">=</span> <span class="m">1</span><span class="err">
+</span><span class="err"></span><span class="c">&#34; Align line-wise comment delimiters flush left instead of following code indentation</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">NERDDefaultAlign</span> <span class="p">=</span> <span class="s1">&#39;left&#39;</span><span class="err">
+</span><span class="err"></span><span class="c">&#34; Set a language to use its alternate delimiters by default</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">NERDAltDelims_java</span> <span class="p">=</span> <span class="m">1</span><span class="err">
+</span><span class="err"></span><span class="c">&#34; Add your own custom formats or override the defaults</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">NERDCustomDelimiters</span> <span class="p">=</span> { <span class="s1">&#39;c&#39;</span>: { <span class="s1">&#39;left&#39;</span>: <span class="s1">&#39;/**&#39;</span><span class="p">,</span><span class="s1">&#39;right&#39;</span>: <span class="s1">&#39;*/&#39;</span> } }<span class="err">
+</span><span class="err"></span><span class="c">&#34; Allow commenting and inverting empty lines (useful when commenting a region)</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">NERDCommentEmptyLines</span> <span class="p">=</span> <span class="m">1</span><span class="err">
+</span><span class="err"></span><span class="c">&#34; Enable trimming of trailing whitespace when uncommenting</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">NERDTrimTrailingWhitespace</span> <span class="p">=</span> <span class="m">1</span><span class="err">
+</span><span class="err"></span><span class="c">&#34; Enable NERDCommenterToggle to check all selected lines is commented or not</span><span class="err">
+</span><span class="err"></span><span class="k">let</span> <span class="nx">g</span>:<span class="nx">NERDToggleCheckAllLines</span> <span class="p">=</span> <span class="m">1</span><span class="err">
+</span><span class="err"></span><span class="c">
+</span><span class="c">
+</span><span class="c">&#34; For coc.nvim</span><span class="err">
+</span><span class="err"></span><span class="c">&#34; The coc.nvim is a powerful LSP, https://github.com/neoclide/coc.nvim</span><span class="err">
+</span><span class="err"></span><span class="c">&#34; Usage: (1) go to definition: gd; (2) go back: Ctrl-o</span><span class="err">
+</span><span class="err"></span><span class="c">
+</span><span class="c">&#34; TextEdit might fail if hidden is not set.</span><span class="err">
+</span><span class="err"></span><span class="nx">set</span> <span class="nx">hidden</span><span class="err">
+</span><span class="err"></span><span class="c">
+</span><span class="c">&#34; Some servers have issues with backup files, see #649.</span><span class="err">
+</span><span class="err"></span><span class="nx">set</span> <span class="nx">nobackup</span><span class="err">
+</span><span class="err"></span><span class="nx">set</span> <span class="nx">nowritebackup</span><span class="err">
+</span><span class="err"></span><span class="c">
+</span><span class="c">&#34; Give more space for displaying messages.</span><span class="err">
+</span><span class="err"></span><span class="nx">set</span> <span class="nx">cmdheight</span><span class="p">=</span><span class="m">2</span><span class="err">
+</span><span class="err"></span><span class="c">
+</span><span class="c">&#34; Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable</span><span class="err">
+</span><span class="err"></span><span class="c">&#34; delays and poor user experience.</span><span class="err">
+</span><span class="err"></span><span class="nx">set</span> <span class="nx">updatetime</span><span class="p">=</span><span class="m">300</span><span class="err">
+</span><span class="err"></span><span class="c">
+</span><span class="c">&#34; Don&#39;t pass messages to |ins-completion-menu|.</span><span class="err">
+</span><span class="err"></span><span class="nx">set</span> <span class="nx">shortmess</span><span class="p">+</span><span class="p">=</span><span class="nx">c</span><span class="err">
+</span><span class="err"></span><span class="c">
+</span><span class="c">&#34; Recently vim can merge signcolumn and number column into one</span><span class="err">
+</span><span class="err"></span><span class="c">&#34; set signcolumn=yes &#34;default to be auto</span><span class="err">
+</span><span class="err"></span><span class="c">
+</span><span class="c">&#34; Use tab for trigger completion with characters ahead and navigate.</span><span class="err">
+</span><span class="err"></span><span class="c">&#34; NOTE: Use command &#39;:verbose imap &lt;tab&gt;&#39; to make sure tab is not mapped by</span><span class="err">
+</span><span class="err"></span><span class="c">&#34; other plugin before putting this into your config.</span><span class="err">
+</span><span class="err"></span><span class="nx">inoremap</span> <span class="p">&lt;</span><span class="nx">silent</span><span class="p">&gt;</span><span class="p">&lt;</span><span class="nx">expr</span><span class="p">&gt;</span> <span class="p">&lt;</span><span class="nx">TAB</span><span class="p">&gt;</span><span class="err">
+</span><span class="err"></span>      \ <span class="nx">pumvisible</span><span class="p">(</span><span class="p">)</span> ? <span class="s2">&#34;\&lt;C-n&gt;&#34;</span> :<span class="err">
+</span><span class="err"></span>      \ <span class="p">&lt;</span><span class="nx">SID</span><span class="p">&gt;</span><span class="nx">check_back_space</span><span class="p">(</span><span class="p">)</span> ? <span class="s2">&#34;\&lt;TAB&gt;&#34;</span> :<span class="err">
+</span><span class="err"></span>      \ <span class="nx">coc</span>#<span class="nx">refresh</span><span class="p">(</span><span class="p">)</span><span class="err">
+</span><span class="err"></span><span class="nx">inoremap</span> <span class="p">&lt;</span><span class="nx">expr</span><span class="p">&gt;</span><span class="p">&lt;</span><span class="nx">S</span><span class="p">-</span><span class="nx">TAB</span><span class="p">&gt;</span> <span class="nx">pumvisible</span><span class="p">(</span><span class="p">)</span> ? <span class="s2">&#34;\&lt;C-p&gt;&#34;</span> : <span class="s2">&#34;\&lt;C-h&gt;&#34;</span><span class="err">
+</span><span class="err"></span><span class="err">
+</span><span class="err"></span><span class="k">function</span><span class="p">!</span> <span class="nx">s</span>:<span class="nx">check_back_space</span><span class="p">(</span><span class="p">)</span> <span class="nx">abort</span><span class="err">
+</span><span class="err"></span>  <span class="k">let</span> <span class="nx">col</span> <span class="p">=</span> <span class="nx">col</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)</span> <span class="p">-</span> <span class="m">1</span><span class="err">
+</span><span class="err"></span>  <span class="nx">return</span> <span class="p">!</span><span class="nx">col</span> <span class="p">|</span><span class="p">|</span> <span class="nx">getline</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>[<span class="nx">col</span> <span class="p">-</span> <span class="m">1</span>]  <span class="p">=</span><span class="p">~</span># <span class="s1">&#39;\s&#39;</span><span class="err">
+</span><span class="err"></span><span class="k">endfunction</span><span class="err">
+</span><span class="err"></span><span class="c">
+</span><span class="c">&#34; Make &lt;CR&gt; auto-select the first completion item and notify coc.nvim to</span><span class="err">
+</span><span class="err"></span><span class="c">&#34; format on enter, &lt;cr&gt; could be remapped by other vim plugin</span><span class="err">
+</span><span class="err"></span><span class="nx">inoremap</span> <span class="p">&lt;</span><span class="nx">silent</span><span class="p">&gt;</span><span class="p">&lt;</span><span class="nx">expr</span><span class="p">&gt;</span> <span class="p">&lt;</span><span class="nx">cr</span><span class="p">&gt;</span> <span class="nx">pumvisible</span><span class="p">(</span><span class="p">)</span> ? <span class="nx">coc</span>#<span class="nx">_select_confirm</span><span class="p">(</span><span class="p">)</span><span class="err">
+</span><span class="err"></span>                              \: <span class="s2">&#34;\&lt;C-g&gt;u\&lt;CR&gt;\&lt;c-r&gt;=coc#on_enter()\&lt;CR&gt;&#34;</span><span class="err">
+</span><span class="err"></span><span class="c">
+</span><span class="c">&#34; GoTo code navigation.</span><span class="err">
+</span><span class="err"></span><span class="nx">nmap</span> <span class="p">&lt;</span><span class="nx">silent</span><span class="p">&gt;</span> <span class="nx">gd</span> <span class="p">&lt;</span><span class="nx">Plug</span><span class="p">&gt;</span><span class="p">(</span><span class="nx">coc</span><span class="p">-</span><span class="nx">definition</span><span class="p">)</span><span class="err">
+</span><span class="err"></span><span class="nx">nmap</span> <span class="p">&lt;</span><span class="nx">silent</span><span class="p">&gt;</span> <span class="nx">gy</span> <span class="p">&lt;</span><span class="nx">Plug</span><span class="p">&gt;</span><span class="p">(</span><span class="nx">coc</span><span class="p">-</span><span class="nx">type</span><span class="p">-</span><span class="nx">definition</span><span class="p">)</span><span class="err">
+</span><span class="err"></span><span class="nx">nmap</span> <span class="p">&lt;</span><span class="nx">silent</span><span class="p">&gt;</span> <span class="nx">gi</span> <span class="p">&lt;</span><span class="nx">Plug</span><span class="p">&gt;</span><span class="p">(</span><span class="nx">coc</span><span class="p">-</span><span class="nx">implementation</span><span class="p">)</span><span class="err">
+</span><span class="err"></span><span class="nx">nmap</span> <span class="p">&lt;</span><span class="nx">silent</span><span class="p">&gt;</span> <span class="nx">gr</span> <span class="p">&lt;</span><span class="nx">Plug</span><span class="p">&gt;</span><span class="p">(</span><span class="nx">coc</span><span class="p">-</span><span class="nx">references</span><span class="p">)</span><span class="err">
+</span><span class="err"></span><span class="c">
+</span><span class="c">&#34; Highlight the symbol and its references when holding the cursor.</span><span class="err">
+</span><span class="err"></span><span class="nx">autocmd</span> <span class="nx">CursorHold</span> * <span class="nx">silent</span> <span class="nx">call</span> <span class="nx">CocActionAsync</span><span class="p">(</span><span class="s1">&#39;highlight&#39;</span><span class="p">)</span><span class="err">
+</span><span class="err"></span><span class="nx">autocmd</span> <span class="nx">ColorScheme</span> * <span class="nx">highlight</span> <span class="nx">CocHighlightText</span> <span class="nx">ctermfg</span><span class="p">=</span><span class="nx">LightMagenta</span> <span class="nx">guifg</span><span class="p">=</span><span class="nx">LightMagenta</span> <span class="nx">cterm</span><span class="p">=</span><span class="nb">bold</span> <span class="nx">gui</span><span class="p">=</span><span class="nb">bold</span><span class="err">
+</span><span class="err"></span><span class="c">
+</span><span class="c">&#34; Add (Neo)Vim&#39;s native statusline support.</span><span class="err">
+</span><span class="err"></span><span class="c">&#34; NOTE: Please see `:h coc-status` for integrations with external plugins that</span><span class="err">
+</span><span class="err"></span><span class="c">&#34; provide custom statusline: lightline.vim, vim-airline.</span><span class="err">
+</span><span class="err"></span><span class="nx">set</span> <span class="nx">statusline</span>^<span class="p">=</span>%{<span class="nx">coc</span>#<span class="nx">status</span><span class="p">(</span><span class="p">)</span>}%{<span class="nx">get</span><span class="p">(</span><span class="nx">b</span>:<span class="p">,</span><span class="s1">&#39;coc_current_function&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span>}<span class="err">
+</span><span class="err"></span><span class="c">
+</span><span class="c">
+</span><span class="c">
+</span><span class="c">
+</span><span class="c">&#34;   _____                __          _____          ____</span><span class="err">
+</span><span class="err"></span><span class="c">&#34;  / ___/__  __ _  ___  / /____ __  / ___/__  ___  / _(_)__ _</span><span class="err">
+</span><span class="err"></span><span class="c">&#34; / /__/ _ \/  &#39; \/ _ \/ / -_) \ / / /__/ _ \/ _ \/ _/ / _ `/</span><span class="err">
+</span><span class="err"></span><span class="c">&#34; \___/\___/_/_/_/ .__/_/\__/_\_\  \___/\___/_//_/_//_/\_, /</span><span class="err">
+</span><span class="err"></span><span class="c">&#34;               /_/                                   /___/</span><span class="err">
+</span><span class="err"></span><span class="c">&#34;</span><span class="err">
+</span><span class="err"></span><span class="c">
+</span><span class="c">&#34; Please run the following commands to config vimdiff for git d:</span><span class="err">
+</span><span class="err"></span><span class="c">&#34; (1) git config --global  diff.tool vimdiff</span><span class="err">
+</span><span class="err"></span><span class="c">&#34; (2) git config --global  difftool.prompt false</span><span class="err">
+</span><span class="err"></span><span class="c">&#34; (3) git config --global  difftool.vimdiff.path nvim  # For nvim only</span><span class="err">
+</span><span class="err"></span><span class="c">&#34; (4) git config --global  alias.d difftool</span><span class="err">
+</span><span class="err"></span><span class="c">&#34; (1) git config --global  merge.tool vimdiff</span><span class="err">
+</span><span class="err"></span><span class="c">&#34; (2) git config --global  mergetool.prompt false</span><span class="err">
+</span><span class="err"></span><span class="c">&#34; (3) git config --global  mergetool.vimdiff.path nvim  # For nvim only</span><span class="err">
+</span><span class="err"></span><span class="c">&#34; (4) git config --global  alias.m mergetool</span><span class="err">
+</span><span class="err"></span><span class="c">&#34; Config the following to enable git trust vim exitcode, quit with :cquit</span><span class="err">
+</span><span class="err"></span><span class="c">&#34; (1) git config --global  difftool.trustExitCode true</span><span class="err">
+</span><span class="err"></span><span class="c">&#34; (2) git config --global  mergetool.trustExitCode true</span><span class="err">
+</span><span class="err"></span><span class="c">&#34; Usage:</span><span class="err">
+</span><span class="err"></span><span class="c">&#34; (1) git d for the vimdiff</span><span class="err">
+</span><span class="err"></span><span class="c">&#34; (2) :qa for exit current file;</span><span class="err">
+</span><span class="err"></span><span class="c">&#34; (3) :cq for interrupt the vimdiff</span><span class="err">
+</span><span class="err"></span><span class="k">if</span> <span class="p">!</span>&amp;<span class="nx">diff</span><span class="err">
+</span><span class="err"></span>  <span class="nx">autocmd</span> <span class="nx">ColorScheme</span> * <span class="nx">highlight</span> <span class="nx">ExtraWhitespace</span> <span class="nx">ctermbg</span><span class="p">=</span><span class="nx">red</span> <span class="nx">guibg</span><span class="p">=</span><span class="nx">red</span><span class="err">
+</span><span class="err"></span><span class="k">endif</span><span class="err">
+</span><span class="err"></span><span class="c">
+</span><span class="c">
+</span><span class="c">&#34; When the FileType is python, create a mapping to execute the current buffer</span><span class="err">
+</span><span class="err"></span><span class="nx">autocmd</span> <span class="nx">FileType</span> <span class="nx">python</span> <span class="nx">nnoremap</span> <span class="p">&lt;</span><span class="nx">buffer</span><span class="p">&gt;</span> <span class="nx">P</span> :<span class="nx">exec</span> <span class="s1">&#39;!python&#39;</span> <span class="nx">shellescape</span><span class="p">(</span>@%<span class="p">,</span> <span class="m">1</span><span class="p">)</span><span class="p">&lt;</span><span class="nx">CR</span><span class="p">&gt;</span><span class="err">
+</span><span class="err"></span><span class="c">
+</span><span class="c">
+</span><span class="c">&#34; Record the last postition, pulled from :help last-position-jump in vim</span><span class="err">
+</span><span class="err"></span><span class="nx">autocmd</span> <span class="nx">BufReadPost</span> *<span class="err">
+</span><span class="err"></span>  \ <span class="k">if</span> <span class="nx">line</span><span class="p">(</span><span class="s2">&#34;&#39;\&#34;&#34;</span><span class="p">)</span> <span class="p">&gt;</span> <span class="m">1</span> &amp;&amp; <span class="nx">line</span><span class="p">(</span><span class="s2">&#34;&#39;\&#34;&#34;</span><span class="p">)</span> <span class="p">&lt;</span><span class="p">=</span> <span class="nx">line</span><span class="p">(</span><span class="s2">&#34;$&#34;</span><span class="p">)</span> &amp;&amp; &amp;<span class="nx">ft</span> <span class="p">!</span><span class="p">~</span># <span class="s1">&#39;commit&#39;</span><span class="err">
+</span><span class="err"></span>  \ <span class="p">|</span>   <span class="nx">exe</span> <span class="s2">&#34;normal! g`\&#34;&#34;</span><span class="err">
+</span><span class="err"></span>  \ <span class="p">|</span> <span class="k">endif</span><span class="err">
+</span><span class="err"></span><span class="err">
+</span><span class="err"></span><span class="err">
+</span><span class="err"></span><span class="nx">autocmd</span> <span class="nx">InsertEnter</span> * <span class="nx">setlocal</span> <span class="nx">spell</span><span class="err">
+</span><span class="err"></span><span class="nx">autocmd</span> <span class="nx">InsertLeave</span> * <span class="nx">setlocal</span> <span class="nx">nospell</span><span class="err">
+</span><span class="err"></span><span class="c">
+</span><span class="c">
+</span><span class="c">&#34; Define a hithlight group for extra white space</span><span class="err">
+</span><span class="err"></span><span class="nx">highlight</span> <span class="nx">ExtraWhitespace</span> <span class="nx">ctermbg</span><span class="p">=</span><span class="nx">darkgreen</span> <span class="nx">guibg</span><span class="p">=</span><span class="nx">lightgreen</span><span class="err">
+</span><span class="err"></span><span class="nx">match</span> <span class="nx">ExtraWhitespace</span> <span class="sr">/\s\+$/</span><span class="err">
+</span><span class="err"></span><span class="c">&#34; Delete unused space keys at the end of a line.</span><span class="err">
+</span><span class="err"></span><span class="nx">nnoremap</span> <span class="nx">zz</span> :%<span class="nx">s</span><span class="sr">/\s\+$/</span>/ <span class="p">&lt;</span><span class="nx">CR</span><span class="p">&gt;</span><span class="err">
+</span><span class="err"></span><span class="c">
+</span><span class="c">
+</span><span class="c">&#34; Maximize gvim, require: sudo apt-get install wmctrl</span><span class="err">
+</span><span class="err"></span><span class="nx">autocmd</span> <span class="nx">GUIEnter</span> * <span class="nx">call</span> <span class="nx">system</span><span class="p">(</span><span class="s1">&#39;wmctrl -i -b add,maximized_vert,maximized_horz -r &#39;</span>.<span class="nx">v</span>:<span class="nx">windowid</span><span class="p">)</span><span class="err">
+</span><span class="err"></span><span class="c">
+</span><span class="c">
+</span><span class="c">
+</span><span class="c">
+</span><span class="c">
+</span><span class="c">&#34;    __ __           __  ___               _</span><span class="err">
+</span><span class="err"></span><span class="c">&#34;   / //_/__ __ __  /  |/  /__ ____  ___  (_)__  ___ ____</span><span class="err">
+</span><span class="err"></span><span class="c">&#34;  / ,&lt; / -_) // / / /|_/ / _ `/ _ \/ _ \/ / _ \/ _ `(_-&lt;</span><span class="err">
+</span><span class="err"></span><span class="c">&#34; /_/|_|\__/\_, / /_/  /_/\_,_/ .__/ .__/_/_//_/\_, /___/</span><span class="err">
+</span><span class="err"></span><span class="c">&#34;          /___/             /_/  /_/          /___/</span><span class="err">
+</span><span class="err"></span><span class="c">&#34;</span><span class="err">
+</span><span class="err"></span><span class="err">
+</span><span class="err"></span><span class="nx">nnoremap</span> <span class="p">&lt;</span><span class="nx">leader</span><span class="p">&gt;</span><span class="nx">o</span> :<span class="nx">only</span><span class="p">&lt;</span><span class="nx">CR</span><span class="p">&gt;</span><span class="err">
+</span><span class="err"></span><span class="nx">nnoremap</span> <span class="p">&lt;</span><span class="nx">leader</span><span class="p">&gt;</span><span class="nx">e</span> :<span class="nx">tabedit</span><span class="p">&lt;</span><span class="nx">CR</span><span class="p">&gt;</span><span class="err">
+</span><span class="err"></span><span class="err">
+</span><span class="err"></span><span class="nx">nnoremap</span> <span class="p">&lt;</span><span class="nx">leader</span><span class="p">&gt;</span><span class="nx">w</span> :<span class="nx">w</span><span class="p">!</span><span class="p">&lt;</span><span class="nx">CR</span><span class="p">&gt;</span><span class="err">
+</span><span class="err"></span><span class="nx">nnoremap</span> <span class="p">&lt;</span><span class="nx">leader</span><span class="p">&gt;</span><span class="nx">q</span> :<span class="nx">q</span><span class="p">!</span><span class="p">&lt;</span><span class="nx">CR</span><span class="p">&gt;</span><span class="err">
+</span><span class="err"></span><span class="err">
+</span><span class="err"></span><span class="nx">nnoremap</span> <span class="p">&lt;</span><span class="nx">C</span><span class="p">-</span><span class="nx">w</span><span class="p">&gt;</span><span class="nx">s</span> :<span class="nx">sp</span><span class="p">&lt;</span><span class="nx">CR</span><span class="p">&gt;</span><span class="err">
+</span><span class="err"></span><span class="nx">nnoremap</span> <span class="p">&lt;</span><span class="nx">C</span><span class="p">-</span><span class="nx">w</span><span class="p">&gt;</span><span class="nx">v</span> :<span class="nx">vs</span><span class="p">&lt;</span><span class="nx">CR</span><span class="p">&gt;</span><span class="err">
+</span><span class="err"></span><span class="c">
+</span><span class="c">&#34; TODO: Remove this when ctrlsf support customized highlight group</span><span class="err">
+</span><span class="err"></span><span class="nx">hi</span> <span class="nx">ctrlsfSelectedLine</span> <span class="nx">guifg</span><span class="p">=</span><span class="mh">#008787</span> <span class="nx">guibg</span><span class="p">=</span><span class="nb">NONE</span> <span class="nx">guisp</span><span class="p">=</span><span class="nb">NONE</span> <span class="nx">gui</span><span class="p">=</span><span class="nb">bold</span> <span class="nx">ctermfg</span><span class="p">=</span><span class="m">30</span> <span class="nx">ctermbg</span><span class="p">=</span><span class="nb">NONE</span> <span class="nx">cterm</span><span class="p">=</span><span class="nb">bold</span><span class="err">
+</span></pre></code></pre>
+<h3>Note</h3>
+<p>The above configures is mainly for the neovim, which is not fully tested in vim.</p>
+ 
+    </div>
+    <div id="footer">
+      <p>2025-2025 | @leehengtong</p>
+    </div>
+  </body>
+</html>

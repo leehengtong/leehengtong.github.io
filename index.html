@@ -1,1320 +1,563 @@
-<!DOCTYPE html>
-<html lang="zh-CN,en,zh-TW,default">
-<head>
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.2.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
-
-<link rel="stylesheet" href="/css/main.css">
-
-
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
-
-<script id="hexo-configurations">
-    var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"www.leehengtong.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
-  </script>
-
-  <meta property="og:type" content="website">
-<meta property="og:title" content="咖啡时间">
-<meta property="og:url" content="https://www.leehengtong.com/index.html">
-<meta property="og:site_name" content="咖啡时间">
-<meta property="og:locale" content="zh_CN">
-<meta property="article:author" content="李亨通@leehengtong">
-<meta property="article:tag" content="无人驾驶; self-driving; 机器学习; machine learning; 金融; finance; 技术; techonlogy;">
-<meta name="twitter:card" content="summary">
-
-<link rel="canonical" href="https://www.leehengtong.com/">
-
-
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome : true,
-    isPost : false,
-    lang   : 'zh-CN'
-  };
-</script>
-
-  <title>咖啡时间</title>
-  
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-G5NJ0PJQP1"></script>
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="title" content="Li Hengtong" />
+    <meta name="description" content="A blog about AI and Programming in General" />
+    <meta name="referrer" content="always" />
+    <meta
+      name="keywords"
+      content="programming, golang, rust, go, javascript, development, software, opensource, oss"
+    />
+    <meta name="author" content="Li Hengtong" />
     <script>
-      if (CONFIG.hostname === location.hostname) {
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-G5NJ0PJQP1');
+      MathJax = {
+        tex: {
+          inlineMath: [
+            ['$', '$'],
+            ['\\(', '\\)'],
+          ],
+          displayMath: [
+            ['$$', '$$'],
+            ['\\[', '\\]'],
+          ],
+          processEscapes: true,
+        },
+        svg: {
+          fontCache: 'global',
+        },
       }
     </script>
+    <script
+      id="MathJax-script"
+      async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+    ></script>
+    <link rel="canonical" href="/" />
+    <title>Li Hengtong</title>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <style>
+      /* Background */ .chroma { background-color: #ffffff }
+/* Error */ .chroma .err { background-color: #a848a8 }
+/* LineTableTD */ .chroma .lntd { vertical-align: top; padding: 0; margin: 0; border: 0; }
+/* LineTable */ .chroma .lntable { border-spacing: 0; padding: 0; margin: 0; border: 0; width: auto; overflow: auto; display: block; }
+/* LineHighlight */ .chroma .hl { display: block; width: 100%;background-color: #e5e5e5 }
+/* LineNumbersTable */ .chroma .lnt { margin-right: 0.4em; padding: 0 0.4em 0 0.4em;color: #7f7f7f }
+/* LineNumbers */ .chroma .ln { margin-right: 0.4em; padding: 0 0.4em 0 0.4em;color: #7f7f7f }
+/* Keyword */ .chroma .k { color: #2838b0 }
+/* KeywordConstant */ .chroma .kc { color: #444444; font-style: italic }
+/* KeywordDeclaration */ .chroma .kd { color: #2838b0; font-style: italic }
+/* KeywordNamespace */ .chroma .kn { color: #2838b0 }
+/* KeywordPseudo */ .chroma .kp { color: #2838b0 }
+/* KeywordReserved */ .chroma .kr { color: #2838b0 }
+/* KeywordType */ .chroma .kt { color: #2838b0; font-style: italic }
+/* NameAttribute */ .chroma .na { color: #388038 }
+/* NameBuiltin */ .chroma .nb { color: #388038 }
+/* NameBuiltinPseudo */ .chroma .bp { font-style: italic }
+/* NameClass */ .chroma .nc { color: #287088 }
+/* NameConstant */ .chroma .no { color: #b85820 }
+/* NameDecorator */ .chroma .nd { color: #287088 }
+/* NameEntity */ .chroma .ni { color: #709030 }
+/* NameException */ .chroma .ne { color: #908828 }
+/* NameFunction */ .chroma .nf { color: #785840 }
+/* NameFunctionMagic */ .chroma .fm { color: #b85820 }
+/* NameLabel */ .chroma .nl { color: #289870 }
+/* NameNamespace */ .chroma .nn { color: #289870 }
+/* NameTag */ .chroma .nt { color: #2838b0 }
+/* NameVariable */ .chroma .nv { color: #b04040 }
+/* NameVariableGlobal */ .chroma .vg { color: #908828 }
+/* NameVariableMagic */ .chroma .vm { color: #b85820 }
+/* LiteralString */ .chroma .s { color: #b83838 }
+/* LiteralStringAffix */ .chroma .sa { color: #444444 }
+/* LiteralStringBacktick */ .chroma .sb { color: #b83838 }
+/* LiteralStringChar */ .chroma .sc { color: #a848a8 }
+/* LiteralStringDelimiter */ .chroma .dl { color: #b85820 }
+/* LiteralStringDoc */ .chroma .sd { color: #b85820; font-style: italic }
+/* LiteralStringDouble */ .chroma .s2 { color: #b83838 }
+/* LiteralStringEscape */ .chroma .se { color: #709030 }
+/* LiteralStringHeredoc */ .chroma .sh { color: #b83838 }
+/* LiteralStringInterpol */ .chroma .si { color: #b83838; text-decoration: underline }
+/* LiteralStringOther */ .chroma .sx { color: #a848a8 }
+/* LiteralStringRegex */ .chroma .sr { color: #a848a8 }
+/* LiteralStringSingle */ .chroma .s1 { color: #b83838 }
+/* LiteralStringSymbol */ .chroma .ss { color: #b83838 }
+/* LiteralNumber */ .chroma .m { color: #444444 }
+/* LiteralNumberBin */ .chroma .mb { color: #444444 }
+/* LiteralNumberFloat */ .chroma .mf { color: #444444 }
+/* LiteralNumberHex */ .chroma .mh { color: #444444 }
+/* LiteralNumberInteger */ .chroma .mi { color: #444444 }
+/* LiteralNumberIntegerLong */ .chroma .il { color: #444444 }
+/* LiteralNumberOct */ .chroma .mo { color: #444444 }
+/* Operator */ .chroma .o { color: #666666 }
+/* OperatorWord */ .chroma .ow { color: #a848a8 }
+/* Punctuation */ .chroma .p { color: #888888 }
+/* Comment */ .chroma .c { color: #888888; font-style: italic }
+/* CommentHashbang */ .chroma .ch { color: #287088; font-style: italic }
+/* CommentMultiline */ .chroma .cm { color: #888888; font-style: italic }
+/* CommentSingle */ .chroma .c1 { color: #888888; font-style: italic }
+/* CommentSpecial */ .chroma .cs { color: #888888; font-style: italic }
+/* CommentPreproc */ .chroma .cp { color: #289870 }
+/* CommentPreprocFile */ .chroma .cpf { color: #289870 }
+/* GenericDeleted */ .chroma .gd { color: #c02828 }
+/* GenericEmph */ .chroma .ge { font-style: italic }
+/* GenericError */ .chroma .gr { color: #c02828 }
+/* GenericHeading */ .chroma .gh { color: #666666 }
+/* GenericInserted */ .chroma .gi { color: #388038 }
+/* GenericOutput */ .chroma .go { color: #666666 }
+/* GenericPrompt */ .chroma .gp { color: #444444 }
+/* GenericStrong */ .chroma .gs { font-weight: bold }
+/* GenericSubheading */ .chroma .gu { color: #444444 }
+/* GenericTraceback */ .chroma .gt { color: #2838b0 }
+/* GenericUnderline */ .chroma .gl { text-decoration: underline }
+/* TextWhitespace */ .chroma .w { color: #a89028 }
 
 
-  <script>
-    var _hmt = _hmt || [];
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "https://hm.baidu.com/hm.js?b48103569e609595468166fd26864197";
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(hm, s);
-    })();
-  </script>
+      .chroma .err {
+        background-color: transparent;
+        color: #272822;
+      }
 
+      .chroma {
+        overflow: auto;
+        background-color: transparent;
+        min-height: 30px;
+      }
+    </style>
+    <link rel="stylesheet" href="/index.css" />
+  </head>
 
-
-
-  <noscript>
-  <style>
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
-
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
-
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
-
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
-    <div class="headband"></div>
-
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+  <body>
+    <div id="header">
+      <div id="header-inner">
+        <ul id="menu">
+          <li>
+            <div class="menuitem">
+              <a href="/">
+                <svg
+                  width="70px"
+                  height="35px"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M22 22L2 22"
+                    stroke="#FFFFFF"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    d="M2 11L10.1259 4.49931C11.2216 3.62279 12.7784 3.62279 13.8741 4.49931L22 11"
+                    stroke="#FFFFFF"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    d="M15.5 5.5V3.5C15.5 3.22386 15.7239 3 16 3H18.5C18.7761 3 19 3.22386 19 3.5V8.5"
+                    stroke="#FFFFFF"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    d="M4 22V9.5"
+                    stroke="#FFFFFF"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    d="M20 22V9.5"
+                    stroke="#FFFFFF"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    d="M15 22V17C15 15.5858 15 14.8787 14.5607 14.4393C14.1213 14 13.4142 14 12 14C10.5858 14 9.87868 14 9.43934 14.4393C9 14.8787 9 15.5858 9 17V22"
+                    stroke="#FFFFFF"
+                    stroke-width="1.5"
+                  />
+                  <path
+                    d="M14 9.5C14 10.6046 13.1046 11.5 12 11.5C10.8954 11.5 10 10.6046 10 9.5C10 8.39543 10.8954 7.5 12 7.5C13.1046 7.5 14 8.39543 14 9.5Z"
+                    stroke="#FFFFFF"
+                    stroke-width="1.5"
+                  />
+                </svg>
+                <div>Home</div>
+              </a>
+            </div>
+          </li>
+          <li>
+            <div class="menuitem">
+              <a href="/projects/">
+                <svg
+                  width="70px"
+                  height="35px"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M3.28441 11.2661C3.15113 9.26687 3.08449 8.26726 3.67729 7.63363C4.27009 7 5.27191 7 7.27555 7H12.7245C14.7281 7 15.7299 7 16.3227 7.63363C16.9155 8.26726 16.8489 9.26687 16.7156 11.2661L16.3734 16.3991C16.1964 19.054 16.1079 20.3815 15.2429 21.1907C14.3779 22 13.0475 22 10.3867 22H9.61333C6.95253 22 5.62212 22 4.75712 21.1907C3.89211 20.3815 3.80361 19.054 3.62662 16.3991L3.28441 11.2661Z"
+                    stroke="#FFFFFF"
+                    stroke-width="1.5"
+                  />
+                  <path
+                    d="M17 17H18C20.2091 17 22 15.2091 22 13C22 10.7909 20.2091 9 18 9H17"
+                    stroke="#FFFFFF"
+                    stroke-width="1.5"
+                  />
+                  <path d="M16 18H4" stroke="#FFFFFF" stroke-width="1.5" />
+                  <path
+                    d="M6.05081 5.0614L6.46143 4.48574C6.6882 4.16781 6.61431 3.72623 6.29638 3.49945C5.97845 3.27267 5.90455 2.8311 6.13133 2.51317L6.54195 1.9375M14.0508 5.0614L14.4614 4.48574C14.6882 4.16781 14.6143 3.72623 14.2964 3.49945C13.9784 3.27267 13.9046 2.8311 14.1313 2.51317L14.5419 1.9375M10.0508 5.0614L10.4614 4.48574C10.6882 4.16781 10.6143 3.72623 10.2964 3.49945C9.97845 3.27267 9.90455 2.8311 10.1313 2.51317L10.5419 1.9375"
+                    stroke="#FFFFFF"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                  />
+                </svg>
+                <div>Projects</div>
+              </a>
+            </div>
+          </li>
+          <li>
+            <div class="menuitem">
+              <a href="/about/">
+                <svg
+                  width="70px"
+                  height="35px"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M15.3929 4.05365L14.8912 4.61112L15.3929 4.05365ZM19.3517 7.61654L18.85 8.17402L19.3517 7.61654ZM21.654 10.1541L20.9689 10.4592V10.4592L21.654 10.1541ZM3.17157 20.8284L3.7019 20.2981H3.7019L3.17157 20.8284ZM20.8284 20.8284L20.2981 20.2981L20.2981 20.2981L20.8284 20.8284ZM14 21.25H10V22.75H14V21.25ZM2.75 14V10H1.25V14H2.75ZM21.25 13.5629V14H22.75V13.5629H21.25ZM14.8912 4.61112L18.85 8.17402L19.8534 7.05907L15.8947 3.49618L14.8912 4.61112ZM22.75 13.5629C22.75 11.8745 22.7651 10.8055 22.3391 9.84897L20.9689 10.4592C21.2349 11.0565 21.25 11.742 21.25 13.5629H22.75ZM18.85 8.17402C20.2034 9.3921 20.7029 9.86199 20.9689 10.4592L22.3391 9.84897C21.9131 8.89241 21.1084 8.18853 19.8534 7.05907L18.85 8.17402ZM10.0298 2.75C11.6116 2.75 12.2085 2.76158 12.7405 2.96573L13.2779 1.5653C12.4261 1.23842 11.498 1.25 10.0298 1.25V2.75ZM15.8947 3.49618C14.8087 2.51878 14.1297 1.89214 13.2779 1.5653L12.7405 2.96573C13.2727 3.16993 13.7215 3.55836 14.8912 4.61112L15.8947 3.49618ZM10 21.25C8.09318 21.25 6.73851 21.2484 5.71085 21.1102C4.70476 20.975 4.12511 20.7213 3.7019 20.2981L2.64124 21.3588C3.38961 22.1071 4.33855 22.4392 5.51098 22.5969C6.66182 22.7516 8.13558 22.75 10 22.75V21.25ZM1.25 14C1.25 15.8644 1.24841 17.3382 1.40313 18.489C1.56076 19.6614 1.89288 20.6104 2.64124 21.3588L3.7019 20.2981C3.27869 19.8749 3.02502 19.2952 2.88976 18.2892C2.75159 17.2615 2.75 15.9068 2.75 14H1.25ZM14 22.75C15.8644 22.75 17.3382 22.7516 18.489 22.5969C19.6614 22.4392 20.6104 22.1071 21.3588 21.3588L20.2981 20.2981C19.8749 20.7213 19.2952 20.975 18.2892 21.1102C17.2615 21.2484 15.9068 21.25 14 21.25V22.75ZM21.25 14C21.25 15.9068 21.2484 17.2615 21.1102 18.2892C20.975 19.2952 20.7213 19.8749 20.2981 20.2981L21.3588 21.3588C22.1071 20.6104 22.4392 19.6614 22.5969 18.489C22.7516 17.3382 22.75 15.8644 22.75 14H21.25ZM2.75 10C2.75 8.09318 2.75159 6.73851 2.88976 5.71085C3.02502 4.70476 3.27869 4.12511 3.7019 3.7019L2.64124 2.64124C1.89288 3.38961 1.56076 4.33855 1.40313 5.51098C1.24841 6.66182 1.25 8.13558 1.25 10H2.75ZM10.0298 1.25C8.15538 1.25 6.67442 1.24842 5.51887 1.40307C4.34232 1.56054 3.39019 1.8923 2.64124 2.64124L3.7019 3.7019C4.12453 3.27928 4.70596 3.02525 5.71785 2.88982C6.75075 2.75158 8.11311 2.75 10.0298 2.75V1.25Z"
+                    fill="#FFFFFF"
+                  />
+                  <path
+                    d="M13 2.5V5C13 7.35702 13 8.53553 13.7322 9.26777C14.4645 10 15.643 10 18 10H22"
+                    stroke="#FFFFFF"
+                    stroke-width="1.5"
+                  />
+                  <ellipse cx="17" cy="14.5" rx="1" ry="1.5" fill="#FFFFFF" />
+                  <path
+                    d="M9 17.5C10.8167 18.7111 13.1833 18.7111 15 17.5"
+                    stroke="#FFFFFF"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <ellipse cx="7" cy="14.5" rx="1" ry="1.5" fill="#FFFFFF" />
+                </svg>
+                <div>About</div>
+              </a>
+            </div>
+          </li>
+          <li>
+            <div class="menuitem">
+              <a href="/tags/">
+                <svg
+                  width="70px"
+                  height="35px"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M4.72848 16.1369C3.18295 14.5914 2.41018 13.8186 2.12264 12.816C1.83509 11.8134 2.08083 10.7485 2.57231 8.61875L2.85574 7.39057C3.26922 5.59881 3.47597 4.70292 4.08944 4.08944C4.70292 3.47597 5.59881 3.26922 7.39057 2.85574L8.61875 2.57231C10.7485 2.08083 11.8134 1.83509 12.816 2.12264C13.8186 2.41018 14.5914 3.18295 16.1369 4.72848L17.9665 6.55812C20.6555 9.24711 22 10.5916 22 12.2623C22 13.933 20.6555 15.2775 17.9665 17.9665C15.2775 20.6555 13.933 22 12.2623 22C10.5916 22 9.24711 20.6555 6.55812 17.9665L4.72848 16.1369Z"
+                    stroke="#FFFFFF"
+                    stroke-width="1.5"
+                  />
+                  <circle
+                    cx="8.60724"
+                    cy="8.87891"
+                    r="2"
+                    transform="rotate(-45 8.60724 8.87891)"
+                    stroke="#FFFFFF"
+                    stroke-width="1.5"
+                  />
+                  <path
+                    d="M11.5417 18.5L18.5208 11.5208"
+                    stroke="#FFFFFF"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                  />
+                </svg>
+                <div>Tags</div>
+              </a>
+            </div>
+          </li>
+          <li>
+            <div class="menuitem">
+              <a href="/archive/">
+                <svg
+                  width="70px"
+                  height="35px"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M16 4.00195C18.175 4.01406 19.3529 4.11051 20.1213 4.87889C21 5.75757 21 7.17179 21 10.0002V16.0002C21 18.8286 21 20.2429 20.1213 21.1215C19.2426 22.0002 17.8284 22.0002 15 22.0002H9C6.17157 22.0002 4.75736 22.0002 3.87868 21.1215C3 20.2429 3 18.8286 3 16.0002V10.0002C3 7.17179 3 5.75757 3.87868 4.87889C4.64706 4.11051 5.82497 4.01406 8 4.00195"
+                    stroke="#FFFFFF"
+                    stroke-width="1.5"
+                  />
+                  <path
+                    d="M8 14H16"
+                    stroke="#FFFFFF"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    d="M7 10.5H17"
+                    stroke="#FFFFFF"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    d="M9 17.5H15"
+                    stroke="#FFFFFF"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    d="M8 3.5C8 2.67157 8.67157 2 9.5 2H14.5C15.3284 2 16 2.67157 16 3.5V4.5C16 5.32843 15.3284 6 14.5 6H9.5C8.67157 6 8 5.32843 8 4.5V3.5Z"
+                    stroke="#FFFFFF"
+                    stroke-width="1.5"
+                  />
+                </svg>
+                <div>Archive</div>
+              </a>
+            </div>
+          </li>
+        </ul>
+        <div id="contact">
+          <a
+            href="https://github.com/leehengtong"
+            class="github"
+            target="_blank"
+            title="GitHub"
+          >
+            <svg viewBox="0 0 512 512">
+              <title>github</title>
+              <g fill="FA9B39">
+                <path
+                  d="M256 70.7c-102.6 0-185.9 83.2-185.9 185.9 0 82.1 53.3 151.8 127.1 176.4 9.3 1.7 12.3-4 12.3-8.9V389.4c-51.7 11.3-62.5-21.9-62.5-21.9 -8.4-21.5-20.6-27.2-20.6-27.2 -16.9-11.5 1.3-11.3 1.3-11.3 18.7 1.3 28.5 19.2 28.5 19.2 16.6 28.4 43.5 20.2 54.1 15.4 1.7-12 6.5-20.2 11.8-24.9 -41.3-4.7-84.7-20.6-84.7-91.9 0-20.3 7.3-36.9 19.2-49.9 -1.9-4.7-8.3-23.6 1.8-49.2 0 0 15.6-5 51.1 19.1 14.8-4.1 30.7-6.2 46.5-6.3 15.8 0.1 31.7 2.1 46.6 6.3 35.5-24 51.1-19.1 51.1-19.1 10.1 25.6 3.8 44.5 1.8 49.2 11.9 13 19.1 29.6 19.1 49.9 0 71.4-43.5 87.1-84.9 91.7 6.7 5.8 12.8 17.1 12.8 34.4 0 24.9 0 44.9 0 51 0 4.9 3 10.7 12.4 8.9 73.8-24.6 127-94.3 127-176.4C441.9 153.9 358.6 70.7 256 70.7z"
+                />
+              </g>
+            </svg>
+          </a>
+        </div>
+      </div>
     </div>
-  </div>
-
-  <div class="site-meta">
-
-    <a href="/" class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">咖啡时间</h1>
-      <span class="logo-line-after"><i></i></span>
-    </a>
-      <p class="site-subtitle" itemprop="description">Learn, Discuss and Share</p>
-  </div>
-
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger">
-        <i class="fa fa-search fa-fw fa-lg"></i>
-    </div>
-  </div>
-</div>
-
-
-
-
-<nav class="site-nav">
-  <ul id="menu" class="main-menu menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
-
-  </li>
-        <li class="menu-item menu-item-leetcode">
-
-    <a href="/categories/leetcode/" rel="section"><i class="fa fa-calendar fa-fw"></i>leetcode</a>
-
-  </li>
-        <li class="menu-item menu-item-categories">
-
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
-
-  </li>
-        <li class="menu-item menu-item-tags">
-
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
-
-  </li>
-        <li class="menu-item menu-item-commonweal">
-
-    <a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a>
-
-  </li>
-        <li class="menu-item menu-item-about">
-
-    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
-
-  </li>
-      <li class="menu-item menu-item-search">
-        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
-        </a>
-      </li>
-  </ul>
-</nav>
-
-
-
-  <div class="search-pop-overlay">
-    <div class="popup search-popup">
-        <div class="search-header">
-  <span class="search-icon">
-    <i class="fa fa-search"></i>
-  </span>
-  <div class="search-input-container">
-    <input autocomplete="off" autocapitalize="off"
-           placeholder="搜索..." spellcheck="false"
-           type="search" class="search-input">
-  </div>
-  <span class="popup-btn-close">
-    <i class="fa fa-times-circle"></i>
-  </span>
-</div>
-<div id="search-result">
-  <div id="no-result">
-    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
-  </div>
-</div>
-
-    </div>
-  </div>
-
-</div>
-    </header>
-
-    
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
-
-
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-
-          <div class="content index posts-expand">
+    <div id="content">
+       <div class="short">
+    <h2><a href="/palindromic_string/">回文字符串</a></h2>
+    <div class="datettr">
+        <span class="date">2021-02-28 20:00:34</span> - <span class="ttr">24m read</span> - <span class="tags">
             
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN,en,zh-TW,default">
-    <link itemprop="mainEntityOfPage" href="https://www.leehengtong.com/2021/02/28/palindromic_string/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="李亨通@leehengtong">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="咖啡时间">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/02/28/palindromic_string/" class="post-title-link" itemprop="url">回文字符串</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-02-28 20:00:34 / 修改时间：20:15:14" itemprop="dateCreated datePublished" datetime="2021-02-28T20:00:34+08:00">2021-02-28</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>回文字符串是一类常见的题目，首先我们要区分两个概念：</p>
-<ul>
-<li>回文子串（palindromic substring），要求某个字符串s的连续的一个子串$s[i…j]$是回文串；</li>
-<li>回文子序列（palindromic subsequence），不要求连续性，是通过对于字符串进行删减得到的序列，$s[i],s[j],s[k]，j - i &gt;= 1$满足回文性质。</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/02/28/palindromic_string/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
+                <span><a href="/tags/algorithm/">algorithm</a></span>
+            
+        </span>
     </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN,en,zh-TW,default">
-    <link itemprop="mainEntityOfPage" href="https://www.leehengtong.com/2021/02/27/how_to_select_leetcode_questions/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="李亨通@leehengtong">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="咖啡时间">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/02/27/how_to_select_leetcode_questions/" class="post-title-link" itemprop="url">How to select leetcode questions</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-02-27 10:18:34 / 修改时间：20:30:57" itemprop="dateCreated datePublished" datetime="2021-02-27T10:18:34+08:00">2021-02-27</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index"><span itemprop="name">leetcode</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Currently, there are TOO many questions in the leetcode, it is impossible and unnecessary to finish all the questions. Then, how can we select some classic problems?</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/02/27/how_to_select_leetcode_questions/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN,en,zh-TW,default">
-    <link itemprop="mainEntityOfPage" href="https://www.leehengtong.com/2021/02/14/interval_dynamic_program/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="李亨通@leehengtong">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="咖啡时间">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/02/14/interval_dynamic_program/" class="post-title-link" itemprop="url">区间动态规划</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-02-14 23:00:34" itemprop="dateCreated datePublished" datetime="2021-02-14T23:00:34+08:00">2021-02-14</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-02-20 12:17:21" itemprop="dateModified" datetime="2021-02-20T12:17:21+08:00">2021-02-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>区间动态规划是很重要的一种动态规划类别，对于这种问题，要仔细分析理解题意，建立从小区间构造大区间的方法。下面我们以几个leetcode上面的题目为例给出分析思路和解析。在所有这些题目中，有一点往往是一样的：我们一般都是对最终的结果建立dp数组，也就是dp中的单个元素往往表示的是给定区间内的最优解，这一点在思考dp问题的时候尤为重要。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/02/14/interval_dynamic_program/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN,en,zh-TW,default">
-    <link itemprop="mainEntityOfPage" href="https://www.leehengtong.com/2021/02/14/longest_common_increasing_subsequence/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="李亨通@leehengtong">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="咖啡时间">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/02/14/longest_common_increasing_subsequence/" class="post-title-link" itemprop="url">最长公共递增子序列</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-02-14 22:18:34" itemprop="dateCreated datePublished" datetime="2021-02-14T22:18:34+08:00">2021-02-14</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-02-16 20:34:57" itemprop="dateModified" datetime="2021-02-16T20:34:57+08:00">2021-02-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>最长公共递增子序列(Longest Common Increasing Subsequence, LCIS)是<a target="_blank" rel="noopener" href="https://leehengtong.com/2021/02/06/longest_common_subsequence/">LCS</a>和<a target="_blank" rel="noopener" href="https://leehengtong.com/2021/02/14/longest_increasing_subsequence/">LIS</a>的结合体，比这两个基本形式都复杂一些。下面我们将以一道GeeksForGeeks上面的题目对这个问题进行解析和求解。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/02/14/longest_common_increasing_subsequence/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN,en,zh-TW,default">
-    <link itemprop="mainEntityOfPage" href="https://www.leehengtong.com/2021/02/14/longest_increasing_subsequence/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="李亨通@leehengtong">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="咖啡时间">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/02/14/longest_increasing_subsequence/" class="post-title-link" itemprop="url">最长递增子序列</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-02-14 10:18:34" itemprop="dateCreated datePublished" datetime="2021-02-14T10:18:34+08:00">2021-02-14</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-02-16 20:35:06" itemprop="dateModified" datetime="2021-02-16T20:35:06+08:00">2021-02-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>最长递增子序列(Longest Increasing Subsequence, LIS)属于最基本也是最经典的动态规划问题，下面我们将以一道LeetCode上面的题目对这个问题进行解析和求解。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/02/14/longest_increasing_subsequence/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN,en,zh-TW,default">
-    <link itemprop="mainEntityOfPage" href="https://www.leehengtong.com/2021/02/06/longest_common_subsequence/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="李亨通@leehengtong">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="咖啡时间">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/02/06/longest_common_subsequence/" class="post-title-link" itemprop="url">最长公共子序列</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-02-06 10:18:34" itemprop="dateCreated datePublished" datetime="2021-02-06T10:18:34+08:00">2021-02-06</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-02-16 20:35:02" itemprop="dateModified" datetime="2021-02-16T20:35:02+08:00">2021-02-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>最长公共子序列(Longest Common Subsequence, LCS)属于最基本也是最经典的动态规划问题，下面我们将以一道LeetCode上面的题目对这个问题进行解析和求解。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/02/06/longest_common_subsequence/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN,en,zh-TW,default">
-    <link itemprop="mainEntityOfPage" href="https://www.leehengtong.com/2021/02/01/modern_neovim/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="李亨通@leehengtong">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="咖啡时间">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/02/01/modern_neovim/" class="post-title-link" itemprop="url">Modern (Neo)vim congiure in 2021</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-02-01 22:18:34" itemprop="dateCreated datePublished" datetime="2021-02-01T22:18:34+08:00">2021-02-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-02-16 20:35:13" itemprop="dateModified" datetime="2021-02-16T20:35:13+08:00">2021-02-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/vim/" itemprop="url" rel="index"><span itemprop="name">vim</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>I have used (neo)vim for many years. I think it greatly improved my work efficiency. And I want to share my configure with others to make more people can benefit from the (neo)vim.</p>
-<p>As you may have noticed, I use (neo)vim to denote the vim. That is because I have switched to the neovim several months ago. I don’t want to compare which one is better, both of them are very good editors, and many programmers contributed a lot for them. For me, I switch to the neovim for the following reasons:</p>
-<ul>
-<li>I think the neovim will introduce new features more positively, I am willing to try the new functions.</li>
-<li>I think the neovim is more friendly to the developers, I hope I can also contribute to it.</li>
-<li>There are some new features in the neovim, e.g., terminal, asynchronous job, float windows, etc. Although, they are also introduced in the newer vim.</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/02/01/modern_neovim/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN,en,zh-TW,default">
-    <link itemprop="mainEntityOfPage" href="https://www.leehengtong.com/2021/01/30/pack_issue/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="李亨通@leehengtong">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="咖啡时间">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/01/30/pack_issue/" class="post-title-link" itemprop="url">背包问题</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-01-30 23:01:34" itemprop="dateCreated datePublished" datetime="2021-01-30T23:01:34+08:00">2021-01-30</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-02-16 20:35:25" itemprop="dateModified" datetime="2021-02-16T20:35:25+08:00">2021-02-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>背包问题是动态规划的一种，其主要的分类和解法请参考</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/01/30/pack_issue/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN,en,zh-TW,default">
-    <link itemprop="mainEntityOfPage" href="https://www.leehengtong.com/2020/12/13/simulated_annealing/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="李亨通@leehengtong">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="咖啡时间">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/12/13/simulated_annealing/" class="post-title-link" itemprop="url">模拟退火</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-12-13 10:18:34" itemprop="dateCreated datePublished" datetime="2020-12-13T10:18:34+08:00">2020-12-13</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-02-16 20:34:16" itemprop="dateModified" datetime="2021-02-16T20:34:16+08:00">2021-02-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>模拟退火是一种通用概率算法，常用来在一定时间内寻找在一个很大搜寻空间中的近似最优解。和爬山算法相比，模拟退火算法以一定的概率接受不好的迭代，从而跳出局部最优。</p>
-<p>下面我们尝试使用模拟退火算法来解决<a target="_blank" rel="noopener" href="https://leehengtong.com/2020/12/07/optimization_problem/">上篇文章</a>中的几个问题：</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/12/13/simulated_annealing/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN,en,zh-TW,default">
-    <link itemprop="mainEntityOfPage" href="https://www.leehengtong.com/2020/12/12/hill_climbing/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="李亨通@leehengtong">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="咖啡时间">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/12/12/hill_climbing/" class="post-title-link" itemprop="url">爬山算法</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-12-12 10:18:34" itemprop="dateCreated datePublished" datetime="2020-12-12T10:18:34+08:00">2020-12-12</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-02-16 20:34:49" itemprop="dateModified" datetime="2021-02-16T20:34:49+08:00">2021-02-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>爬山算法是一种局部择优的方法，采用启发式方法，是对深度优先搜索的一种改进，它利用反馈信息帮助生成解的决策。</p>
-<p>爬山算法一般存在以下问题：</p>
-<ol>
-<li>局部最大</li>
-<li>高地：也称为平顶，搜索一旦到达高地，就无法确定搜索最佳方向，会产生随机走动，使得搜索效率降低。</li>
-<li>山脊：搜索可能会在山脊的两面来回震荡，前进步伐很小。</li>
-</ol>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/12/12/hill_climbing/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
-  </nav>
-
-
-
-          </div>
-          
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let { activeClass } = CONFIG.comments;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
-
-        </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="李亨通@leehengtong"
-      src="/images/avatar.jpg">
-  <p class="site-author-name" itemprop="name">李亨通@leehengtong</p>
-  <div class="site-description" itemprop="description"></div>
-</div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives">
-          <span class="site-state-item-count">14</span>
-          <span class="site-state-item-name">日志</span>
+    <div>
+        <a href="/palindromic_string/">
+            <p>
+                回文字符串介绍
+            </p>
         </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-          
-        <span class="site-state-item-count">3</span>
-        <span class="site-state-item-name">分类</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-          
-        <span class="site-state-item-count">14</span>
-        <span class="site-state-item-name">标签</span></a>
-      </div>
-  </nav>
-</div>
-  <div class="links-of-author motion-element">
-      <span class="links-of-author-item">
-        <a href="https://github.com/leehengtong" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;leehengtong" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
-      </span>
-  </div>
-
-
-  <div class="links-of-blogroll motion-element">
-    <div class="links-of-blogroll-title">
-      
     </div>
-    <ul class="links-of-blogroll-list">
-        <li class="links-of-blogroll-item">
-          <a href="https://www.v2ex.com/" title="https:&#x2F;&#x2F;www.v2ex.com" rel="noopener" target="_blank">V2EX</a>
-        </li>
-        <li class="links-of-blogroll-item">
-          <a href="https://medium.com/" title="https:&#x2F;&#x2F;medium.com" rel="noopener" target="_blank">Medium</a>
-        </li>
-        <li class="links-of-blogroll-item">
-          <a href="/more" title="&#x2F;more">More</a>
-        </li>
-    </ul>
-  </div>
-
-      </div>
-
-      <script type="text/javascript" src="//rf.revolvermaps.com/0/0/1.js?i=5o12n4bg337&amp;s=220&amp;m=0&amp;v=false&amp;r=false&amp;b=000000&amp;n=false&amp;c=ff0000" async="async"></script>
-
+    <div class="readmore">
+        <a href="/palindromic_string/">read more...</a>
     </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
-
-
-      </div>
-    </main>
-
-    <footer class="footer">
-      <div class="footer-inner">
-        
-
-        
-
-<div class="copyright">
-  
-  &copy; 
-  <span itemprop="copyrightYear">2021</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">李亨通@leehengtong</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
-  </div>
-
-        
-<div class="busuanzi-count">
-  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-user"></i>
-      </span>
-      <span class="site-uv" title="总访客量">
-        <span id="busuanzi_value_site_uv"></span>
-      </span>
-    </span>
-    <span class="post-meta-divider">|</span>
-    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-eye"></i>
-      </span>
-      <span class="site-pv" title="总访问量">
-        <span id="busuanzi_value_site_pv"></span>
-      </span>
-    </span>
+<br /><div class="short">
+    <h2><a href="/how_to_select_leetcode_questions/">How to select leetcode questions</a></h2>
+    <div class="datettr">
+        <span class="date">2021-02-27 10:18:34</span> - <span class="ttr">1m read</span> - <span class="tags">
+            
+                <span><a href="/tags/algorithm/">algorithm</a></span>
+            
+                <span><a href="/tags/leetcode/">leetcode</a></span>
+            
+        </span>
+    </div>
+    <div>
+        <a href="/how_to_select_leetcode_questions/">
+            <p>
+                A introduction about how to select the leetcode questions that are worth to crack
+            </p>
+        </a>
+    </div>
+    <div class="readmore">
+        <a href="/how_to_select_leetcode_questions/">read more...</a>
+    </div>
 </div>
-
-
-
-
-
-
-
-
-      </div>
-    </footer>
-  </div>
-
-  
-  <script src="/lib/anime.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
-
-<script src="/js/utils.js"></script>
-
-<script src="/js/motion.js"></script>
-
-
-<script src="/js/schemes/pisces.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
-
-
-
-
-  
-
-
-
-
-  
-<script src="/js/local-search.js"></script>
-
-
-
-
-
-
-
-
-
-<script>
-document.querySelectorAll('.pdfobject-container').forEach(element => {
-  let url = element.dataset.target;
-  let pdfOpenParams = {
-    navpanes : 0,
-    toolbar  : 0,
-    statusbar: 0,
-    pagemode : 'thumbs',
-    view     : 'FitH'
-  };
-  let pdfOpenFragment = '#' + Object.entries(pdfOpenParams).map(([key, value]) => `${key}=${encodeURIComponent(value)}`).join('&');
-  let fullURL = `/lib/pdf/web/viewer.html?file=${encodeURIComponent(url)}${pdfOpenFragment}`;
-
-  if (NexT.utils.supportsPDFs()) {
-    element.innerHTML = `<embed class="pdfobject" src="${url + pdfOpenFragment}" type="application/pdf" style="height: ${element.dataset.height};">`;
-  } else {
-    element.innerHTML = `<iframe src="${fullURL}" style="height: ${element.dataset.height};" frameborder="0"></iframe>`;
-  }
-});
-</script>
-
-
-
-
-  
-
-  
-      
-
-<script>
-  if (typeof MathJax === 'undefined') {
-    window.MathJax = {
-      loader: {
-        source: {
-          '[tex]/amsCd': '[tex]/amscd',
-          '[tex]/AMScd': '[tex]/amscd'
-        }
-      },
-      tex: {
-        inlineMath: {'[+]': [['$', '$']]},
-        tags: 'ams'
-      },
-      options: {
-        renderActions: {
-          findScript: [10, doc => {
-            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
-              const display = !!node.type.match(/; *mode=display/);
-              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
-              const text = document.createTextNode('');
-              node.parentNode.replaceChild(text, node);
-              math.start = {node: text, delim: '', n: 0};
-              math.end = {node: text, delim: '', n: 0};
-              doc.math.push(math);
-            });
-          }, '', false],
-          insertedScript: [200, () => {
-            document.querySelectorAll('mjx-container').forEach(node => {
-              let target = node.parentNode;
-              if (target.nodeName.toLowerCase() === 'li') {
-                target.parentNode.classList.add('has-jax');
-              }
-            });
-          }, '', false]
-        }
-      }
-    };
-    (function () {
-      var script = document.createElement('script');
-      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
-      script.defer = true;
-      document.head.appendChild(script);
-    })();
-  } else {
-    MathJax.startup.document.state(0);
-    MathJax.texReset();
-    MathJax.typeset();
-  }
-</script>
-
-    
-
-  
-
-</body>
+<br /><div class="short">
+    <h2><a href="/interval_dynamic_program/">区间动态规划</a></h2>
+    <div class="datettr">
+        <span class="date">2021-02-14 23:00:34</span> - <span class="ttr">30m read</span> - <span class="tags">
+            
+                <span><a href="/tags/algorithm/">algorithm</a></span>
+            
+        </span>
+    </div>
+    <div>
+        <a href="/interval_dynamic_program/">
+            <p>
+                区间动态规划介绍
+            </p>
+        </a>
+    </div>
+    <div class="readmore">
+        <a href="/interval_dynamic_program/">read more...</a>
+    </div>
+</div>
+<br /><div class="short">
+    <h2><a href="/longest_common_increasing_subsequence/">最长公共递增子序列</a></h2>
+    <div class="datettr">
+        <span class="date">2021-02-14 22:18:34</span> - <span class="ttr">3m read</span> - <span class="tags">
+            
+                <span><a href="/tags/algorithm/">algorithm</a></span>
+            
+        </span>
+    </div>
+    <div>
+        <a href="/longest_common_increasing_subsequence/">
+            <p>
+                最长公共递增子序列介绍
+            </p>
+        </a>
+    </div>
+    <div class="readmore">
+        <a href="/longest_common_increasing_subsequence/">read more...</a>
+    </div>
+</div>
+<br /><div class="short">
+    <h2><a href="/longest_increasing_subsequence/">最长递增子序列</a></h2>
+    <div class="datettr">
+        <span class="date">2021-02-14 10:18:34</span> - <span class="ttr">3m read</span> - <span class="tags">
+            
+                <span><a href="/tags/algorithm/">algorithm</a></span>
+            
+        </span>
+    </div>
+    <div>
+        <a href="/longest_increasing_subsequence/">
+            <p>
+                最长递增子序列介绍
+            </p>
+        </a>
+    </div>
+    <div class="readmore">
+        <a href="/longest_increasing_subsequence/">read more...</a>
+    </div>
+</div>
+<br /><div class="short">
+    <h2><a href="/longest_common_subsequence/">最长公共子序列</a></h2>
+    <div class="datettr">
+        <span class="date">2021-02-06 10:18:34</span> - <span class="ttr">2m read</span> - <span class="tags">
+            
+                <span><a href="/tags/algorithm/">algorithm</a></span>
+            
+        </span>
+    </div>
+    <div>
+        <a href="/longest_common_subsequence/">
+            <p>
+                最长公共子序列介绍
+            </p>
+        </a>
+    </div>
+    <div class="readmore">
+        <a href="/longest_common_subsequence/">read more...</a>
+    </div>
+</div>
+<br /><div class="short">
+    <h2><a href="/modern_neovim/">Modern (Neo)vim congiure in 2021</a></h2>
+    <div class="datettr">
+        <span class="date">2021-02-01 22:18:34</span> - <span class="ttr">26m read</span> - <span class="tags">
+            
+                <span><a href="/tags/vim%20configure/">vim configure</a></span>
+            
+        </span>
+    </div>
+    <div>
+        <a href="/modern_neovim/">
+            <p>
+                Modern (Neo)vim congiure in 2021
+            </p>
+        </a>
+    </div>
+    <div class="readmore">
+        <a href="/modern_neovim/">read more...</a>
+    </div>
+</div>
+<br /><div class="short">
+    <h2><a href="/pack_issue/">背包问题</a></h2>
+    <div class="datettr">
+        <span class="date">2021-01-30 23:01:34</span> - <span class="ttr">1m read</span> - <span class="tags">
+            
+                <span><a href="/tags/algorithm/">algorithm</a></span>
+            
+        </span>
+    </div>
+    <div>
+        <a href="/pack_issue/">
+            <p>
+                背包问题介绍
+            </p>
+        </a>
+    </div>
+    <div class="readmore">
+        <a href="/pack_issue/">read more...</a>
+    </div>
+</div>
+<br /><div class="short">
+    <h2><a href="/simulated_annealing/">模拟退火</a></h2>
+    <div class="datettr">
+        <span class="date">2020-12-13 10:18:34</span> - <span class="ttr">8m read</span> - <span class="tags">
+            
+                <span><a href="/tags/algorithm/">algorithm</a></span>
+            
+        </span>
+    </div>
+    <div>
+        <a href="/simulated_annealing/">
+            <p>
+                模拟退火介绍
+            </p>
+        </a>
+    </div>
+    <div class="readmore">
+        <a href="/simulated_annealing/">read more...</a>
+    </div>
+</div>
+<br /><div class="short">
+    <h2><a href="/hill_climbing/">爬山算法</a></h2>
+    <div class="datettr">
+        <span class="date">2020-12-12 10:18:34</span> - <span class="ttr">13m read</span> - <span class="tags">
+            
+                <span><a href="/tags/algorithm/">algorithm</a></span>
+            
+        </span>
+    </div>
+    <div>
+        <a href="/hill_climbing/">
+            <p>
+                爬山算法介绍
+            </p>
+        </a>
+    </div>
+    <div class="readmore">
+        <a href="/hill_climbing/">read more...</a>
+    </div>
+</div>
+<div class="old-articles-link">
+    <a href="/archive/">More Articles (14)</a>
+</diV>
+ 
+    </div>
+    <div id="footer">
+      <p>2025-2025 | @leehengtong</p>
+    </div>
+  </body>
 </html>
